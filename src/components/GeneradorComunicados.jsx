@@ -7,25 +7,25 @@ const USUARIOS_VALIDOS = [
 ];
 
 const SERVICIOS_TRANSACCIONALES = [
-  { id: 'datafast-visa-mc', nombre: 'DATAFAST VISA-MC', descripcion: 'Transacciones locales Visa (débito/crédito) y MasterCard (crédito) en red propia', categoria: 'datafast' },
-  { id: 'datafast-diners-dc', nombre: 'DATAFAST DINERS-DC', descripcion: 'Transacciones locales Diners (débito/crédito) y Discover (crédito) en red propia', categoria: 'datafast' },
-  { id: 'banred-pago-tc', nombre: 'BANRED (PAGO A TARJETA DE CRÉDITO)', descripcion: 'Transacciones entre bancos asociados BANRED: tarjetas de crédito, cuentas corrientes y ahorro', categoria: 'banred' },
-  { id: 'banred-base24', nombre: 'BANRED BASE 24 (DÉBITOS)', descripcion: 'Transacciones tarjetas de débito Banco Pichincha y bancos asociados BANRED', categoria: 'banred' },
-  { id: 'banred-base25', nombre: 'BANRED BASE 25 (ATM - TARJETAS DE CRÉDITO)', descripcion: 'Transacciones ATM tarjetas de crédito Banco Pichincha y bancos asociados BANRED', categoria: 'banred' },
-  { id: 'usp-atalla', nombre: 'USP ATALLA', descripcion: 'Validación de tarjetas propias de débito y crédito BANCO PICHINCHA', categoria: 'validacion' },
-  { id: 'efectivo-express', nombre: 'EFECTIVO EXPRESS', descripcion: 'Avances de efectivo por ventanilla Banco Pichincha', categoria: 'efectivo' },
-  { id: 'diners-internacional-1', nombre: 'DINERS CLUB INTERNACIONAL 1', descripcion: 'Transacciones crédito Diners/Discover: tarjetas propias en red ajena y ajenas en red propia', categoria: 'internacional' },
-  { id: 'diners-internacional-2', nombre: 'DINERS CLUB INTERNACIONAL 2', descripcion: 'Transacciones crédito Diners/Discover: tarjetas propias en red ajena y ajenas en red propia', categoria: 'internacional' },
-  { id: 'pulse-discover', nombre: 'PULSE / DISCOVER FS', descripcion: 'Transacciones tarjetas ajenas Diners y Discover en cajeros autorizados', categoria: 'internacional' },
-  { id: 'llaves-dci', nombre: 'LLAVES DCI', descripcion: 'Intercambio de llaves con franquicias DCI/Discover', categoria: 'seguridad' },
-  { id: 'visa-int-emision', nombre: 'VISA INTERNACIONAL EMISIÓN', descripcion: 'Transacciones débito/crédito tarjetas propias en red ajena', categoria: 'internacional' },
-  { id: 'visa-int-adquirencia', nombre: 'VISA INTERNACIONAL ADQUIRENCIA', descripcion: 'Transacciones crédito tarjetas ajenas en red propia', categoria: 'internacional' },
-  { id: 'mastercard-mci', nombre: 'MASTERCARD INTERNACIONAL MCI', descripcion: 'Transacciones crédito tarjetas propias en red ajena', categoria: 'internacional' },
-  { id: 'mastercard-mds', nombre: 'MASTERCARD INTERNACIONAL MDS', descripcion: 'Transacciones crédito tarjetas ajenas en red propia', categoria: 'internacional' },
-  { id: 'broker', nombre: 'BROKER', descripcion: 'Avances de efectivo en cajeros ATM sin tarjeta de crédito', categoria: 'efectivo' },
-  { id: 'jardin-azuayo', nombre: 'JARDÍN AZUAYO', descripcion: 'Transacciones débito Visa de Cooperativa Jardín Azuayo', categoria: 'cooperativas' },
-  { id: 'dock', nombre: 'DOCK (EN PROCESO DE IMPLEMENTACIÓN)', descripcion: 'Transacciones débito Banco Diners Club del Ecuador', categoria: 'implementacion' },
-  { id: 'bpc-bp', nombre: 'BPC-BP', descripcion: 'Transacciones tarjeta prepago de transporte Banco Pichincha', categoria: 'prepago' }
+  { id: 'datafast-visa-mc', nombre: '💳 DATAFAST VISA-MC', descripcion: 'Transacciones locales Visa (débito/crédito) y MasterCard (crédito) en red propia', categoria: 'datafast', emoji: '💳' },
+  { id: 'datafast-diners-dc', nombre: '💳 DATAFAST DINERS-DC', descripcion: 'Transacciones locales Diners (débito/crédito) y Discover (crédito) en red propia', categoria: 'datafast', emoji: '💳' },
+  { id: 'banred-pago-tc', nombre: '🏦 BANRED (PAGO TC)', descripcion: 'Transacciones entre bancos asociados BANRED: tarjetas de crédito, cuentas corrientes y ahorro', categoria: 'banred', emoji: '🏦' },
+  { id: 'banred-base24', nombre: '🏧 BANRED BASE 24', descripcion: 'Transacciones tarjetas de débito Banco Pichincha y bancos asociados BANRED', categoria: 'banred', emoji: '🏧' },
+  { id: 'banred-base25', nombre: '🏧 BANRED BASE 25 (ATM)', descripcion: 'Transacciones ATM tarjetas de crédito Banco Pichincha y bancos asociados BANRED', categoria: 'banred', emoji: '🏧' },
+  { id: 'usp-atalla', nombre: '🔐 USP ATALLA', descripcion: 'Validación de tarjetas propias de débito y crédito BANCO PICHINCHA', categoria: 'validacion', emoji: '🔐' },
+  { id: 'efectivo-express', nombre: '💵 EFECTIVO EXPRESS', descripcion: 'Avances de efectivo por ventanilla Banco Pichincha', categoria: 'efectivo', emoji: '💵' },
+  { id: 'diners-internacional-1', nombre: '🌍 DINERS INTERNACIONAL 1', descripcion: 'Transacciones crédito Diners/Discover: tarjetas propias en red ajena y ajenas en red propia', categoria: 'internacional', emoji: '🌍' },
+  { id: 'diners-internacional-2', nombre: '🌎 DINERS INTERNACIONAL 2', descripcion: 'Transacciones crédito Diners/Discover: tarjetas propias en red ajena y ajenas en red propia', categoria: 'internacional', emoji: '🌎' },
+  { id: 'pulse-discover', nombre: '💎 PULSE/DISCOVER FS', descripcion: 'Transacciones tarjetas ajenas Diners y Discover en cajeros autorizados', categoria: 'internacional', emoji: '💎' },
+  { id: 'llaves-dci', nombre: '🔑 LLAVES DCI', descripcion: 'Intercambio de llaves con franquicias DCI/Discover', categoria: 'seguridad', emoji: '🔑' },
+  { id: 'visa-int-emision', nombre: '✈️ VISA INT. EMISIÓN', descripcion: 'Transacciones débito/crédito tarjetas propias en red ajena', categoria: 'internacional', emoji: '✈️' },
+  { id: 'visa-int-adquirencia', nombre: '🛬 VISA INT. ADQUIRENCIA', descripcion: 'Transacciones crédito tarjetas ajenas en red propia', categoria: 'internacional', emoji: '🛬' },
+  { id: 'mastercard-mci', nombre: '🌐 MASTERCARD MCI', descripcion: 'Transacciones crédito tarjetas propias en red ajena', categoria: 'internacional', emoji: '🌐' },
+  { id: 'mastercard-mds', nombre: '🌏 MASTERCARD MDS', descripcion: 'Transacciones crédito tarjetas ajenas en red propia', categoria: 'internacional', emoji: '🌏' },
+  { id: 'broker', nombre: '🤝 BROKER', descripcion: 'Avances de efectivo en cajeros ATM sin tarjeta de crédito', categoria: 'efectivo', emoji: '🤝' },
+  { id: 'jardin-azuayo', nombre: '🌱 JARDÍN AZUAYO', descripcion: 'Transacciones débito Visa de Cooperativa Jardín Azuayo', categoria: 'cooperativas', emoji: '🌱' },
+  { id: 'dock', nombre: '🚧 DOCK (IMPLEMENTANDO)', descripcion: 'Transacciones débito Banco Diners Club del Ecuador', categoria: 'implementacion', emoji: '🚧' },
+  { id: 'bpc-bp', nombre: '🚌 BPC-BP', descripcion: 'Transacciones tarjeta prepago de transporte Banco Pichincha', categoria: 'prepago', emoji: '🚌' }
 ];
 
 const OPCIONES_ENCOLAMIENTO = [
@@ -60,36 +60,50 @@ const calcularDuracion = (fechaInicio, horaInicio, fechaFin, horaFin) => {
   }
 };
 
-// Matrix Rain Effect Component
+// Matrix Rain Effect Component con binario y caracteres
 const MatrixRain = () => {
   const [drops, setDrops] = useState([]);
   
   useEffect(() => {
     const columns = Math.floor(window.innerWidth / 20);
-    const initialDrops = Array(columns).fill(0).map(() => Math.random() * -100);
+    const initialDrops = Array(columns).fill(0).map(() => ({
+      y: Math.random() * -100,
+      speed: Math.random() * 2 + 1,
+      opacity: Math.random() * 0.5 + 0.3
+    }));
     setDrops(initialDrops);
     
     const interval = setInterval(() => {
-      setDrops(prev => prev.map(y => y > window.innerHeight ? Math.random() * -100 : y + 2));
+      setDrops(prev => prev.map(drop => ({
+        ...drop,
+        y: drop.y > window.innerHeight ? Math.random() * -100 : drop.y + drop.speed
+      })));
     }, 50);
     
     return () => clearInterval(interval);
   }, []);
   
+  const getRandomChar = () => {
+    const chars = ['0', '1', '01', '10', '11', '00', '☠', '⚡', '💀', '🔥'];
+    return chars[Math.floor(Math.random() * chars.length)];
+  };
+  
   return (
-    <div className="fixed inset-0 pointer-events-none z-0">
-      {drops.map((y, i) => (
+    <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+      {drops.map((drop, i) => (
         <div
           key={i}
-          className="absolute text-green-500 opacity-70 text-xs"
+          className="absolute text-green-500 text-xs"
           style={{
             left: `${i * 20}px`,
-            top: `${y}px`,
-            textShadow: '0 0 5px #00ff00',
-            animation: 'fadeIn 1s'
+            top: `${drop.y}px`,
+            opacity: drop.opacity,
+            textShadow: '0 0 8px #00ff00, 0 0 20px #00ff00',
+            filter: 'blur(0.5px)',
+            animation: 'pulse 2s infinite'
           }}
         >
-          {String.fromCharCode(0x30A0 + Math.random() * 96)}
+          {getRandomChar()}
         </div>
       ))}
     </div>
@@ -147,6 +161,8 @@ export default function GeneradorComunicados() {
   const [errorFechaFin, setErrorFechaFin] = useState('');
   const [mostrarErrorFecha, setMostrarErrorFecha] = useState(false);
   const [sugerenciasFecha, setSugerenciasFecha] = useState([]);
+  const [autoLimpiarEscalado, setAutoLimpiarEscalado] = useState(true);
+  const [ultimoEscalado, setUltimoEscalado] = useState('');
 
   // Establecer fechas al cargar
   useEffect(() => {
@@ -548,6 +564,11 @@ export default function GeneradorComunicados() {
   const generarMensajeInterno = () => {
     let mensaje = "";
     
+    // Guardar el valor actual de escalado antes de limpiarlo
+    if (formData.escaladoA && formData.escaladoA.trim() !== '') {
+      setUltimoEscalado(formData.escaladoA);
+    }
+    
     const getTitulo = () => {
       if (!modoBLU) {
         if (tipo.startsWith('evento-')) return 'GESTIÓN EVENTO';
@@ -767,6 +788,11 @@ export default function GeneradorComunicados() {
     
     setResultado(mensaje);
     setMostrarAlerta(false);
+    
+    // Auto-limpiar el campo escaladoA si la opción está activa
+    if (autoLimpiarEscalado && (tipo.startsWith('evento-') || tipo.startsWith('incidente-'))) {
+      setFormData(prev => ({ ...prev, escaladoA: '' }));
+    }
   };
 
   const copiar = () => {
@@ -785,28 +811,51 @@ export default function GeneradorComunicados() {
       });
   };
 
-  // Estilos Matrix
-  const btnPrimary = "bg-green-900 hover:bg-green-800 border border-green-500 text-green-400 px-4 py-2 rounded font-mono transition-all shadow-lg shadow-green-900/50 hover:shadow-green-500/50";
-  const btnSecondary = "bg-black hover:bg-gray-900 border border-green-600 text-green-500 px-4 py-2 rounded font-mono transition-all";
-  const input = "w-full p-3 bg-black border border-green-700 rounded text-green-400 placeholder-green-800 focus:border-green-500 focus:outline-none focus:shadow-lg focus:shadow-green-900/50 font-mono";
+  // Estilos Matrix mejorados con transparencias
+  const btnPrimary = "bg-gradient-to-r from-green-900/80 to-green-800/80 hover:from-green-800/90 hover:to-green-700/90 backdrop-blur border border-green-500 text-green-400 px-4 py-2 rounded font-mono transition-all shadow-lg shadow-green-900/50 hover:shadow-green-500/50 transform hover:scale-105";
+  const btnSecondary = "bg-black/60 hover:bg-gray-900/70 backdrop-blur border border-green-600 text-green-500 px-4 py-2 rounded font-mono transition-all transform hover:scale-105";
+  const input = "w-full p-3 bg-black/60 backdrop-blur border border-green-700 rounded text-green-400 placeholder-green-800/70 focus:border-green-500 focus:outline-none focus:shadow-lg focus:shadow-green-900/50 font-mono transition-all";
   const label = "block mb-2 text-xs font-mono text-green-500 uppercase tracking-wider";
-  const card = "bg-black/80 backdrop-blur rounded-lg p-6 border border-green-800 shadow-xl shadow-green-900/30";
+  const card = "bg-black/60 backdrop-blur-md rounded-lg p-6 border border-green-800/50 shadow-xl shadow-green-900/30 hover:shadow-green-900/50 transition-all";
 
-  // Login
+  // Login con efectos mejorados
   if (!isAuthenticated) {
     return (
       <div className="min-h-screen bg-black flex items-center justify-center p-4 relative overflow-hidden">
         <MatrixRain />
-        <div className="w-full max-w-md bg-black/90 backdrop-blur rounded-lg p-8 border border-green-500 shadow-2xl shadow-green-500/30 relative z-10">
+        {/* Efecto de escaneo */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="h-1 bg-gradient-to-r from-transparent via-green-500 to-transparent opacity-50 animate-pulse"></div>
+        </div>
+        <div className="w-full max-w-md bg-black/70 backdrop-blur-lg rounded-lg p-8 border border-green-500/50 shadow-2xl shadow-green-500/30 relative z-10 transform hover:scale-105 transition-all">
+          {/* Decoración de esquinas */}
+          <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-green-500"></div>
+          <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-green-500"></div>
+          <div className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-green-500"></div>
+          <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-green-500"></div>
+          
           <div className="text-center mb-8">
-            <Terminal className="w-16 h-16 mx-auto text-green-500 mb-4 animate-pulse" />
-            <h1 className="text-2xl font-mono font-bold text-green-400 mb-2 glitch" data-text="ACCESO AL SISTEMA">ACCESO AL SISTEMA</h1>
+            <div className="text-5xl mb-3 animate-pulse">☠️</div>
+            <div className="flex justify-center space-x-2 mb-4">
+              <span className="text-green-500 text-xs font-mono animate-pulse">01010011</span>
+              <Terminal className="w-16 h-16 text-green-500 animate-pulse" />
+              <span className="text-green-500 text-xs font-mono animate-pulse">11010001</span>
+            </div>
+            <h1 className="text-2xl font-mono font-bold text-green-400 mb-2 glitch" data-text="ACCESO AL SISTEMA">
+              💀 ACCESO AL SISTEMA 💀
+            </h1>
             <p className="text-green-600 text-xs font-mono">[GENERADOR_INCIDENTES_v5.0]</p>
-            <p className="text-green-700 text-xs font-mono mt-1">[PROTOCOLO_MATRIX_ACTIVADO]</p>
+            <p className="text-green-700 text-xs font-mono mt-1">⚡ [PROTOCOLO_MATRIX_ACTIVADO] ⚡</p>
+            <div className="text-xs text-red-500 mt-2 font-mono animate-pulse">
+              ⚠️ ACCESO_RESTRINGIDO ⚠️
+            </div>
+            <div className="mt-2 text-xs text-green-800 font-mono">
+              01001000 01000001 01000011 01001011 01000101 01010010
+            </div>
           </div>
           <div className="space-y-4">
             <div>
-              <label className={label}>ID_USUARIO:</label>
+              <label className={label}>🔓 ID_USUARIO:</label>
               <input
                 type="text"
                 name="usuario"
@@ -817,7 +866,7 @@ export default function GeneradorComunicados() {
               />
             </div>
             <div>
-              <label className={label}>CONTRASEÑA:</label>
+              <label className={label}>🔐 CONTRASEÑA:</label>
               <div className="relative">
                 <input
                   type={showPassword ? "text" : "password"}
@@ -837,13 +886,19 @@ export default function GeneradorComunicados() {
               </div>
             </div>
             {loginError && (
-              <div className="p-3 rounded bg-red-900/30 border border-red-500">
-                <p className="text-red-400 text-xs font-mono animate-pulse">{loginError}</p>
+              <div className="p-3 rounded bg-red-900/30 backdrop-blur border border-red-500">
+                <p className="text-red-400 text-xs font-mono animate-pulse">⚠️ {loginError} ⚠️</p>
               </div>
             )}
-            <button onClick={handleLogin} className="w-full bg-green-900 hover:bg-green-800 border border-green-500 text-green-400 py-3 rounded font-mono transition-all shadow-lg shadow-green-900/50 hover:shadow-green-500/50">
-              [INICIAR_CONEXIÓN]
+            <button onClick={handleLogin} className="w-full bg-gradient-to-r from-green-900/80 to-green-800/80 hover:from-green-800/90 hover:to-green-700/90 backdrop-blur border border-green-500 text-green-400 py-3 rounded font-mono transition-all shadow-lg shadow-green-900/50 hover:shadow-green-500/50 transform hover:scale-105">
+              ⚡ [INICIAR_CONEXIÓN] ⚡
             </button>
+            <div className="text-center text-xs text-green-700 font-mono mt-4">
+              ════════[ SISTEMA_SEGURO ]════════
+            </div>
+            <div className="text-center text-xs text-green-900 font-mono">
+              10110101 00101110 11001010
+            </div>
           </div>
         </div>
       </div>
@@ -855,25 +910,48 @@ export default function GeneradorComunicados() {
     <div className="min-h-screen bg-black text-green-400 relative overflow-x-hidden">
       <MatrixRain />
       <div className="max-w-7xl mx-auto px-4 py-6 relative z-10">
-        <header className="bg-black/90 backdrop-blur p-6 rounded-lg mb-6 border border-green-500 shadow-2xl shadow-green-500/20 relative">
-          <div className="absolute top-4 left-4 bg-black rounded p-2 text-xs font-mono border border-green-700">
+        <header className="bg-gradient-to-b from-black/90 to-green-900/20 backdrop-blur-lg p-6 rounded-lg mb-6 border border-green-500/50 shadow-2xl shadow-green-500/20 relative overflow-hidden">
+          {/* Efecto de escaneo animado */}
+          <div className="absolute inset-0 opacity-20">
+            <div className="absolute inset-0 bg-gradient-to-b from-green-500/20 to-transparent animate-pulse"></div>
+          </div>
+          
+          <div className="absolute top-4 left-4 bg-black/80 backdrop-blur rounded p-2 text-xs font-mono border border-green-700/50">
             <span className={getEstadoSemaforo().clase}>{getEstadoSemaforo().color} {calcularTiempoAbierto().horas}h:{calcularTiempoAbierto().minutos}m</span>
-            <button onClick={actualizarFechasAhora} className="ml-2 text-green-400 hover:text-green-300">
+            <button onClick={actualizarFechasAhora} className="ml-2 text-green-400 hover:text-green-300 transition-all">
               <RefreshCw className="w-3 h-3 inline" />
             </button>
           </div>
-          <button onClick={handleLogout} className="absolute top-4 right-4 text-green-600 hover:text-green-400 text-xs font-mono">
-            [CERRAR_SESIÓN]
+          <button onClick={handleLogout} className="absolute top-4 right-4 text-green-600 hover:text-green-400 text-xs font-mono transition-all">
+            💀 [CERRAR_SESIÓN]
           </button>
-          <div className="text-center">
-            <Terminal className="w-12 h-12 mx-auto text-green-500 mb-3 animate-pulse" />
-            <h1 className="text-3xl font-mono font-bold text-green-400 mb-2 tracking-wider">SISTEMA_COMUNICADOS_INCIDENTES</h1>
-            <p className="text-green-600 font-mono text-sm">[PROTOCOLO_MONITOREO_ACTIVO]</p>
+          <div className="text-center relative z-10">
+            <div className="flex justify-center items-center space-x-4 mb-3">
+              <span className="text-green-800 text-2xl animate-pulse">01</span>
+              <div className="text-4xl animate-bounce">☠️</div>
+              <Terminal className="w-12 h-12 text-green-500 animate-pulse" />
+              <div className="text-4xl animate-bounce">☠️</div>
+              <span className="text-green-800 text-2xl animate-pulse">10</span>
+            </div>
+            <h1 className="text-3xl font-mono font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-600 mb-2 tracking-wider">
+              <span className="text-red-500">⚡</span> SISTEMA_COMUNICADOS_INCIDENTES <span className="text-red-500">⚡</span>
+            </h1>
+            <p className="text-green-600 font-mono text-sm">[PROTOCOLO_MONITOREO_ACTIVO] 🔥</p>
+            <div className="text-xs text-green-700 mt-1 font-mono">
+              ════════════[ ACCESO_NIVEL_5 ]════════════
+            </div>
+            <div className="text-xs text-green-900 font-mono mt-1">
+              01001101 01000001 01010100 01010010 01001001 01011000
+            </div>
             <button
               onClick={() => setModoBLU(!modoBLU)}
-              className={`mt-3 px-4 py-2 rounded text-xs font-mono border transition-all ${modoBLU ? 'bg-blue-900/50 border-blue-500 text-blue-400 shadow-lg shadow-blue-500/30' : 'bg-black border-green-800 text-green-600'}`}
+              className={`mt-3 px-4 py-2 rounded text-xs font-mono border transition-all transform hover:scale-105 ${
+                modoBLU 
+                  ? 'bg-gradient-to-r from-blue-900/50 to-blue-800/50 backdrop-blur border-blue-500 text-blue-400 shadow-lg shadow-blue-500/30' 
+                  : 'bg-black/60 backdrop-blur border-green-800 text-green-600'
+              }`}
             >
-              {modoBLU ? '[BLU_2.0_ACTIVO]' : '[ACTIVAR_BLU_2.0]'}
+              {modoBLU ? '💙 [BLU_2.0_ACTIVO]' : '⚪ [ACTIVAR_BLU_2.0]'}
             </button>
             {modoBLU && (
               <div className="mt-3 inline-flex gap-2">
@@ -881,9 +959,13 @@ export default function GeneradorComunicados() {
                   <button
                     key={t}
                     onClick={() => setTipoBLU(t)}
-                    className={`px-3 py-1 rounded text-xs font-mono border transition-all ${tipoBLU === t ? 'bg-blue-900/50 border-blue-500 text-blue-400' : 'bg-black border-green-800 text-green-600'}`}
+                    className={`px-3 py-1 rounded text-xs font-mono border transition-all transform hover:scale-105 ${
+                      tipoBLU === t 
+                        ? 'bg-gradient-to-r from-blue-900/50 to-blue-800/50 backdrop-blur border-blue-500 text-blue-400' 
+                        : 'bg-black/60 backdrop-blur border-green-800 text-green-600'
+                    }`}
                   >
-                    {t === 'aplicacion' ? '[APP]' : t === 'infraestructura' ? '[INFRA]' : '[BIAN]'}
+                    {t === 'aplicacion' ? '📱 [APP]' : t === 'infraestructura' ? '🖥️ [INFRA]' : '⚠️ [BIAN]'}
                   </button>
                 ))}
               </div>
@@ -896,10 +978,12 @@ export default function GeneradorComunicados() {
           <div className="lg:col-span-1">
             <div className="space-y-4">
               <div className={card}>
-                <h2 className="text-sm font-mono font-bold text-green-400 mb-4 tracking-wider">[TIPO_COMUNICADO]</h2>
+                <h2 className="text-sm font-mono font-bold text-green-400 mb-4 tracking-wider">
+                  <span className="text-red-500">▼</span> [TIPO_COMUNICADO] <span className="text-red-500">▼</span>
+                </h2>
                 <div className="space-y-3">
                   <div className="border border-green-700 rounded p-3">
-                    <h3 className="text-xs font-mono text-green-600 mb-2">[EVENTOS]</h3>
+                    <h3 className="text-xs font-mono text-green-600 mb-2">⚡ [EVENTOS]</h3>
                     <div className="grid grid-cols-3 gap-2">
                       {['evento-inicio', 'evento-seguimiento', 'evento-fin'].map((t, i) => (
                         <button
@@ -913,7 +997,7 @@ export default function GeneradorComunicados() {
                     </div>
                   </div>
                   <div className="border border-green-700 rounded p-3">
-                    <h3 className="text-xs font-mono text-green-600 mb-2">[MANTENIMIENTOS]</h3>
+                    <h3 className="text-xs font-mono text-green-600 mb-2">🔧 [MANTENIMIENTOS]</h3>
                     <div className="grid grid-cols-2 gap-2">
                       {['mantenimiento-inicio', 'mantenimiento-fin'].map((t, i) => (
                         <button
@@ -927,7 +1011,7 @@ export default function GeneradorComunicados() {
                     </div>
                   </div>
                   <div className="border border-green-700 rounded p-3">
-                    <h3 className="text-xs font-mono text-green-600 mb-2">[INCIDENTES]</h3>
+                    <h3 className="text-xs font-mono text-green-600 mb-2">💀 [INCIDENTES]</h3>
                     <div className="grid grid-cols-3 gap-2">
                       {['incidente-inicio', 'incidente-avance', 'incidente-fin'].map((t, i) => (
                         <button
@@ -945,43 +1029,73 @@ export default function GeneradorComunicados() {
 
               <div className={card}>
                 <div className="flex items-center justify-between mb-3">
-                  <h2 className="text-xs font-mono font-bold text-green-400 tracking-wider">[SERVICIOS_TX]</h2>
-                  <button onClick={() => setMostrarServicios(!mostrarServicios)} className="text-green-600 hover:text-green-400">
+                  <h2 className="text-xs font-mono font-bold text-green-400 tracking-wider">🎯 [SERVICIOS_TX]</h2>
+                  <button onClick={() => setMostrarServicios(!mostrarServicios)} className="text-green-600 hover:text-green-400 transition-all transform hover:scale-110">
                     {mostrarServicios ? <Minus className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
                   </button>
                 </div>
                 {mostrarServicios && (
-                  <div className="space-y-2 max-h-96 overflow-y-auto">
-                    <button onClick={limpiarImpactos} className="text-xs bg-black border border-green-700 hover:border-green-500 text-green-600 px-2 py-1 rounded font-mono">
-                      <Trash2 className="w-3 h-3 inline mr-1" />[LIMPIAR]
+                  <div className="space-y-2 max-h-96 overflow-y-auto scrollbar-thin scrollbar-thumb-green-800 scrollbar-track-black">
+                    <button onClick={limpiarImpactos} className="text-xs bg-gradient-to-r from-red-900/60 to-red-800/60 backdrop-blur border border-red-700 hover:border-red-500 text-red-400 px-2 py-1 rounded font-mono transform hover:scale-105 transition-all">
+                      <Trash2 className="w-3 h-3 inline mr-1" />🔥 [LIMPIAR]
                     </button>
                     
-                    {['datafast', 'banred', 'internacional'].map(categoria => (
-                      <div key={categoria} className="border border-green-800 rounded p-2">
-                        <h4 className="text-xs font-mono text-green-600 mb-1">[{categoria.toUpperCase()}]</h4>
-                        <div className="space-y-1">
-                          {SERVICIOS_TRANSACCIONALES.filter(s => s.categoria === categoria).map(servicio => (
-                            <button
-                              key={servicio.id}
-                              onClick={() => seleccionarServicio(servicio)}
-                              className="text-left w-full text-xs bg-black border border-green-900 hover:border-green-500 text-green-600 p-1 rounded truncate font-mono"
-                              title={servicio.descripcion}
-                            >
-                              {servicio.nombre}
-                            </button>
-                          ))}
-                        </div>
+                    <div className="border border-green-800/50 rounded p-2 bg-black/40 backdrop-blur">
+                      <h4 className="text-xs font-mono text-green-600 mb-1">💳 [DATAFAST]</h4>
+                      <div className="space-y-1">
+                        {SERVICIOS_TRANSACCIONALES.filter(s => s.categoria === 'datafast').map(servicio => (
+                          <button
+                            key={servicio.id}
+                            onClick={() => seleccionarServicio(servicio)}
+                            className="text-left w-full text-xs bg-gradient-to-r from-black/60 to-green-900/20 backdrop-blur border border-green-900 hover:border-green-500 hover:from-green-900/40 hover:to-green-800/40 text-green-400 p-1.5 rounded truncate font-mono transform hover:scale-105 transition-all"
+                            title={servicio.descripcion}
+                          >
+                            {servicio.nombre}
+                          </button>
+                        ))}
                       </div>
-                    ))}
+                    </div>
                     
-                    <div className="border border-green-800 rounded p-2">
-                      <h4 className="text-xs font-mono text-green-600 mb-1">[OTROS]</h4>
+                    <div className="border border-green-800/50 rounded p-2 bg-black/40 backdrop-blur">
+                      <h4 className="text-xs font-mono text-green-600 mb-1">🏦 [BANRED]</h4>
+                      <div className="space-y-1">
+                        {SERVICIOS_TRANSACCIONALES.filter(s => s.categoria === 'banred').map(servicio => (
+                          <button
+                            key={servicio.id}
+                            onClick={() => seleccionarServicio(servicio)}
+                            className="text-left w-full text-xs bg-gradient-to-r from-black/60 to-green-900/20 backdrop-blur border border-green-900 hover:border-green-500 hover:from-green-900/40 hover:to-green-800/40 text-green-400 p-1.5 rounded truncate font-mono transform hover:scale-105 transition-all"
+                            title={servicio.descripcion}
+                          >
+                            {servicio.nombre}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                    
+                    <div className="border border-green-800/50 rounded p-2 bg-black/40 backdrop-blur">
+                      <h4 className="text-xs font-mono text-green-600 mb-1">🌍 [INTERNACIONAL]</h4>
+                      <div className="space-y-1">
+                        {SERVICIOS_TRANSACCIONALES.filter(s => s.categoria === 'internacional').map(servicio => (
+                          <button
+                            key={servicio.id}
+                            onClick={() => seleccionarServicio(servicio)}
+                            className="text-left w-full text-xs bg-gradient-to-r from-black/60 to-green-900/20 backdrop-blur border border-green-900 hover:border-green-500 hover:from-green-900/40 hover:to-green-800/40 text-green-400 p-1.5 rounded truncate font-mono transform hover:scale-105 transition-all"
+                            title={servicio.descripcion}
+                          >
+                            {servicio.nombre}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                    
+                    <div className="border border-green-800/50 rounded p-2 bg-black/40 backdrop-blur">
+                      <h4 className="text-xs font-mono text-green-600 mb-1">🔧 [OTROS_SERVICIOS]</h4>
                       <div className="space-y-1">
                         {SERVICIOS_TRANSACCIONALES.filter(s => !['datafast', 'banred', 'internacional'].includes(s.categoria)).map(servicio => (
                           <button
                             key={servicio.id}
                             onClick={() => seleccionarServicio(servicio)}
-                            className="text-left w-full text-xs bg-black border border-green-900 hover:border-green-500 text-green-600 p-1 rounded truncate font-mono"
+                            className="text-left w-full text-xs bg-gradient-to-r from-black/60 to-green-900/20 backdrop-blur border border-green-900 hover:border-green-500 hover:from-green-900/40 hover:to-green-800/40 text-green-400 p-1.5 rounded truncate font-mono transform hover:scale-105 transition-all"
                             title={servicio.descripcion}
                           >
                             {servicio.nombre}
@@ -1059,7 +1173,14 @@ export default function GeneradorComunicados() {
                   </div>
                   
                   <div>
-                    <label className={label}>[ESCALADO_A] (opcional):</label>
+                    <label className={label}>
+                      <span className="mr-2">💀</span>[ESCALADO_A] (opcional):
+                    </label>
+                    {ultimoEscalado && (
+                      <div className="text-xs text-yellow-500 mb-2 font-mono border border-yellow-900 bg-yellow-900/20 p-2 rounded">
+                        ⚠️ Último escalamiento: {ultimoEscalado}
+                      </div>
+                    )}
                     <input
                       type="text"
                       name="escaladoA"
@@ -1068,6 +1189,17 @@ export default function GeneradorComunicados() {
                       onChange={handleInputChange}
                       className={input}
                     />
+                    <label className="flex items-center space-x-2 cursor-pointer mt-2">
+                      <input
+                        type="checkbox"
+                        checked={autoLimpiarEscalado}
+                        onChange={(e) => setAutoLimpiarEscalado(e.target.checked)}
+                        className="w-4 h-4 text-green-600 bg-black border-green-600 rounded focus:ring-green-500"
+                      />
+                      <span className="text-xs font-mono text-green-500">
+                        [AUTO_LIMPIAR] <span className="text-green-600">- Limpia este campo después de generar</span>
+                      </span>
+                    </label>
                   </div>
                 </div>
               )}
@@ -1420,30 +1552,32 @@ export default function GeneradorComunicados() {
                 disabled={errorFechaFin && errorFechaFin.includes('ERROR')}
               >
                 <Zap className="w-5 h-5 inline mr-2" />
-                [GENERAR_MENSAJE]
+                💀 [GENERAR_MENSAJE] 💀
               </button>
             </div>
             
             <div className={card}>
-              <h2 className="text-lg font-mono font-bold text-green-400 mb-4 tracking-wider">[SALIDA_MENSAJE]</h2>
+              <h2 className="text-lg font-mono font-bold text-green-400 mb-4 tracking-wider">
+                ⚡ [SALIDA_MENSAJE] ⚡
+              </h2>
               <div className="bg-black p-4 rounded font-mono text-xs min-h-[150px] border border-green-700">
-                <pre className="whitespace-pre-wrap text-green-400">{resultado || '[ESPERANDO_GENERACIÓN]...'}</pre>
+                <pre className="whitespace-pre-wrap text-green-400">{resultado || '☠️ [ESPERANDO_GENERACIÓN]...'}</pre>
               </div>
               
               {mostrarAlerta && (
                 <div className="mt-4 p-3 rounded bg-green-900/30 border border-green-500">
-                  <p className="text-green-300 text-xs font-mono">{alertaMensaje}</p>
+                  <p className="text-green-300 text-xs font-mono">⚡ {alertaMensaje}</p>
                 </div>
               )}
               
               <div className="flex gap-4 mt-4">
                 <button className={btnPrimary + " flex-1"} onClick={copiar}>
                   <Copy className="w-4 h-4 inline mr-2" />
-                  [COPIAR]
+                  📋 [COPIAR]
                 </button>
                 <button className={btnSecondary + " flex-1"} onClick={limpiarCampos}>
                   <Trash2 className="w-4 h-4 inline mr-2" />
-                  [LIMPIAR]
+                  🔥 [LIMPIAR]
                 </button>
               </div>
             </div>
@@ -1533,8 +1667,14 @@ export default function GeneradorComunicados() {
         )}
         
         <footer className="text-center py-6 mt-8 text-green-700 text-xs border-t border-green-900 font-mono">
-          <p>[DESARROLLADOR]: Luis Alberto Herrera Lara</p>
-          <p>[VERSIÓN_SISTEMA]: COMM_INCIDENTES_v5.0_EDICIÓN_MATRIX</p>
+          <div className="mb-2">
+            ════════════════════════════════════════════════
+          </div>
+          <p>💀 [DESARROLLADOR]: Luis Alberto Herrera Lara 💀</p>
+          <p>[VERSIÓN_SISTEMA]: COMM_INCIDENTES_v5.0_MATRIX_HACKER_EDITION</p>
+          <div className="mt-2">
+            <span className="text-red-500">⚡</span> [ACCESO_RESTRINGIDO] <span className="text-red-500">⚡</span>
+          </div>
         </footer>
       </div>
     </div>
