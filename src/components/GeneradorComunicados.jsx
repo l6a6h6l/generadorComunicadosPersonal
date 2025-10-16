@@ -1186,9 +1186,16 @@ export default function GeneradorComunicados() {
                       name="escaladoA"
                       placeholder="Nombre de la persona o equipo al que se escaló..."
                       value={formData.escaladoA}
-                      onChange={handleInputChange}
+                      onChange={(e) => {
+                        // Convertir automáticamente a MAYÚSCULAS
+                        const valorEnMayusculas = e.target.value.toUpperCase();
+                        setFormData(prev => ({ ...prev, escaladoA: valorEnMayusculas }));
+                      }}
                       className={input}
                     />
+                    <p className="text-xs text-green-600 mt-1 font-mono">
+                      ⚡ El texto se convertirá automáticamente a MAYÚSCULAS
+                    </p>
                     <label className="flex items-center space-x-2 cursor-pointer mt-2">
                       <input
                         type="checkbox"
@@ -1535,11 +1542,29 @@ export default function GeneradorComunicados() {
                 </div>
               )}
               
+              {/* Instrucciones especiales para evento-fin */}
+              {tipo === 'evento-fin' && (
+                <div className="mt-4 p-3 bg-blue-900/20 backdrop-blur border border-blue-500/50 rounded">
+                  <p className="text-xs font-mono text-blue-400 mb-1">
+                    📝 [INSTRUCCIONES_NOTA_EVENTO_FIN]
+                  </p>
+                  <p className="text-xs font-mono text-blue-300">
+                    ⚡ En la NOTA debe indicarse siempre la acción que se realizó para que el servicio se recupere
+                  </p>
+                  <p className="text-xs font-mono text-blue-300 mt-1">
+                    ⚡ Si se recuperó automáticamente, también debe indicarse
+                  </p>
+                  <p className="text-xs font-mono text-blue-500 mt-1">
+                    💡 Ejemplo: "Se reinició el servicio", "Se recuperó automáticamente", etc.
+                  </p>
+                </div>
+              )}
+              
               <div className="mt-4">
                 <label className={label}>[NOTA_ADICIONAL] (opcional):</label>
                 <textarea 
                   className={input + " h-20 resize-y font-mono"}
-                  placeholder="Observaciones adicionales"
+                  placeholder={tipo === 'evento-fin' ? "Indicar la acción realizada para la recuperación..." : "Observaciones adicionales"}
                   name="nota"
                   value={formData.nota}
                   onChange={handleInputChange}
@@ -1672,6 +1697,7 @@ export default function GeneradorComunicados() {
           </div>
           <p>💀 [DESARROLLADOR]: Luis Alberto Herrera Lara 💀</p>
           <p>[VERSIÓN_SISTEMA]: COMM_INCIDENTES_v5.0_MATRIX_HACKER_EDITION</p>
+          <p className="text-green-800 mt-1">[ÚLTIMA_ACTUALIZACIÓN]: 16 de Octubre de 2025</p>
           <div className="mt-2">
             <span className="text-red-500">⚡</span> [ACCESO_RESTRINGIDO] <span className="text-red-500">⚡</span>
           </div>
