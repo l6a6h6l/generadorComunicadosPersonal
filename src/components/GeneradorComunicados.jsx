@@ -6,25 +6,28 @@ const USUARIOS_VALIDOS = [
 ];
 
 const SERVICIOS_TRANSACCIONALES = [
-  { id: 'datafast-visa-mc', nombre: 'DATAFAST VISA-MC', descripcion: 'Transacciones locales Visa (débito/crédito) y MasterCard (crédito) en red propia', categoria: 'datafast', emoji: '💳' },
-  { id: 'datafast-diners-dc', nombre: 'DATAFAST DINERS-DC', descripcion: 'Transacciones locales Diners (débito/crédito) y Discover (crédito) en red propia', categoria: 'datafast', emoji: '💳' },
-  { id: 'banred-pago-tc', nombre: 'BANRED (PAGO TC)', descripcion: 'Transacciones entre bancos asociados BANRED: tarjetas de crédito, cuentas corrientes y ahorro', categoria: 'banred', emoji: '🏦' },
-  { id: 'banred-base24', nombre: 'BANRED BASE 24', descripcion: 'Transacciones tarjetas de débito Banco Pichincha y bancos asociados BANRED', categoria: 'banred', emoji: '🏧' },
-  { id: 'banred-base25', nombre: 'BANRED BASE 25 (ATM)', descripcion: 'Transacciones ATM tarjetas de crédito Banco Pichincha y bancos asociados BANRED', categoria: 'banred', emoji: '🏧' },
-  { id: 'usp-atalla', nombre: 'USP ATALLA', descripcion: 'Validación de tarjetas propias de débito y crédito BANCO PICHINCHA', categoria: 'validacion', emoji: '🔐' },
-  { id: 'efectivo-express', nombre: 'EFECTIVO EXPRESS', descripcion: 'Avances de efectivo por ventanilla Banco Pichincha', categoria: 'efectivo', emoji: '💵' },
-  { id: 'diners-internacional-1', nombre: 'DINERS INTERNACIONAL 1', descripcion: 'Transacciones crédito Diners/Discover: tarjetas propias en red ajena y ajenas en red propia', categoria: 'internacional', emoji: '🌍' },
-  { id: 'diners-internacional-2', nombre: 'DINERS INTERNACIONAL 2', descripcion: 'Transacciones crédito Diners/Discover: tarjetas propias en red ajena y ajenas en red propia', categoria: 'internacional', emoji: '🌎' },
-  { id: 'pulse-discover', nombre: 'PULSE/DISCOVER FS', descripcion: 'Transacciones tarjetas ajenas Diners y Discover en cajeros autorizados', categoria: 'internacional', emoji: '💎' },
+  // Columna Izquierda (10 servicios)
+  { id: 'datafast-visa', nombre: 'DATAFAST VISA', descripcion: 'Transacciones locales Visa (débito/crédito) y MasterCard (crédito) en red propia', categoria: 'datafast', emoji: '💳' },
+  { id: 'datafast-diners', nombre: 'DATAFAST DINERS', descripcion: 'Transacciones locales Diners (débito/crédito) y Discover (crédito) en red propia', categoria: 'datafast', emoji: '💳' },
+  { id: 'banred', nombre: 'BANRED', descripcion: 'Transacciones entre bancos asociados BANRED: tarjetas de crédito, cuentas corrientes y ahorro', categoria: 'banred', emoji: '🏦' },
+  { id: 'banred-b24', nombre: 'BANRED B-24', descripcion: 'Transacciones tarjetas de débito Banco Pichincha y bancos asociados BANRED', categoria: 'banred', emoji: '🏧' },
+  { id: 'banred-b25', nombre: 'BANRED B-25', descripcion: 'Transacciones ATM tarjetas de crédito Banco Pichincha y bancos asociados BANRED', categoria: 'banred', emoji: '🏧' },
+  { id: 'nsp-atalla', nombre: 'NSP ATALLA', descripcion: 'Validación de tarjetas propias de débito y crédito BANCO PICHINCHA', categoria: 'validacion', emoji: '🔐' },
+  { id: 'banco-pichincha', nombre: 'BANCO PICHINCHA', descripcion: 'Avances de efectivo por ventanilla Banco Pichincha', categoria: 'efectivo', emoji: '💵' },
+  { id: 'bpc-bp', nombre: 'BPC-BP', descripcion: 'Transacciones tarjeta prepago de transporte Banco Pichincha', categoria: 'prepago', emoji: '🚌' },
+  { id: 'broker', nombre: 'BRÓKER', descripcion: 'Avances de efectivo en cajeros ATM sin tarjeta de crédito', categoria: 'efectivo', emoji: '🤝' },
+  { id: 'jardin-azuayo', nombre: 'JARDIN AZUAYO', descripcion: 'Transacciones débito Visa de Cooperativa Jardín Azuayo', categoria: 'cooperativas', emoji: '🌱' },
+  // Columna Derecha (10 servicios)
+  { id: 'dci', nombre: 'DCI', descripcion: 'Transacciones crédito Diners/Discover: tarjetas propias en red ajena y ajenas en red propia', categoria: 'internacional', emoji: '🌍' },
+  { id: 'dci-2', nombre: 'DCI 2', descripcion: 'Transacciones crédito Diners/Discover: tarjetas propias en red ajena y ajenas en red propia', categoria: 'internacional', emoji: '🌎' },
+  { id: 'discover-fs', nombre: 'DISCOVER FS', descripcion: 'Transacciones tarjetas ajenas Diners y Discover en cajeros autorizados', categoria: 'internacional', emoji: '💎' },
   { id: 'llaves-dci', nombre: 'LLAVES DCI', descripcion: 'Intercambio de llaves con franquicias DCI/Discover', categoria: 'seguridad', emoji: '🔑' },
-  { id: 'visa-int-emision', nombre: 'VISA INT. EMISIÓN', descripcion: 'Transacciones débito/crédito tarjetas propias en red ajena', categoria: 'internacional', emoji: '✈️' },
-  { id: 'visa-int-adquirencia', nombre: 'VISA INT. ADQUIRENCIA', descripcion: 'Transacciones crédito tarjetas ajenas en red propia', categoria: 'internacional', emoji: '🛬' },
-  { id: 'mastercard-mci', nombre: 'MASTERCARD MCI', descripcion: 'Transacciones crédito tarjetas propias en red ajena', categoria: 'internacional', emoji: '🌐' },
+  { id: 'visa-emision', nombre: 'VISA EMISION', descripcion: 'Transacciones débito/crédito tarjetas propias en red ajena', categoria: 'internacional', emoji: '✈️' },
+  { id: 'visa-adquirencia', nombre: 'VISA ADQUIRENCIA', descripcion: 'Transacciones crédito tarjetas ajenas en red propia', categoria: 'internacional', emoji: '🛬' },
+  { id: 'mastercard-int', nombre: 'MASTERCARD INT', descripcion: 'Transacciones crédito tarjetas propias en red ajena', categoria: 'internacional', emoji: '🌐' },
   { id: 'mastercard-mds', nombre: 'MASTERCARD MDS', descripcion: 'Transacciones crédito tarjetas ajenas en red propia', categoria: 'internacional', emoji: '🌏' },
-  { id: 'broker', nombre: 'BROKER', descripcion: 'Avances de efectivo en cajeros ATM sin tarjeta de crédito', categoria: 'efectivo', emoji: '🤝' },
-  { id: 'jardin-azuayo', nombre: 'JARDÍN AZUAYO', descripcion: 'Transacciones débito Visa de Cooperativa Jardín Azuayo', categoria: 'cooperativas', emoji: '🌱' },
-  { id: 'dock', nombre: 'DOCK (IMPLEMENTANDO)', descripcion: 'Transacciones débito Banco Diners Club del Ecuador', categoria: 'implementacion', emoji: '🚧' },
-  { id: 'bpc-bp', nombre: 'BPC-BP', descripcion: 'Transacciones tarjeta prepago de transporte Banco Pichincha', categoria: 'prepago', emoji: '🚌' }
+  { id: 'dock', nombre: 'DOCK', descripcion: 'Transacciones débito Banco Diners Club del Ecuador', categoria: 'implementacion', emoji: '🚧' },
+  { id: 'vtex', nombre: 'VTEX', descripcion: 'Validación antifraude transacciones e-commerce tarjetas Diners Club', categoria: 'ecommerce', emoji: '🛒' }
 ];
 
 const OPCIONES_ENCOLAMIENTO = [
@@ -72,7 +75,7 @@ export default function GeneradorComunicados() {
   ]);
   const [multiplesServicios, setMultiplesServicios] = useState(false);
   const [serviciosAlertados, setServiciosAlertados] = useState([
-    { nombre: '', fechaInicio: '', horaInicio: '', fechaFin: '', horaFin: '', duracion: '00:00:00' }
+    { nombre: '', fechaInicio: '', horaInicio: '', fechaFin: '', horaFin: '', duracion: '00:00:00', error: '', sugerencias: [] }
   ]);
   const [multiplesEncolamientos, setMultiplesEncolamientos] = useState(false);
   const [serviciosEncolamiento, setServiciosEncolamiento] = useState([
@@ -113,6 +116,10 @@ export default function GeneradorComunicados() {
   const [ultimoEscalado, setUltimoEscalado] = useState('');
   const [serviciosSeleccionados, setServiciosSeleccionados] = useState([]);
   const [busquedaServicio, setBusquedaServicio] = useState('');
+  const [mostrarSelectorServicios, setMostrarSelectorServicios] = useState(false);
+  const [autoLlenadoCompleto, setAutoLlenadoCompleto] = useState(false);
+  const [serviciosInicializados, setServiciosInicializados] = useState(false);
+  const [bloquearModificaciones, setBloquearModificaciones] = useState(false);
 
   useEffect(() => {
     establecerFechaHoraActual();
@@ -173,7 +180,13 @@ export default function GeneradorComunicados() {
     setServiciosSeleccionados(prev => {
       const existe = prev.find(s => s.id === servicio.id);
       if (existe) {
-        return prev.filter(s => s.id !== servicio.id);
+        const nuevaLista = prev.filter(s => s.id !== servicio.id);
+        // Si se deseleccionan todos, resetear los flags
+        if (nuevaLista.length === 0) {
+          setServiciosInicializados(false);
+          setBloquearModificaciones(false);
+        }
+        return nuevaLista;
       } else {
         return [...prev, servicio];
       }
@@ -187,57 +200,81 @@ export default function GeneradorComunicados() {
   useEffect(() => {
     if (serviciosSeleccionados.length === 0) {
       setMultiplesServicios(false);
+      setServiciosAlertados([{ nombre: "", fechaInicio: "", horaInicio: "", fechaFin: "", horaFin: "", duracion: "00:00:00", error: "", sugerencias: [] }]);
+      setServiciosInicializados(false);
+      setBloquearModificaciones(false);
       return;
-    }
-    
-    let nuevaDescripcion = '';
-    if (serviciosSeleccionados.length === 1) {
-      nuevaDescripcion = `Indisponibilidad ${serviciosSeleccionados[0].nombre}`;
-    } else {
-      const nombresServicios = serviciosSeleccionados.map(s => s.nombre).join(', ');
-      nuevaDescripcion = `Indisponibilidad de varios servicios transaccionales (${nombresServicios})`;
     }
     
     const nuevosImpactos = serviciosSeleccionados.map(s => s.descripcion).join('\n');
     
-    setFormData(prev => ({
-      ...prev,
-      descripcion: nuevaDescripcion,
-      impacto: nuevosImpactos
-    }));
-
-    if (serviciosSeleccionados.length > 1) {
-      setMultiplesServicios(true);
+    if (autoLlenadoCompleto) {
+      // Modo auto-llenado completo: llena descripción + impactos + activa múltiples servicios
+      let nuevaDescripcion = '';
+      if (serviciosSeleccionados.length === 1) {
+        nuevaDescripcion = `Indisponibilidad ${serviciosSeleccionados[0].nombre}`;
+      } else {
+        const nombresServicios = serviciosSeleccionados.map(s => s.nombre).join(', ');
+        nuevaDescripcion = `Indisponibilidad de varios servicios transaccionales (${nombresServicios})`;
+      }
       
-      const hoy = new Date();
-      const fechaActual = hoy.toISOString().split('T')[0];
-      const horaActual = hoy.toTimeString().split(' ')[0];
-      
-      const nuevosServiciosAlertados = serviciosSeleccionados.map(servicio => ({
-        nombre: servicio.nombre,
-        fechaInicio: fechaActual,
-        horaInicio: horaActual,
-        fechaFin: fechaActual,
-        horaFin: horaActual,
-        duracion: '00:00:00'
+      setFormData(prev => ({
+        ...prev,
+        descripcion: nuevaDescripcion,
+        impacto: nuevosImpactos
       }));
-      
-      setServiciosAlertados(nuevosServiciosAlertados);
+
+      if (serviciosSeleccionados.length >= 1) {
+        setMultiplesServicios(true);
+        
+          // Preservar datos de servicios existentes al agregar/quitar
+          const serviciosExistentesMap = {};
+          serviciosAlertados.forEach(servicio => {
+            if (servicio.nombre && serviciosSeleccionados.some(s => s.nombre === servicio.nombre)) {
+              serviciosExistentesMap[servicio.nombre] = servicio;
+            }
+          });
+          
+          // Usar las fechas del formulario principal, NO la hora actual
+          // Esto preserva la hora que el usuario configuró (ej: 19:00)
+          const fechaUsar = formData.fechaInicio;
+          const horaUsar = formData.horaInicio;
+          
+          const nuevosServiciosAlertados = serviciosSeleccionados.map(servicio => {
+            // Si el servicio ya existía, mantener sus datos
+            if (serviciosExistentesMap[servicio.nombre]) {
+              return serviciosExistentesMap[servicio.nombre];
+            }
+            // Si es nuevo, crear con fechas del formulario
+            return {
+              nombre: servicio.nombre,
+              fechaInicio: fechaUsar,
+              horaInicio: horaUsar,
+              fechaFin: fechaUsar,
+              horaFin: horaUsar,
+              duracion: "00:00:00",
+              error: "",
+              sugerencias: []
+            };
+          });
+          
+          setServiciosAlertados(nuevosServiciosAlertados);
+          // CRÍTICO: Activar los flags de bloqueo para evitar sobrescrituras
+          setServiciosInicializados(true);
+          setBloquearModificaciones(true);
+      } else {
+        setMultiplesServicios(false);
+      }
     } else {
-      setMultiplesServicios(false);
-      const hoy = new Date();
-      const fechaActual = hoy.toISOString().split('T')[0];
-      const horaActual = hoy.toTimeString().split(' ')[0];
-      setServiciosAlertados([{
-        nombre: '',
-        fechaInicio: fechaActual,
-        horaInicio: horaActual,
-        fechaFin: fechaActual,
-        horaFin: horaActual,
-        duracion: '00:00:00'
-      }]);
+      // Modo solo impactos: solo agrega impactos sin tocar descripción ni servicios alertados
+      const campoImpacto = tipo.startsWith('mantenimiento-') ? 'impactoMant' : 'impacto';
+      setFormData(prev => ({
+        ...prev,
+        [campoImpacto]: nuevosImpactos
+      }));
+      // No modificar multiplesServicios ni serviciosAlertados en modo solo impactos
     }
-  }, [serviciosSeleccionados]);
+  }, [serviciosSeleccionados, autoLlenadoCompleto, tipo]);
 
   const calcularTiempoAbierto = () => {
     const diferencia = Date.now() - tiempoAbierto;
@@ -291,7 +328,9 @@ export default function GeneradorComunicados() {
       horaInicio: horaActual,
       fechaFin: fechaActual,
       horaFin: horaActual,
-      duracion: '00:00:00'
+      duracion: '00:00:00',
+      error: '',
+      sugerencias: []
     }]);
     
     setServiciosEncolamiento([{
@@ -329,6 +368,9 @@ export default function GeneradorComunicados() {
     setMostrarErrorFecha(false);
     setSugerenciasFecha([]);
     setServiciosSeleccionados([]);
+    setAutoLlenadoCompleto(false);
+    setServiciosInicializados(false);
+    setBloquearModificaciones(false); // Desbloquear para nueva sesión
     setAlertaMensaje('Campos limpiados correctamente');
     setMostrarAlerta(true);
     setTimeout(() => setMostrarAlerta(false), 3000);
@@ -344,7 +386,9 @@ export default function GeneradorComunicados() {
       horaInicio: horaActual,
       fechaFin: fechaActual,
       horaFin: horaActual,
-      duracion: '00:00:00'
+      duracion: '00:00:00',
+      error: '',
+      sugerencias: []
     }]);
   };
 
@@ -359,9 +403,48 @@ export default function GeneradorComunicados() {
       prev.map((servicio, i) => {
         if (i === index) {
           const nuevoServicio = { ...servicio, [campo]: valor };
+          
+          // Calcular duración y validar si todos los campos están llenos
           if (nuevoServicio.fechaInicio && nuevoServicio.horaInicio && nuevoServicio.fechaFin && nuevoServicio.horaFin) {
-            nuevoServicio.duracion = calcularDuracion(nuevoServicio.fechaInicio, nuevoServicio.horaInicio, nuevoServicio.fechaFin, nuevoServicio.horaFin);
+            try {
+              const inicio = new Date(`${nuevoServicio.fechaInicio}T${nuevoServicio.horaInicio}`);
+              const fin = new Date(`${nuevoServicio.fechaFin}T${nuevoServicio.horaFin}`);
+              
+              // VALIDACIÓN
+              if (fin < inicio) {
+                const diffHours = Math.abs((fin - inicio) / (1000 * 60 * 60));
+                const diffDays = Math.abs((fin - inicio) / (1000 * 60 * 60 * 24));
+                
+                let mensaje = `Servicio: ${nuevoServicio.nombre || `#${index + 1}`}\n\n`;
+                if (diffDays >= 1) {
+                  mensaje += `Fin es ${diffDays.toFixed(0)} día(s) antes del inicio`;
+                } else {
+                  mensaje += `Fin es ${diffHours.toFixed(1)} hora(s) antes del inicio`;
+                }
+                
+                nuevoServicio.error = mensaje;
+                
+                const hoy = new Date();
+                const fechaActual = hoy.toISOString().split('T')[0];
+                const horaActual = hoy.toTimeString().split(' ')[0];
+                
+                nuevoServicio.sugerencias = [
+                  { texto: `✓ Usar hora actual: ${formatearFecha(fechaActual)} ${horaActual}`, fecha: fechaActual, hora: horaActual },
+                  { texto: `✓ Usar fecha inicio + 1 hora`, fecha: nuevoServicio.fechaInicio, hora: null }
+                ];
+                nuevoServicio.duracion = 'ERROR';
+              } else {
+                // Fechas correctas
+                nuevoServicio.error = '';
+                nuevoServicio.sugerencias = [];
+                nuevoServicio.duracion = calcularDuracion(nuevoServicio.fechaInicio, nuevoServicio.horaInicio, nuevoServicio.fechaFin, nuevoServicio.horaFin);
+              }
+            } catch (error) {
+              nuevoServicio.error = '❌ Error al procesar fechas';
+              nuevoServicio.duracion = 'ERROR';
+            }
           }
+          
           return nuevoServicio;
         }
         return servicio;
@@ -459,10 +542,11 @@ export default function GeneradorComunicados() {
         fechaInicioFin: prev.fechaInicio,
         horaInicioFin: prev.horaInicio,
         fechaFin: fechaActual,
-        horaFin: horaActual
+        horaFin: horaActual,
+        escaladoA: prev.escaladoA
       }));
       
-      setAlertaMensaje('Fechas autocompletadas desde el inicio');
+      setAlertaMensaje('Fechas y escalado autocompletados desde el inicio');
       setMostrarAlerta(true);
       setTimeout(() => setMostrarAlerta(false), 4000);
     }
@@ -480,14 +564,27 @@ export default function GeneradorComunicados() {
       const inicio = new Date(`${fechaInicioFin}T${horaInicioFin}`);
       const fin = new Date(`${fechaFin}T${horaFin}`);
       
+      // VALIDACIÓN 1: Fecha de fin anterior a fecha de inicio
       if (fin < inicio) {
-        setErrorFechaFin(`Error: La hora de fin es anterior a la hora de inicio`);
+        const diffHours = Math.abs((fin - inicio) / (1000 * 60 * 60));
+        const diffDays = Math.abs((fin - inicio) / (1000 * 60 * 60 * 24));
+        
+        let mensaje = '';
+        if (diffDays >= 1) {
+          mensaje = `🚨 ERROR CRÍTICO: La fecha/hora de finalización (${formatearFecha(fechaFin)} ${horaFin}) es ${diffDays.toFixed(0)} día(s) y ${(diffHours % 24).toFixed(1)} hora(s) ANTERIOR a la fecha/hora de inicio (${formatearFecha(fechaInicioFin)} ${horaInicioFin}).\n\n⚠️ UN EVENTO NO PUEDE TERMINAR ANTES DE COMENZAR.`;
+        } else {
+          mensaje = `🚨 ERROR CRÍTICO: La hora de finalización (${formatearFecha(fechaFin)} ${horaFin}) es ${diffHours.toFixed(1)} hora(s) ANTERIOR a la hora de inicio (${formatearFecha(fechaInicioFin)} ${horaInicioFin}).\n\n⚠️ UN EVENTO NO PUEDE TERMINAR ANTES DE COMENZAR.`;
+        }
+        
+        setErrorFechaFin(mensaje);
+        
         const hoy = new Date();
         const fechaActual = hoy.toISOString().split('T')[0];
         const horaActual = hoy.toTimeString().split(' ')[0];
         
         setSugerenciasFecha([
-          { texto: `Usar hora actual: ${formatearFecha(fechaActual)} ${horaActual}`, fecha: fechaActual, hora: horaActual }
+          { texto: `✓ Usar fecha/hora actual: ${formatearFecha(fechaActual)} ${horaActual}`, fecha: fechaActual, hora: horaActual },
+          { texto: `✓ Usar misma fecha de inicio y ajustar hora a 1 hora después`, fecha: fechaInicioFin, hora: null }
         ]);
         setMostrarErrorFecha(true);
         return false;
@@ -498,10 +595,16 @@ export default function GeneradorComunicados() {
       setMostrarErrorFecha(false);
       return true;
     } catch (error) {
-      setErrorFechaFin('Error al procesar las fechas');
+      setErrorFechaFin('❌ Error al procesar las fechas. Verifica el formato.');
       return false;
     }
   };
+
+  useEffect(() => {
+    if (tipo.endsWith('-fin') && formData.fechaInicioFin && formData.horaInicioFin && formData.fechaFin && formData.horaFin) {
+      validarFechasFin();
+    }
+  }, [formData.fechaInicioFin, formData.horaInicioFin, formData.fechaFin, formData.horaFin, tipo]);
 
   const aplicarSugerenciaFecha = (fecha, hora) => {
     setFormData(prev => ({ ...prev, fechaFin: fecha, horaFin: hora }));
@@ -511,6 +614,42 @@ export default function GeneradorComunicados() {
     setAlertaMensaje(`Fecha corregida correctamente`);
     setMostrarAlerta(true);
     setTimeout(() => setMostrarAlerta(false), 3000);
+  };
+
+  const aplicarSugerenciaServicio = (index, fecha, hora) => {
+    setServiciosAlertados(prev => 
+      prev.map((servicio, i) => {
+        if (i === index) {
+          if (!fecha || !hora) {
+            // Calcular 1 hora después del inicio
+            const inicio = new Date(`${servicio.fechaInicio}T${servicio.horaInicio}`);
+            inicio.setHours(inicio.getHours() + 1);
+            fecha = servicio.fechaInicio;
+            hora = inicio.toTimeString().split(' ')[0];
+          }
+          
+          const nuevoServicio = { 
+            ...servicio, 
+            fechaFin: fecha, 
+            horaFin: hora,
+            error: '',
+            sugerencias: []
+          };
+          
+          // Recalcular duración
+          if (nuevoServicio.fechaInicio && nuevoServicio.horaInicio) {
+            nuevoServicio.duracion = calcularDuracion(nuevoServicio.fechaInicio, nuevoServicio.horaInicio, fecha, hora);
+          }
+          
+          return nuevoServicio;
+        }
+        return servicio;
+      })
+    );
+    
+    setAlertaMensaje(`Fecha del servicio ${index + 1} corregida`);
+    setMostrarAlerta(true);
+    setTimeout(() => setMostrarAlerta(false), 2500);
   };
 
   const calcularDuracionTotal = () => {
@@ -538,7 +677,7 @@ export default function GeneradorComunicados() {
         const fechaInicioFormateada = formatearFecha(servicio.fechaInicio);
         resultado += `\n        Inicio: ${fechaInicioFormateada} - ${servicio.horaInicio}`;
         
-        if (servicio.fechaFin && servicio.horaFin && (servicio.fechaFin !== servicio.fechaInicio || servicio.horaFin !== servicio.horaInicio)) {
+        if (tipo.endsWith('-fin') && servicio.fechaFin && servicio.horaFin && (servicio.fechaFin !== servicio.fechaInicio || servicio.horaFin !== servicio.horaInicio)) {
           const fechaFinFormateada = formatearFecha(servicio.fechaFin);
           resultado += `\n        Fin: ${fechaFinFormateada} - ${servicio.horaFin}`;
           resultado += `\n        Duración: ${servicio.duracion}`;
@@ -595,10 +734,21 @@ export default function GeneradorComunicados() {
   };
 
   const generarMensaje = () => {
+    // VALIDACIÓN 1: Validar fechas principales si es fin
     if (tipo.endsWith('-fin') && !validarFechasFin()) {
       return;
     }
     
+    // VALIDACIÓN 2: Verificar errores en servicios alertados múltiples
+    if (multiplesServicios && serviciosAlertados.some(s => s.error)) {
+      const serviciosConError = serviciosAlertados.filter(s => s.error).map(s => s.nombre || 'Sin nombre').join(', ');
+      setAlertaMensaje(`🚨 ERROR: Corrige las fechas en los servicios: ${serviciosConError}`);
+      setMostrarAlerta(true);
+      setTimeout(() => setMostrarAlerta(false), 5000);
+      return;
+    }
+    
+    // VALIDACIÓN 3: Confirmar duración si excede 4 horas
     if (tipo.endsWith('-fin')) {
       let duracionAValidar = '';
       
@@ -698,7 +848,12 @@ export default function GeneradorComunicados() {
         mensaje += `\nEscalado a: ${formData.escaladoA}`;
       }
       
-      mensaje += `\n${formatearPeriodosMultiples()}`;
+      const serviciosInfo = formatearServiciosAlertados();
+      if (serviciosInfo) {
+        mensaje += `\n\n${serviciosInfo}`;
+      } else {
+        mensaje += `\n${formatearPeriodosMultiples()}`;
+      }
       
       if (formData.acciones && formData.acciones.trim()) {
         mensaje += "\nAcciones:";
@@ -805,7 +960,12 @@ export default function GeneradorComunicados() {
         mensaje += `\nEscalado a: ${formData.escaladoA}`;
       }
       
-      mensaje += `\n${formatearPeriodosMultiples()}`;
+      const serviciosInfo = formatearServiciosAlertados();
+      if (serviciosInfo) {
+        mensaje += `\n\n${serviciosInfo}`;
+      } else {
+        mensaje += `\n${formatearPeriodosMultiples()}`;
+      }
       
       if (formData.accionesEjecutadas && formData.accionesEjecutadas.trim()) {
         mensaje += "\nAcciones ejecutadas:";
@@ -941,6 +1101,7 @@ export default function GeneradorComunicados() {
                   onChange={handleLoginInputChange}
                   className={input + " pr-12"}
                   placeholder="Ingrese su contraseña"
+                  onKeyPress={(e) => e.key === 'Enter' && handleLogin()}
                 />
                 <button
                   type="button"
@@ -963,6 +1124,9 @@ export default function GeneradorComunicados() {
               <Shield className="w-5 h-5" />
               <span>Iniciar Sesión</span>
             </button>
+            <p className="text-xs text-center text-blue-400/60 mt-4">
+              Usuario demo: fractalia | Contraseña: fractalia4ever
+            </p>
           </div>
         </div>
       </div>
@@ -1038,119 +1202,7 @@ export default function GeneradorComunicados() {
         </header>
         
         <div className="grid lg:grid-cols-3 gap-6">
-          {/* Panel izquierdo */}
           <div className="lg:col-span-1 space-y-4">
-            {/* Selector de servicios - ARRIBA */}
-            {(tipo.startsWith('evento-') || tipo.startsWith('incidente-')) && (
-              <div className={card}>
-                <div className="flex items-center justify-between mb-3">
-                  <h3 className="text-base font-bold text-blue-300 flex items-center gap-2">
-                    <Activity className="w-5 h-5" />
-                    Servicios Afectados
-                  </h3>
-                  {serviciosSeleccionados.length > 0 && (
-                    <div className="flex items-center gap-2">
-                      <span className="px-2.5 py-1 bg-green-600/20 border border-green-500/40 rounded-md text-xs font-semibold text-green-300">
-                        ✓ {serviciosSeleccionados.length}
-                      </span>
-                      <button 
-                        onClick={() => setServiciosSeleccionados([])}
-                        className="text-xs bg-red-900/40 hover:bg-red-800/60 border border-red-500/50 text-red-300 px-2 py-1 rounded-lg transition-all"
-                      >
-                        <Trash2 className="w-3 h-3" />
-                      </button>
-                    </div>
-                  )}
-                </div>
-
-                <div className="text-xs text-blue-400/70 bg-blue-900/20 border border-blue-500/30 rounded-lg p-2 mb-3">
-                  💡 <strong>Auto-llenado:</strong> Click en servicios completa descripción e impacto automáticamente
-                </div>
-                
-                <div className="relative mb-3">
-                  <Search className="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-blue-400" />
-                  <input
-                    type="text"
-                    placeholder="Buscar servicio..."
-                    value={busquedaServicio}
-                    onChange={(e) => setBusquedaServicio(e.target.value)}
-                    className="w-full pl-10 pr-3 py-2 bg-black/40 border border-blue-500/30 rounded-lg text-blue-100 text-sm placeholder-blue-400/50 focus:border-blue-400 focus:outline-none"
-                  />
-                </div>
-
-                <div className="max-h-80 overflow-y-auto space-y-2">
-                  {serviciosFiltrados.map(servicio => (
-                    <button
-                      key={servicio.id}
-                      onClick={() => toggleServicio(servicio)}
-                      className={`w-full text-left px-3 py-2.5 rounded-lg text-sm font-medium transition-all border-2 flex items-center justify-between ${
-                        isServicioSeleccionado(servicio.id)
-                          ? 'bg-blue-600 text-white border-blue-400 shadow-lg'
-                          : 'bg-gray-800/60 text-gray-300 border-gray-700 hover:bg-gray-700 hover:border-blue-500/50'
-                      }`}
-                      title={servicio.descripcion}
-                    >
-                      <span className="flex items-center gap-2">
-                        <span className="text-base">{servicio.emoji}</span>
-                        <span className="font-semibold">{servicio.nombre}</span>
-                      </span>
-                      {isServicioSeleccionado(servicio.id) && <CheckCircle className="w-4 h-4" />}
-                    </button>
-                  ))}
-                  {serviciosFiltrados.length === 0 && (
-                    <p className="text-center text-blue-400/70 text-sm py-4">No se encontraron servicios</p>
-                  )}
-                </div>
-              </div>
-            )}
-
-            {/* Agregar solo impactos (método alternativo) */}
-            {(tipo.startsWith('evento-') || tipo.startsWith('incidente-') || tipo.startsWith('mantenimiento-')) && (
-              <div className={card}>
-                <h3 className="text-sm font-bold text-blue-300 mb-3 flex items-center gap-2">
-                  <Plus className="w-4 h-4" />
-                  Agregar Impactos
-                </h3>
-                <div className="text-xs text-blue-400/70 bg-gray-900/40 border border-gray-700 rounded-lg p-2 mb-3">
-                  ⚙️ <strong>Modo manual:</strong> Solo agrega impactos sin autocompletar descripción
-                </div>
-                <div className="max-h-60 overflow-y-auto space-y-1">
-                  {SERVICIOS_TRANSACCIONALES.map(servicio => (
-                    <button
-                      key={servicio.id + '-impacto'}
-                      onClick={() => {
-                        const campoImpacto = tipo.startsWith('mantenimiento-') ? 'impactoMant' : 'impacto';
-                        const impactoActual = formData[campoImpacto];
-                        const nuevoImpacto = !impactoActual ? servicio.descripcion : impactoActual + '\n' + servicio.descripcion;
-                        setFormData(prev => ({ ...prev, [campoImpacto]: nuevoImpacto }));
-                        setAlertaMensaje(`Impacto agregado: ${servicio.nombre}`);
-                        setMostrarAlerta(true);
-                        setTimeout(() => setMostrarAlerta(false), 2000);
-                      }}
-                      className="w-full text-left px-2 py-1.5 rounded text-xs bg-gray-900/60 hover:bg-gray-800 border border-gray-700 hover:border-gray-600 text-gray-300 transition-all"
-                      title={servicio.descripcion}
-                    >
-                      {servicio.emoji} {servicio.nombre}
-                    </button>
-                  ))}
-                </div>
-                <button 
-                  onClick={() => {
-                    const campoImpacto = tipo.startsWith('mantenimiento-') ? 'impactoMant' : 'impacto';
-                    setFormData(prev => ({ ...prev, [campoImpacto]: '' }));
-                    setAlertaMensaje('Impactos limpiados');
-                    setMostrarAlerta(true);
-                    setTimeout(() => setMostrarAlerta(false), 2000);
-                  }}
-                  className="w-full mt-2 text-xs bg-red-900/40 hover:bg-red-800/60 border border-red-500/50 text-red-300 px-3 py-1.5 rounded-lg transition-all"
-                >
-                  <Trash2 className="w-3 h-3 inline mr-1" />
-                  Limpiar Impactos
-                </button>
-              </div>
-            )}
-
-            {/* Tipo de comunicado */}
             <div className={card}>
               <h2 className="text-base font-bold text-blue-300 mb-4">Tipo de Comunicado</h2>
               <div className="space-y-3">
@@ -1198,9 +1250,152 @@ export default function GeneradorComunicados() {
                 </div>
               </div>
             </div>
+
+            {(tipo.startsWith('evento-') || tipo.startsWith('incidente-') || tipo.startsWith('mantenimiento-')) && (
+              <div className={card}>
+                <button
+                  onClick={() => setMostrarSelectorServicios(!mostrarSelectorServicios)}
+                  className="w-full flex items-center justify-between p-3 bg-gradient-to-r from-blue-900/40 to-blue-800/40 hover:from-blue-800/60 hover:to-blue-700/60 border border-blue-500/30 rounded-lg transition-all"
+                >
+                  <div className="flex items-center gap-2">
+                    <Activity className="w-4 h-4 text-blue-400" />
+                    <span className="text-sm font-bold text-blue-300">Servicios Transaccionales</span>
+                    {serviciosSeleccionados.length > 0 && (
+                      <span className="px-2 py-0.5 bg-green-600/30 border border-green-500/50 rounded text-xs font-semibold text-green-300">
+                        {serviciosSeleccionados.length}
+                      </span>
+                    )}
+                  </div>
+                  <div className={`transition-transform ${mostrarSelectorServicios ? 'rotate-180' : ''}`}>
+                    <Plus className="w-4 h-4 text-blue-400" />
+                  </div>
+                </button>
+
+                {mostrarSelectorServicios && (
+                  <div className="mt-3 space-y-3">
+                    {/* Checkbox de Auto-llenado Completo */}
+                    <div className="bg-blue-900/20 border border-blue-500/30 rounded-lg p-3">
+                      <label className="flex items-start space-x-3 cursor-pointer">
+                        <input
+                          type="checkbox"
+                          checked={autoLlenadoCompleto}
+                          onChange={(e) => {
+                            setAutoLlenadoCompleto(e.target.checked);
+                            setAlertaMensaje(e.target.checked 
+                              ? '🚀 Auto-llenado completo activado' 
+                              : '📝 Solo impactos activado'
+                            );
+                            setMostrarAlerta(true);
+                            setTimeout(() => setMostrarAlerta(false), 2500);
+                          }}
+                          className="w-5 h-5 mt-0.5 text-blue-600 bg-black/40 border-blue-500/50 rounded"
+                        />
+                        <div className="flex-1">
+                          <span className="text-sm font-bold text-blue-300 block mb-1">
+                            🚀 Auto-llenado Completo
+                          </span>
+                          <span className="text-xs text-blue-400/70">
+                            {autoLlenadoCompleto 
+                              ? "✓ Activo: Llena descripción + impactos automáticamente" 
+                              : "○ Desactivado: Solo agrega impactos sin modificar descripción"}
+                          </span>
+                        </div>
+                      </label>
+                    </div>
+                    
+                    {serviciosSeleccionados.length > 0 && (
+                      <div className="flex gap-2">
+                        <button 
+                          onClick={() => setServiciosSeleccionados([])}
+                          className="flex-1 text-xs bg-red-900/40 hover:bg-red-800/60 border border-red-500/50 text-red-300 px-3 py-1.5 rounded-lg transition-all"
+                        >
+                          <Trash2 className="w-3 h-3 inline mr-1" />
+                          Limpiar Selección
+                        </button>
+                        {!autoLlenadoCompleto && (
+                          <button 
+                            onClick={() => {
+                              const campoImpacto = tipo.startsWith('mantenimiento-') ? 'impactoMant' : 'impacto';
+                              setFormData(prev => ({ ...prev, [campoImpacto]: '' }));
+                              setAlertaMensaje('Impactos limpiados');
+                              setMostrarAlerta(true);
+                              setTimeout(() => setMostrarAlerta(false), 2000);
+                            }}
+                            className="flex-1 text-xs bg-orange-900/40 hover:bg-orange-800/60 border border-orange-500/50 text-orange-300 px-3 py-1.5 rounded-lg transition-all"
+                          >
+                            <Trash2 className="w-3 h-3 inline mr-1" />
+                            Limpiar Impactos
+                          </button>
+                        )}
+                      </div>
+                    )}
+                    
+                    <div className="relative">
+                      <Search className="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-blue-400" />
+                      <input
+                        type="text"
+                        placeholder="Buscar servicio..."
+                        value={busquedaServicio}
+                        onChange={(e) => setBusquedaServicio(e.target.value)}
+                        className="w-full pl-10 pr-3 py-2 bg-black/40 border border-blue-500/30 rounded-lg text-blue-100 text-sm placeholder-blue-400/50 focus:border-blue-400 focus:outline-none"
+                      />
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-3 max-h-80 overflow-y-auto">
+                      {/* Columna Izquierda */}
+                      <div className="space-y-1.5">
+                        {serviciosFiltrados.slice(0, 10).map(servicio => (
+                          <button
+                            key={servicio.id}
+                            onClick={() => toggleServicio(servicio)}
+                            className={`w-full text-left px-3 py-2 rounded-lg text-xs font-medium transition-all border flex items-center justify-between ${
+                              isServicioSeleccionado(servicio.id)
+                                ? 'bg-blue-600 text-white border-blue-400 shadow-lg'
+                                : 'bg-gray-800/60 text-gray-300 border-gray-700 hover:bg-gray-700 hover:border-blue-500/50'
+                            }`}
+                            title={servicio.descripcion}
+                          >
+                            <span className="flex items-center gap-2">
+                              <span>{servicio.emoji}</span>
+                              <span className="font-semibold">{servicio.nombre}</span>
+                            </span>
+                            {isServicioSeleccionado(servicio.id) && <CheckCircle className="w-3 h-3 flex-shrink-0" />}
+                          </button>
+                        ))}
+                      </div>
+                      
+                      {/* Columna Derecha */}
+                      <div className="space-y-1.5">
+                        {serviciosFiltrados.slice(10).map(servicio => (
+                          <button
+                            key={servicio.id}
+                            onClick={() => toggleServicio(servicio)}
+                            className={`w-full text-left px-3 py-2 rounded-lg text-xs font-medium transition-all border flex items-center justify-between ${
+                              isServicioSeleccionado(servicio.id)
+                                ? 'bg-blue-600 text-white border-blue-400 shadow-lg'
+                                : 'bg-gray-800/60 text-gray-300 border-gray-700 hover:bg-gray-700 hover:border-blue-500/50'
+                            }`}
+                            title={servicio.descripcion}
+                          >
+                            <span className="flex items-center gap-2">
+                              <span>{servicio.emoji}</span>
+                              <span className="font-semibold">{servicio.nombre}</span>
+                            </span>
+                            {isServicioSeleccionado(servicio.id) && <CheckCircle className="w-3 h-3 flex-shrink-0" />}
+                          </button>
+                        ))}
+                      </div>
+                      
+                      {serviciosFiltrados.length === 0 && (
+                        <p className="col-span-2 text-center text-blue-400/70 text-xs py-3">No se encontraron servicios</p>
+                      )}
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
           </div>
           
-          {/* Panel central y derecho */}
           <div className="lg:col-span-2 space-y-6">
             <div className={card}>
               <h2 className="text-xl font-bold text-blue-300 mb-4">Configuración del Mensaje</h2>
@@ -1320,7 +1515,6 @@ export default function GeneradorComunicados() {
                 </div>
               )}
               
-              {/* Opciones avanzadas */}
               <div className="mt-6 space-y-3 border-t border-blue-500/20 pt-4">
                 <h3 className="text-sm font-semibold text-blue-300 mb-3">Opciones Avanzadas</h3>
                 
@@ -1329,7 +1523,38 @@ export default function GeneradorComunicados() {
                     <input
                       type="checkbox"
                       checked={multiplesServicios}
-                      onChange={(e) => setMultiplesServicios(e.target.checked)}
+                      onChange={(e) => {
+                        const activado = e.target.checked;
+                        setMultiplesServicios(activado);
+                        
+                        if (activado) {
+                          // ACTIVADO: Usar las fechas del campo principal, NO la hora actual
+                          if (serviciosSeleccionados.length > 0 && !bloquearModificaciones) {
+                            // Usar las fechas que el usuario ya puso en el formulario principal
+                            const fechaUsar = formData.fechaInicio;
+                            const horaUsar = formData.horaInicio;
+                            
+                            const nuevosServiciosAlertados = serviciosSeleccionados.map(servicio => ({
+                              nombre: servicio.nombre,
+                              fechaInicio: fechaUsar,
+                              horaInicio: horaUsar,
+                              fechaFin: fechaUsar,
+                              horaFin: horaUsar,
+                              duracion: '00:00:00',
+                              error: '',
+                              sugerencias: []
+                            }));
+                            
+                            setServiciosAlertados(nuevosServiciosAlertados);
+                            setServiciosInicializados(true);
+                            setBloquearModificaciones(true); // BLOQUEO PERMANENTE
+                          }
+                        } else {
+                          // DESACTIVADO: Resetear flags
+                          setServiciosInicializados(false);
+                          setBloquearModificaciones(false);
+                        }
+                      }}
                       className="w-4 h-4 text-blue-600 bg-black/40 border-blue-500/50 rounded"
                     />
                     <span className="text-sm font-medium text-blue-300">Múltiples servicios alertados</span>
@@ -1355,7 +1580,38 @@ export default function GeneradorComunicados() {
                         <input
                           type="checkbox"
                           checked={multiplesServicios}
-                          onChange={(e) => setMultiplesServicios(e.target.checked)}
+                          onChange={(e) => {
+                            const activado = e.target.checked;
+                            setMultiplesServicios(activado);
+                            
+                            if (activado) {
+                              // ACTIVADO en FIN: Solo si NO están ya inicializados
+                              if (serviciosSeleccionados.length > 0 && !bloquearModificaciones) {
+                                const hoy = new Date();
+                                const fechaActual = hoy.toISOString().split('T')[0];
+                                const horaActual = hoy.toTimeString().split(' ')[0];
+                                
+                                const nuevosServiciosAlertados = serviciosSeleccionados.map(servicio => ({
+                                  nombre: servicio.nombre,
+                                  fechaInicio: fechaActual,
+                                  horaInicio: horaActual,
+                                  fechaFin: fechaActual,
+                                  horaFin: horaActual,
+                                  duracion: '00:00:00',
+                                  error: '',
+                                  sugerencias: []
+                                }));
+                                
+                                setServiciosAlertados(nuevosServiciosAlertados);
+                                setServiciosInicializados(true);
+                                setBloquearModificaciones(true);
+                              }
+                            } else {
+                              // DESACTIVADO: Resetear flags
+                              setServiciosInicializados(false);
+                              setBloquearModificaciones(false);
+                            }
+                          }}
                           className="w-4 h-4 text-blue-600 bg-black/40 border-blue-500/50 rounded"
                         />
                         <span className="text-sm font-medium text-blue-300">Múltiples servicios alertados</span>
@@ -1387,7 +1643,6 @@ export default function GeneradorComunicados() {
                 )}
               </div>
 
-              {/* Secciones expandibles según opciones */}
               {multiplesServicios && (tipo === 'evento-inicio' || tipo === 'incidente-inicio' || tipo === 'evento-fin' || tipo === 'incidente-fin') && (
                 <div className="mt-4 space-y-3 border border-blue-500/30 rounded-lg p-4 bg-black/20">
                   <div className="flex justify-between items-center">
@@ -1397,7 +1652,7 @@ export default function GeneradorComunicados() {
                     </button>
                   </div>
                   {serviciosAlertados.map((servicio, index) => (
-                    <div key={index} className="bg-black/40 rounded-lg p-4 border border-blue-500/30">
+                    <div key={index} className={`rounded-lg p-4 border ${servicio.error ? 'bg-red-900/20 border-red-500/50' : 'bg-black/40 border-blue-500/30'}`}>
                       <div className="flex justify-between mb-3">
                         <span className="text-sm font-medium text-blue-300">Servicio {index + 1}</span>
                         {serviciosAlertados.length > 1 && (
@@ -1414,18 +1669,79 @@ export default function GeneradorComunicados() {
                           onChange={(e) => actualizarServicioAlertado(index, 'nombre', e.target.value)}
                           className="col-span-2 p-2 bg-black/40 border border-blue-500/30 rounded-lg text-blue-100 text-sm"
                         />
-                        <input type="date" value={servicio.fechaInicio} onChange={(e) => actualizarServicioAlertado(index, 'fechaInicio', e.target.value)} className="p-2 bg-black/40 border border-blue-500/30 rounded-lg text-blue-100 text-sm" />
-                        <input type="time" step="1" value={servicio.horaInicio} onChange={(e) => actualizarServicioAlertado(index, 'horaInicio', e.target.value)} className="p-2 bg-black/40 border border-blue-500/30 rounded-lg text-blue-100 text-sm" />
+                        <div>
+                          <label className="text-xs text-blue-400 mb-1 block">Fecha Inicio</label>
+                          <input 
+                            type="date" 
+                            value={servicio.fechaInicio} 
+                            onChange={(e) => actualizarServicioAlertado(index, 'fechaInicio', e.target.value)} 
+                            className={`p-2 bg-black/40 border rounded-lg text-blue-100 text-sm w-full ${servicio.error ? 'border-red-500' : 'border-blue-500/30'}`}
+                          />
+                        </div>
+                        <div>
+                          <label className="text-xs text-blue-400 mb-1 block">Hora Inicio</label>
+                          <input 
+                            type="time" 
+                            step="1" 
+                            value={servicio.horaInicio} 
+                            onChange={(e) => actualizarServicioAlertado(index, 'horaInicio', e.target.value)} 
+                            className={`p-2 bg-black/40 border rounded-lg text-blue-100 text-sm w-full ${servicio.error ? 'border-red-500' : 'border-blue-500/30'}`}
+                          />
+                        </div>
                         {tipo.endsWith('-fin') && (
                           <>
-                            <input type="date" value={servicio.fechaFin} onChange={(e) => actualizarServicioAlertado(index, 'fechaFin', e.target.value)} className="p-2 bg-black/40 border border-blue-500/30 rounded-lg text-blue-100 text-sm" />
-                            <input type="time" step="1" value={servicio.horaFin} onChange={(e) => actualizarServicioAlertado(index, 'horaFin', e.target.value)} className="p-2 bg-black/40 border border-blue-500/30 rounded-lg text-blue-100 text-sm" />
-                            <div className="col-span-2 text-center text-blue-200 text-sm font-medium bg-blue-900/30 p-2 rounded-lg">
+                            <div>
+                              <label className="text-xs text-blue-400 mb-1 block">Fecha Fin</label>
+                              <input 
+                                type="date" 
+                                value={servicio.fechaFin} 
+                                onChange={(e) => actualizarServicioAlertado(index, 'fechaFin', e.target.value)} 
+                                className={`p-2 bg-black/40 border rounded-lg text-blue-100 text-sm w-full ${servicio.error ? 'border-red-500' : 'border-blue-500/30'}`}
+                              />
+                            </div>
+                            <div>
+                              <label className="text-xs text-blue-400 mb-1 block">Hora Fin</label>
+                              <input 
+                                type="time" 
+                                step="1" 
+                                value={servicio.horaFin} 
+                                onChange={(e) => actualizarServicioAlertado(index, 'horaFin', e.target.value)} 
+                                className={`p-2 bg-black/40 border rounded-lg text-blue-100 text-sm w-full ${servicio.error ? 'border-red-500' : 'border-blue-500/30'}`}
+                              />
+                            </div>
+                            <div className={`col-span-2 text-center text-sm font-medium p-2 rounded-lg ${
+                              servicio.error 
+                                ? 'bg-red-900/30 text-red-300' 
+                                : 'bg-blue-900/30 text-blue-200'
+                            }`}>
                               Duración: {servicio.duracion}
                             </div>
                           </>
                         )}
                       </div>
+                      
+                      {/* Mostrar error y sugerencias */}
+                      {servicio.error && (
+                        <div className="mt-3 space-y-2">
+                          <div className="bg-red-900/40 border border-red-500/50 rounded-lg p-3">
+                            <p className="text-red-300 text-xs font-medium whitespace-pre-line">{servicio.error}</p>
+                          </div>
+                          {servicio.sugerencias && servicio.sugerencias.length > 0 && (
+                            <div className="space-y-2">
+                              <p className="text-xs font-semibold text-green-300">🔧 Correcciones:</p>
+                              {servicio.sugerencias.map((sug, i) => (
+                                <button
+                                  key={i}
+                                  onClick={() => aplicarSugerenciaServicio(index, sug.fecha, sug.hora)}
+                                  className="w-full text-left text-xs bg-green-900/40 hover:bg-green-800/60 border border-green-500/50 text-green-300 px-3 py-2 rounded-lg font-medium transition-all"
+                                >
+                                  {sug.texto}
+                                </button>
+                              ))}
+                            </div>
+                          )}
+                        </div>
+                      )}
                     </div>
                   ))}
                 </div>
@@ -1492,7 +1808,6 @@ export default function GeneradorComunicados() {
                 </div>
               )}
               
-              {/* Fechas para inicio */}
               {tipo.endsWith('-inicio') && !multiplesServicios && (
                 <div className="grid grid-cols-2 gap-4 mt-4">
                   <div>
@@ -1506,7 +1821,6 @@ export default function GeneradorComunicados() {
                 </div>
               )}
 
-              {/* Acciones */}
               {tipo === 'evento-seguimiento' && (
                 <div className="mt-4">
                   <label className={label}>Acciones</label>
@@ -1545,25 +1859,34 @@ export default function GeneradorComunicados() {
                 </div>
               )}
               
-              {/* Fechas de fin */}
               {tipo.endsWith('-fin') && !multiplesServicios && !multiplesEncolamientos && !multiplesAlertamientos && (
                 <div className="space-y-4 mt-4">
                   <div className="grid grid-cols-2 gap-4">
                     <div>
                       <label className={label}>Fecha de Inicio</label>
-                      <input className={input} type="date" name="fechaInicioFin" value={formData.fechaInicioFin} onChange={handleInputChange} />
+                      <input className={errorFechaFin ? input + " border-red-500" : input} type="date" name="fechaInicioFin" value={formData.fechaInicioFin} onChange={handleInputChange} />
                     </div>
                     <div>
                       <label className={label}>Hora de Inicio</label>
-                      <input className={input} type="time" step="1" name="horaInicioFin" value={formData.horaInicioFin} onChange={handleInputChange} />
+                      <input className={errorFechaFin ? input + " border-red-500" : input} type="time" step="1" name="horaInicioFin" value={formData.horaInicioFin} onChange={handleInputChange} />
                     </div>
                     <div>
                       <label className={label}>Fecha de Fin</label>
-                      <input className={input} type="date" name="fechaFin" value={formData.fechaFin} onChange={handleInputChange} />
+                      <input className={errorFechaFin ? input + " border-red-500" : input} type="date" name="fechaFin" value={formData.fechaFin} onChange={handleInputChange} />
+                      {errorFechaFin && (
+                        <div className="mt-2 space-y-2">
+                          <p className="text-red-400 text-xs font-medium">{errorFechaFin}</p>
+                          {sugerenciasFecha.map((sug, i) => (
+                            <button key={i} onClick={() => aplicarSugerenciaFecha(sug.fecha, sug.hora)} className="text-xs bg-blue-900/40 hover:bg-blue-800/60 border border-blue-500/50 text-blue-300 px-3 py-1 rounded-lg font-medium block w-full text-left">
+                              {sug.texto}
+                            </button>
+                          ))}
+                        </div>
+                      )}
                     </div>
                     <div>
                       <label className={label}>Hora de Fin</label>
-                      <input className={input} type="time" step="1" name="horaFin" value={formData.horaFin} onChange={handleInputChange} />
+                      <input className={errorFechaFin ? input + " border-red-500" : input} type="time" step="1" name="horaFin" value={formData.horaFin} onChange={handleInputChange} />
                     </div>
                   </div>
                   <div className="p-4 bg-gradient-to-br from-blue-900/30 to-blue-800/20 border border-blue-500/30 rounded-lg text-center">
@@ -1585,7 +1908,6 @@ export default function GeneradorComunicados() {
                 </div>
               )}
               
-              {/* Nota */}
               <div className="mt-4">
                 <label className={label}>Nota Adicional (opcional)</label>
                 {tipo === 'evento-fin' && (
@@ -1607,15 +1929,15 @@ export default function GeneradorComunicados() {
               </div>
               
               <button 
-                className={`w-full mt-6 ${btnPrimary}`}
+                className={`w-full mt-6 ${errorFechaFin && errorFechaFin.includes('Error') ? 'bg-gray-700 cursor-not-allowed' : btnPrimary}`}
                 onClick={generarMensaje}
+                disabled={errorFechaFin && errorFechaFin.includes('Error')}
               >
                 <Zap className="w-5 h-5 inline mr-2" />
                 Generar Mensaje
               </button>
             </div>
             
-            {/* Resultado */}
             <div className={card}>
               <h2 className="text-xl font-bold text-blue-300 mb-4">Mensaje Generado</h2>
               <div className="bg-black/60 p-4 rounded-lg min-h-[150px] border border-blue-500/30">
@@ -1642,7 +1964,6 @@ export default function GeneradorComunicados() {
           </div>
         </div>
         
-        {/* Modales */}
         {mostrarActualizacion && (
           <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50">
             <div className="bg-gray-900/95 backdrop-blur-xl border border-blue-500/30 rounded-xl p-6 max-w-md mx-4 shadow-2xl">
@@ -1696,9 +2017,76 @@ export default function GeneradorComunicados() {
           </div>
         )}
 
+        {mostrarErrorFecha && (
+          <div className="fixed inset-0 bg-black/95 backdrop-blur-lg flex items-center justify-center z-50 p-4 animate-in fade-in duration-200">
+            <div className="bg-gradient-to-br from-red-950 via-red-900 to-red-950 backdrop-blur-xl border-4 border-red-500 rounded-3xl p-8 max-w-2xl mx-4 shadow-2xl shadow-red-900/80">
+              <div className="flex items-start gap-6 mb-6">
+                <div className="bg-red-500 p-6 rounded-full animate-bounce shadow-xl">
+                  <AlertTriangle className="w-16 h-16 text-white" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-4xl font-bold text-white mb-3 tracking-tight">
+                    🚨 ERROR TEMPORAL
+                  </h3>
+                  <p className="text-red-200 text-lg font-semibold">
+                    La fecha/hora de fin no puede ser anterior a la de inicio
+                  </p>
+                </div>
+              </div>
+              
+              <div className="bg-black/60 border-4 border-red-400 rounded-2xl p-6 mb-6 shadow-inner">
+                <p className="text-white text-lg font-bold leading-relaxed whitespace-pre-line">
+                  {errorFechaFin}
+                </p>
+              </div>
+
+              {sugerenciasFecha.length > 0 && (
+                <div className="space-y-4 mb-6">
+                  <p className="text-xl font-bold text-white flex items-center gap-3">
+                    <span className="text-3xl">🔧</span>
+                    Correcciones rápidas:
+                  </p>
+                  {sugerenciasFecha.map((sug, i) => (
+                    <button
+                      key={i}
+                      onClick={() => {
+                        if (sug.fecha && sug.hora) {
+                          aplicarSugerenciaFecha(sug.fecha, sug.hora);
+                        } else {
+                          const inicio = new Date(`${formData.fechaInicioFin}T${formData.horaInicioFin}`);
+                          inicio.setHours(inicio.getHours() + 1);
+                          const nuevaHora = inicio.toTimeString().split(' ')[0];
+                          setFormData(prev => ({ ...prev, fechaFin: formData.fechaInicioFin, horaFin: nuevaHora }));
+                          setErrorFechaFin('');
+                          setSugerenciasFecha([]);
+                          setMostrarErrorFecha(false);
+                          setAlertaMensaje('✓ Fecha corregida');
+                          setMostrarAlerta(true);
+                          setTimeout(() => setMostrarAlerta(false), 3000);
+                        }
+                      }}
+                      className="w-full text-left bg-gradient-to-r from-green-700 via-green-600 to-green-700 hover:from-green-600 hover:via-green-500 hover:to-green-600 border-3 border-green-400 text-white p-4 rounded-2xl text-base font-bold transition-all transform hover:scale-105 shadow-2xl hover:shadow-green-500/50 flex items-center gap-3"
+                    >
+                      <CheckCircle className="w-7 h-7 flex-shrink-0" />
+                      <span>{sug.texto}</span>
+                    </button>
+                  ))}
+                </div>
+              )}
+              
+              <button 
+                onClick={() => setMostrarErrorFecha(false)} 
+                className="w-full bg-gradient-to-r from-gray-700 via-gray-600 to-gray-700 hover:from-gray-600 hover:via-gray-500 hover:to-gray-600 text-white py-4 rounded-2xl font-bold text-lg transition-all shadow-2xl transform hover:scale-105"
+              >
+                Revisar Manualmente
+              </button>
+            </div>
+          </div>
+        )}
+
         <footer className="text-center py-6 mt-8 text-blue-400/50 text-xs border-t border-blue-500/20">
           <p className="font-medium text-blue-300/70">Centro de Comando - Diners Club del Ecuador</p>
-          <p className="mt-2 text-blue-500/50">Versión 6.1 - Desarrollado por: Luis Alberto Herrera Lara</p>
+          <p className="mt-2 text-blue-500/50">Versión 6.1 - Sistema de Gestión de Comunicados</p>
         </footer>
       </div>
     </div>
