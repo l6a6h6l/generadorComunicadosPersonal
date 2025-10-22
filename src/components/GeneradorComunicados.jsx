@@ -188,7 +188,15 @@ export default function GeneradorComunicados() {
         }
         return nuevaLista;
       } else {
-        return [...prev, servicio];
+        // Guardar el servicio con la hora del click
+        const ahora = new Date();
+        const fechaClick = ahora.toISOString().split("T")[0];
+        const horaClick = ahora.toTimeString().split(" ")[0];
+        return [...prev, {
+          ...servicio,
+          fechaClick: fechaClick,
+          horaClick: horaClick
+        }];
       }
     });
   };
@@ -235,23 +243,59 @@ export default function GeneradorComunicados() {
             }
           });
           
-          // Usar las fechas del formulario principal, NO la hora actual
-          // Esto preserva la hora que el usuario configuró (ej: 19:00)
-          const fechaUsar = formData.fechaInicio;
-          const horaUsar = formData.horaInicio;
+          // Obtener fecha y hora actual para nuevos servicios
+          const ahora = new Date();
+          const fechaActual = ahora.toISOString().split('T')[0];
+          const horaActual = ahora.toTimeString().split(' ')[0];
           
           const nuevosServiciosAlertados = serviciosSeleccionados.map(servicio => {
-            // Si el servicio ya existía, mantener sus datos
+            // Si el servicio ya existía, mantener TODOS sus datos sin modificar
             if (serviciosExistentesMap[servicio.nombre]) {
+              // Simplemente devolver el servicio existente sin cambios
               return serviciosExistentesMap[servicio.nombre];
             }
-            // Si es nuevo, crear con fechas del formulario
+            
+            // Si es nuevo servicio
+            if (tipo.includes('-inicio')) {
+              // En modo inicio: usar hora del click guardada en el servicio
+              const fechaInicioUsar = servicio.fechaClick || fechaActual;
+              const horaInicioUsar = servicio.horaClick || horaActual;
+              return {
+                nombre: servicio.nombre,
+                fechaInicio: fechaInicioUsar,
+                horaInicio: horaInicioUsar,
+                fechaFin: fechaInicioUsar,
+                horaFin: horaInicioUsar,
+                duracion: "00:00:00",
+                error: "",
+                sugerencias: []
+              };
+            } else if (tipo.includes('-fin')) {
+              // En modo fin: usar hora del click inicial para inicio, hora de fin de formData
+              const fechaInicioUsar = servicio.fechaClick || formData.fechaInicioFin || fechaActual;
+              const horaInicioUsar = servicio.horaClick || formData.horaInicioFin || horaActual;
+              // Usar la hora de fin que ya está guardada en formData, NO la hora actual
+              const fechaFinUsar = formData.fechaFin || fechaActual;
+              const horaFinUsar = formData.horaFin || horaActual;
+              return {
+                nombre: servicio.nombre,
+                fechaInicio: fechaInicioUsar,
+                horaInicio: horaInicioUsar,
+                fechaFin: fechaFinUsar,
+                horaFin: horaFinUsar,
+                duracion: calcularDuracion(fechaInicioUsar, horaInicioUsar, fechaFinUsar, horaFinUsar),
+                error: "",
+                sugerencias: []
+              };
+            }
+            
+            // Caso por defecto
             return {
               nombre: servicio.nombre,
-              fechaInicio: fechaUsar,
-              horaInicio: horaUsar,
-              fechaFin: fechaUsar,
-              horaFin: horaUsar,
+              fechaInicio: fechaActual,
+              horaInicio: horaActual,
+              fechaFin: fechaActual,
+              horaFin: horaActual,
               duracion: "00:00:00",
               error: "",
               sugerencias: []
@@ -274,7 +318,7 @@ export default function GeneradorComunicados() {
       }));
       // No modificar multiplesServicios ni serviciosAlertados en modo solo impactos
     }
-  }, [serviciosSeleccionados, autoLlenadoCompleto, tipo]);
+  }, [serviciosSeleccionados, autoLlenadoCompleto, tipo, serviciosAlertados, formData.fechaInicioFin, formData.horaInicioFin, formData.fechaFin, formData.horaFin]);
 
   const calcularTiempoAbierto = () => {
     const diferencia = Date.now() - tiempoAbierto;
@@ -545,6 +589,17 @@ export default function GeneradorComunicados() {
         horaFin: horaActual,
         escaladoA: prev.escaladoA
       }));
+      
+      // Si hay servicios alertados, actualizar su hora de fin con la hora actual del cambio
+      if (serviciosAlertados.length > 0 && serviciosAlertados[0].nombre) {
+        const serviciosActualizados = serviciosAlertados.map(servicio => ({
+          ...servicio,
+          fechaFin: fechaActual,
+          horaFin: horaActual,
+          duracion: calcularDuracion(servicio.fechaInicio, servicio.horaInicio, fechaActual, horaActual)
+        }));
+        setServiciosAlertados(serviciosActualizados);
+      }
       
       setAlertaMensaje('Fechas y escalado autocompletados desde el inicio');
       setMostrarAlerta(true);
