@@ -1184,7 +1184,7 @@ export default function GeneradorComunicados() {
               <span>Iniciar Sesión</span>
             </button>
             <p className="text-xs text-center text-blue-400/60 mt-4">
-              Usuario demo: fractalia | Contraseña: fractalia4ever
+              XXXX
             </p>
           </div>
         </div>
