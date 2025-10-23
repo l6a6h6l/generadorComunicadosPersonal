@@ -207,8 +207,11 @@ export default function GeneradorComunicados() {
 
   useEffect(() => {
     if (serviciosSeleccionados.length === 0) {
-      setMultiplesServicios(false);
-      setServiciosAlertados([{ nombre: "", fechaInicio: "", horaInicio: "", fechaFin: "", horaFin: "", duracion: "00:00:00", error: "", sugerencias: [] }]);
+      // NO desactivar multiplesServicios aquí - dejar que el usuario lo controle manualmente
+      // Solo resetear serviciosAlertados si multiplesServicios está desactivado
+      if (!multiplesServicios) {
+        setServiciosAlertados([{ nombre: "", fechaInicio: "", horaInicio: "", fechaFin: "", horaFin: "", duracion: "00:00:00", error: "", sugerencias: [] }]);
+      }
       setServiciosInicializados(false);
       setBloquearModificaciones(false);
       return;
@@ -233,7 +236,10 @@ export default function GeneradorComunicados() {
       }));
 
       if (serviciosSeleccionados.length >= 1) {
-        setMultiplesServicios(true);
+        // Solo activar automáticamente si no está ya manejado manualmente
+        if (!serviciosInicializados && !multiplesServicios) {
+          setMultiplesServicios(true);
+        }
         
           // Preservar datos de servicios existentes al agregar/quitar
           const serviciosExistentesMap = {};
@@ -306,8 +312,6 @@ export default function GeneradorComunicados() {
           // CRÍTICO: Activar los flags de bloqueo para evitar sobrescrituras
           setServiciosInicializados(true);
           setBloquearModificaciones(true);
-      } else {
-        setMultiplesServicios(false);
       }
     } else {
       // Modo solo impactos: solo agrega impactos sin tocar descripción ni servicios alertados
@@ -1583,12 +1587,12 @@ export default function GeneradorComunicados() {
                         setMultiplesServicios(activado);
                         
                         if (activado) {
-                          // ACTIVADO: Usar las fechas del campo principal, NO la hora actual
-                          if (serviciosSeleccionados.length > 0 && !bloquearModificaciones) {
-                            // Usar las fechas que el usuario ya puso en el formulario principal
-                            const fechaUsar = formData.fechaInicio;
-                            const horaUsar = formData.horaInicio;
-                            
+                          // ACTIVADO: Crear servicios alertados
+                          const fechaUsar = formData.fechaInicio || new Date().toISOString().split('T')[0];
+                          const horaUsar = formData.horaInicio || new Date().toTimeString().split(' ')[0];
+                          
+                          if (serviciosSeleccionados.length > 0) {
+                            // Si hay servicios seleccionados, crear uno por cada servicio
                             const nuevosServiciosAlertados = serviciosSeleccionados.map(servicio => ({
                               nombre: servicio.nombre,
                               fechaInicio: fechaUsar,
@@ -1601,11 +1605,32 @@ export default function GeneradorComunicados() {
                             }));
                             
                             setServiciosAlertados(nuevosServiciosAlertados);
-                            setServiciosInicializados(true);
-                            setBloquearModificaciones(true); // BLOQUEO PERMANENTE
+                          } else {
+                            // Si NO hay servicios seleccionados, crear un campo vacío
+                            setServiciosAlertados([{
+                              nombre: '',
+                              fechaInicio: fechaUsar,
+                              horaInicio: horaUsar,
+                              fechaFin: fechaUsar,
+                              horaFin: horaUsar,
+                              duracion: '00:00:00',
+                              error: '',
+                              sugerencias: []
+                            }]);
                           }
+                          setServiciosInicializados(true);
                         } else {
-                          // DESACTIVADO: Resetear flags
+                          // DESACTIVADO: Resetear todo
+                          setServiciosAlertados([{
+                            nombre: '',
+                            fechaInicio: '',
+                            horaInicio: '',
+                            fechaFin: '',
+                            horaFin: '',
+                            duracion: '00:00:00',
+                            error: '',
+                            sugerencias: []
+                          }]);
                           setServiciosInicializados(false);
                           setBloquearModificaciones(false);
                         }
@@ -1640,29 +1665,51 @@ export default function GeneradorComunicados() {
                             setMultiplesServicios(activado);
                             
                             if (activado) {
-                              // ACTIVADO en FIN: Solo si NO están ya inicializados
-                              if (serviciosSeleccionados.length > 0 && !bloquearModificaciones) {
-                                const hoy = new Date();
-                                const fechaActual = hoy.toISOString().split('T')[0];
-                                const horaActual = hoy.toTimeString().split(' ')[0];
-                                
+                              // ACTIVADO en FIN: Crear servicios alertados
+                              const fechaUsar = formData.fechaInicioFin || new Date().toISOString().split('T')[0];
+                              const horaUsar = formData.horaInicioFin || new Date().toTimeString().split(' ')[0];
+                              const fechaFinUsar = formData.fechaFin || new Date().toISOString().split('T')[0];
+                              const horaFinUsar = formData.horaFin || new Date().toTimeString().split(' ')[0];
+                              
+                              if (serviciosSeleccionados.length > 0) {
                                 const nuevosServiciosAlertados = serviciosSeleccionados.map(servicio => ({
                                   nombre: servicio.nombre,
-                                  fechaInicio: fechaActual,
-                                  horaInicio: horaActual,
-                                  fechaFin: fechaActual,
-                                  horaFin: horaActual,
-                                  duracion: '00:00:00',
+                                  fechaInicio: fechaUsar,
+                                  horaInicio: horaUsar,
+                                  fechaFin: fechaFinUsar,
+                                  horaFin: horaFinUsar,
+                                  duracion: calcularDuracion(fechaUsar, horaUsar, fechaFinUsar, horaFinUsar),
                                   error: '',
                                   sugerencias: []
                                 }));
                                 
                                 setServiciosAlertados(nuevosServiciosAlertados);
-                                setServiciosInicializados(true);
-                                setBloquearModificaciones(true);
+                              } else {
+                                // Si NO hay servicios seleccionados, crear un campo vacío
+                                setServiciosAlertados([{
+                                  nombre: '',
+                                  fechaInicio: fechaUsar,
+                                  horaInicio: horaUsar,
+                                  fechaFin: fechaFinUsar,
+                                  horaFin: horaFinUsar,
+                                  duracion: calcularDuracion(fechaUsar, horaUsar, fechaFinUsar, horaFinUsar),
+                                  error: '',
+                                  sugerencias: []
+                                }]);
                               }
+                              setServiciosInicializados(true);
                             } else {
-                              // DESACTIVADO: Resetear flags
+                              // DESACTIVADO: Resetear todo
+                              setServiciosAlertados([{
+                                nombre: '',
+                                fechaInicio: '',
+                                horaInicio: '',
+                                fechaFin: '',
+                                horaFin: '',
+                                duracion: '00:00:00',
+                                error: '',
+                                sugerencias: []
+                              }]);
                               setServiciosInicializados(false);
                               setBloquearModificaciones(false);
                             }
