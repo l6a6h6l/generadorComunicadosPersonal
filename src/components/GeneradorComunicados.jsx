@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Terminal, AlertTriangle, Clock, CheckCircle, RefreshCw, Copy, Trash2, Plus, Minus, User, Lock, Eye, EyeOff, Shield, Activity, Zap, Search } from 'lucide-react';
 
 const USUARIOS_VALIDOS = [
-  { usuario: 'fractalia', password: 'fractalia4ever' }
+  { usuario: 'luishl', password: 'luistbane' }
 ];
 
 const SERVICIOS_TRANSACCIONALES = [
@@ -207,11 +207,8 @@ export default function GeneradorComunicados() {
 
   useEffect(() => {
     if (serviciosSeleccionados.length === 0) {
-      // NO desactivar multiplesServicios aquí - dejar que el usuario lo controle manualmente
-      // Solo resetear serviciosAlertados si multiplesServicios está desactivado
-      if (!multiplesServicios) {
-        setServiciosAlertados([{ nombre: "", fechaInicio: "", horaInicio: "", fechaFin: "", horaFin: "", duracion: "00:00:00", error: "", sugerencias: [] }]);
-      }
+      setMultiplesServicios(false);
+      setServiciosAlertados([{ nombre: "", fechaInicio: "", horaInicio: "", fechaFin: "", horaFin: "", duracion: "00:00:00", error: "", sugerencias: [] }]);
       setServiciosInicializados(false);
       setBloquearModificaciones(false);
       return;
@@ -236,10 +233,7 @@ export default function GeneradorComunicados() {
       }));
 
       if (serviciosSeleccionados.length >= 1) {
-        // Solo activar automáticamente si no está ya manejado manualmente
-        if (!serviciosInicializados && !multiplesServicios) {
-          setMultiplesServicios(true);
-        }
+        setMultiplesServicios(true);
         
           // Preservar datos de servicios existentes al agregar/quitar
           const serviciosExistentesMap = {};
@@ -312,6 +306,8 @@ export default function GeneradorComunicados() {
           // CRÍTICO: Activar los flags de bloqueo para evitar sobrescrituras
           setServiciosInicializados(true);
           setBloquearModificaciones(true);
+      } else {
+        setMultiplesServicios(false);
       }
     } else {
       // Modo solo impactos: solo agrega impactos sin tocar descripción ni servicios alertados
@@ -1096,23 +1092,23 @@ export default function GeneradorComunicados() {
     servicio.descripcion.toLowerCase().includes(busquedaServicio.toLowerCase())
   );
 
-  const btnPrimary = "bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900 text-white px-4 py-2 rounded-lg font-semibold transition-all shadow-lg shadow-blue-900/50 transform hover:scale-105";
-  const btnSecondary = "bg-gray-800/80 hover:bg-gray-700/90 backdrop-blur text-blue-300 border border-blue-500/30 px-4 py-2 rounded-lg font-semibold transition-all transform hover:scale-105";
+  const btnPrimary = "bg-gradient-to-r from-emerald-600 to-blue-700 hover:from-blue-700 hover:to-blue-900 text-white px-4 py-2 rounded-lg font-semibold transition-all shadow-lg shadow-blue-900/50 transform hover:scale-105";
+  const btnSecondary = "bg-gray-800/80 hover:bg-gray-700/90 backdrop-blur text-blue-300 border border-gray-600/30 px-4 py-2 rounded-lg font-semibold transition-all transform hover:scale-105";
   const btnWarning = "bg-gradient-to-r from-orange-600 to-orange-700 hover:from-orange-700 hover:to-orange-800 text-white px-4 py-2 rounded-lg font-semibold transition-all shadow-lg shadow-orange-900/50 transform hover:scale-105";
-  const input = "w-full p-3 bg-black/40 backdrop-blur border border-blue-500/30 rounded-lg text-blue-100 placeholder-blue-400/50 focus:border-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-500/30 transition-all";
+  const input = "w-full p-3 bg-slate-800/50 backdrop-blur border border-gray-600/30 rounded-lg text-blue-100 placeholder-gray-500 focus:border-emerald-400 focus:outline-none focus:ring-2 focus:ring-emerald-500/30 transition-all";
   const label = "block mb-2 text-sm font-semibold text-blue-300";
-  const card = "bg-gray-900/60 backdrop-blur-xl rounded-xl p-6 border border-blue-500/20 shadow-2xl shadow-blue-900/30";
+  const card = "bg-slate-800/60 backdrop-blur-xl rounded-xl p-6 border border-emerald-500/20 shadow-2xl shadow-blue-900/30";
 
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-blue-950 flex items-center justify-center p-4 relative overflow-hidden">
+      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 flex items-center justify-center p-4 relative overflow-hidden">
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-700/20 via-transparent to-transparent"></div>
           <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
           <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-blue-700/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
         </div>
         
-        <div className="w-full max-w-md bg-gray-900/90 backdrop-blur-2xl rounded-3xl p-8 shadow-2xl shadow-blue-900/50 border border-blue-500/30 relative z-10 transform hover:scale-[1.02] transition-all duration-300">
+        <div className="w-full max-w-md bg-gray-900/90 backdrop-blur-2xl rounded-3xl p-8 shadow-2xl shadow-blue-900/50 border border-gray-600/30 relative z-10 transform hover:scale-[1.02] transition-all duration-300">
           <div className="text-center mb-8">
             <div className="relative w-24 h-24 mx-auto mb-6">
               <div className="absolute inset-0 rounded-full border-8 border-blue-600 bg-gradient-to-br from-blue-500 to-blue-700 shadow-lg shadow-blue-900/50"></div>
@@ -1129,7 +1125,7 @@ export default function GeneradorComunicados() {
             </h1>
             <div className="h-1 w-32 mx-auto bg-gradient-to-r from-transparent via-blue-500 to-transparent rounded-full mb-3"></div>
             <p className="text-blue-300 text-base font-semibold">Diners Club del Ecuador</p>
-            <p className="text-blue-400/70 text-sm mt-2">Sistema de Gestión de Comunicados</p>
+            <p className="text-emerald-400/70 text-sm mt-2">Sistema de Gestión de Comunicados</p>
           </div>
 
           <div className="space-y-5">
@@ -1165,7 +1161,7 @@ export default function GeneradorComunicados() {
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-blue-400 hover:text-blue-300 transition-colors"
+                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-emerald-400 hover:text-blue-300 transition-colors"
                 >
                   {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                 </button>
@@ -1179,13 +1175,11 @@ export default function GeneradorComunicados() {
                 </div>
               </div>
             )}
-            <button onClick={handleLogin} className="w-full bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 hover:from-blue-700 hover:via-blue-800 hover:to-blue-900 text-white py-3.5 rounded-xl font-semibold transition-all shadow-lg shadow-blue-900/50 transform hover:scale-[1.02] flex items-center justify-center space-x-2">
+            <button onClick={handleLogin} className="w-full bg-gradient-to-r from-emerald-600 via-emerald-500 to-blue-600 hover:from-emerald-700 hover:via-emerald-600 hover:to-blue-700 text-white py-3.5 rounded-xl font-semibold transition-all shadow-lg shadow-blue-900/50 transform hover:scale-[1.02] flex items-center justify-center space-x-2">
               <Shield className="w-5 h-5" />
               <span>Iniciar Sesión</span>
             </button>
-            <p className="text-xs text-center text-blue-400/60 mt-4">
-              XXXX
-            </p>
+
           </div>
         </div>
       </div>
@@ -1193,12 +1187,12 @@ export default function GeneradorComunicados() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-blue-950 relative">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 relative">
       <div className="max-w-7xl mx-auto px-4 py-6">
-        <header className="bg-gray-900/80 backdrop-blur-xl rounded-xl p-6 mb-6 shadow-2xl border border-blue-500/20">
+        <header className="bg-slate-800/90 backdrop-blur-xl rounded-xl p-6 mb-6 shadow-2xl border border-emerald-500/20">
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center space-x-3">
-              <div className="bg-gradient-to-br from-blue-600 to-blue-800 w-12 h-12 rounded-lg flex items-center justify-center shadow-lg">
+              <div className="bg-gradient-to-br from-emerald-600 to-blue-700 w-12 h-12 rounded-lg flex items-center justify-center shadow-lg">
                 <Terminal className="w-6 h-6 text-white" />
               </div>
               <div>
@@ -1215,15 +1209,15 @@ export default function GeneradorComunicados() {
           
           <div className="flex items-center justify-between flex-wrap gap-4">
             <div className="flex items-center space-x-4">
-              <div className={`flex items-center space-x-2 px-3 py-2 rounded-lg border ${getEstadoSemaforo().borde} bg-black/40`}>
+              <div className={`flex items-center space-x-2 px-3 py-2 rounded-lg border ${getEstadoSemaforo().borde} bg-slate-800/50`}>
                 <div className={`w-2 h-2 rounded-full ${getEstadoSemaforo().clase} animate-pulse`}></div>
                 <span className={`text-xs font-semibold ${getEstadoSemaforo().texto}`}>
                   {getEstadoSemaforo().estado}
                 </span>
-                <span className="text-blue-400/70 text-xs">
+                <span className="text-emerald-400/70 text-xs">
                   ({calcularTiempoAbierto().horas}h {calcularTiempoAbierto().minutos}m)
                 </span>
-                <button onClick={actualizarFechasAhora} className="text-blue-400 hover:text-blue-300">
+                <button onClick={actualizarFechasAhora} className="text-emerald-400 hover:text-blue-300">
                   <RefreshCw className="w-4 h-4" />
                 </button>
               </div>
@@ -1233,8 +1227,8 @@ export default function GeneradorComunicados() {
               onClick={() => setModoBLU(!modoBLU)}
               className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all ${
                 modoBLU 
-                  ? 'bg-gradient-to-r from-blue-600 to-blue-800 text-white shadow-lg' 
-                  : 'bg-gray-800/60 text-blue-300 border border-blue-500/30'
+                  ? 'bg-gradient-to-r from-emerald-600 to-blue-700 text-white shadow-lg' 
+                  : 'bg-gray-800/60 text-blue-300 border border-gray-600/30'
               }`}
             >
               {modoBLU ? '● Modo BLU 2.0 Activo' : '○ Activar Modo BLU 2.0'}
@@ -1249,8 +1243,8 @@ export default function GeneradorComunicados() {
                   onClick={() => setTipoBLU(t)}
                   className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
                     tipoBLU === t 
-                      ? 'bg-gradient-to-r from-blue-600 to-blue-800 text-white shadow-lg'
-                      : 'bg-gray-800/60 text-blue-400 border border-blue-500/30'
+                      ? 'bg-gradient-to-r from-emerald-600 to-blue-700 text-white shadow-lg'
+                      : 'bg-gray-800/60 text-emerald-400 border border-gray-600/30'
                   }`}
                 >
                   {t === 'aplicacion' ? '📱 Aplicación' : t === 'infraestructura' ? '🖥️ Infraestructura' : '⚠️ BIAN'}
@@ -1265,13 +1259,13 @@ export default function GeneradorComunicados() {
             <div className={card}>
               <h2 className="text-base font-bold text-blue-300 mb-4">Tipo de Comunicado</h2>
               <div className="space-y-3">
-                <div className="border border-blue-500/20 rounded-lg p-3 bg-black/40">
-                  <h3 className="text-sm font-semibold text-blue-400 mb-2">Eventos</h3>
+                <div className="border border-emerald-500/20 rounded-lg p-3 bg-slate-800/50">
+                  <h3 className="text-sm font-semibold text-emerald-400 mb-2">Eventos</h3>
                   <div className="grid grid-cols-3 gap-2">
                     {['evento-inicio', 'evento-seguimiento', 'evento-fin'].map((t, i) => (
                       <button
                         key={t}
-                        className={`p-2 rounded-lg text-xs font-medium transition-all ${tipo === t ? 'bg-gradient-to-br from-blue-600 to-blue-800 text-white shadow-lg' : 'bg-gray-800/60 text-blue-300 border border-blue-500/30 hover:bg-gray-700/70'}`}
+                        className={`p-2 rounded-lg text-xs font-medium transition-all ${tipo === t ? 'bg-gradient-to-br from-emerald-600 to-blue-700 text-white shadow-lg' : 'bg-gray-800/60 text-blue-300 border border-gray-600/30 hover:bg-gray-700/70'}`}
                         onClick={() => seleccionarTipo(t)}
                       >
                         {i === 0 ? '🟡' : i === 1 ? '🔁' : '🟢'}<br/>{i === 0 ? 'Inicio' : i === 1 ? 'Seg' : 'Fin'}
@@ -1279,7 +1273,7 @@ export default function GeneradorComunicados() {
                     ))}
                   </div>
                 </div>
-                <div className="border border-orange-500/20 rounded-lg p-3 bg-black/40">
+                <div className="border border-orange-500/20 rounded-lg p-3 bg-slate-800/50">
                   <h3 className="text-sm font-semibold text-orange-400 mb-2">Mantenimientos</h3>
                   <div className="grid grid-cols-2 gap-2">
                     {['mantenimiento-inicio', 'mantenimiento-fin'].map((t, i) => (
@@ -1293,7 +1287,7 @@ export default function GeneradorComunicados() {
                     ))}
                   </div>
                 </div>
-                <div className="border border-red-500/20 rounded-lg p-3 bg-black/40">
+                <div className="border border-red-500/20 rounded-lg p-3 bg-slate-800/50">
                   <h3 className="text-sm font-semibold text-red-400 mb-2">Incidentes</h3>
                   <div className="grid grid-cols-3 gap-2">
                     {['incidente-inicio', 'incidente-avance', 'incidente-fin'].map((t, i) => (
@@ -1314,10 +1308,10 @@ export default function GeneradorComunicados() {
               <div className={card}>
                 <button
                   onClick={() => setMostrarSelectorServicios(!mostrarSelectorServicios)}
-                  className="w-full flex items-center justify-between p-3 bg-gradient-to-r from-blue-900/40 to-blue-800/40 hover:from-blue-800/60 hover:to-blue-700/60 border border-blue-500/30 rounded-lg transition-all"
+                  className="w-full flex items-center justify-between p-3 bg-gradient-to-r from-blue-900/40 to-blue-800/40 hover:from-blue-800/60 hover:to-blue-700/60 border border-gray-600/30 rounded-lg transition-all"
                 >
                   <div className="flex items-center gap-2">
-                    <Activity className="w-4 h-4 text-blue-400" />
+                    <Activity className="w-4 h-4 text-emerald-400" />
                     <span className="text-sm font-bold text-blue-300">Servicios Transaccionales</span>
                     {serviciosSeleccionados.length > 0 && (
                       <span className="px-2 py-0.5 bg-green-600/30 border border-green-500/50 rounded text-xs font-semibold text-green-300">
@@ -1326,14 +1320,14 @@ export default function GeneradorComunicados() {
                     )}
                   </div>
                   <div className={`transition-transform ${mostrarSelectorServicios ? 'rotate-180' : ''}`}>
-                    <Plus className="w-4 h-4 text-blue-400" />
+                    <Plus className="w-4 h-4 text-emerald-400" />
                   </div>
                 </button>
 
                 {mostrarSelectorServicios && (
                   <div className="mt-3 space-y-3">
                     {/* Checkbox de Auto-llenado Completo */}
-                    <div className="bg-blue-900/20 border border-blue-500/30 rounded-lg p-3">
+                    <div className="bg-blue-900/20 border border-gray-600/30 rounded-lg p-3">
                       <label className="flex items-start space-x-3 cursor-pointer">
                         <input
                           type="checkbox"
@@ -1347,13 +1341,13 @@ export default function GeneradorComunicados() {
                             setMostrarAlerta(true);
                             setTimeout(() => setMostrarAlerta(false), 2500);
                           }}
-                          className="w-5 h-5 mt-0.5 text-blue-600 bg-black/40 border-blue-500/50 rounded"
+                          className="w-5 h-5 mt-0.5 text-blue-600 bg-slate-800/50 border-blue-500/50 rounded"
                         />
                         <div className="flex-1">
                           <span className="text-sm font-bold text-blue-300 block mb-1">
                             🚀 Auto-llenado Completo
                           </span>
-                          <span className="text-xs text-blue-400/70">
+                          <span className="text-xs text-emerald-400/70">
                             {autoLlenadoCompleto 
                               ? "✓ Activo: Llena descripción + impactos automáticamente" 
                               : "○ Desactivado: Solo agrega impactos sin modificar descripción"}
@@ -1390,13 +1384,13 @@ export default function GeneradorComunicados() {
                     )}
                     
                     <div className="relative">
-                      <Search className="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-blue-400" />
+                      <Search className="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-emerald-400" />
                       <input
                         type="text"
                         placeholder="Buscar servicio..."
                         value={busquedaServicio}
                         onChange={(e) => setBusquedaServicio(e.target.value)}
-                        className="w-full pl-10 pr-3 py-2 bg-black/40 border border-blue-500/30 rounded-lg text-blue-100 text-sm placeholder-blue-400/50 focus:border-blue-400 focus:outline-none"
+                        className="w-full pl-10 pr-3 py-2 bg-slate-800/50 border border-gray-600/30 rounded-lg text-blue-100 text-sm placeholder-gray-500 focus:border-emerald-400 focus:outline-none"
                       />
                     </div>
 
@@ -1446,7 +1440,7 @@ export default function GeneradorComunicados() {
                       </div>
                       
                       {serviciosFiltrados.length === 0 && (
-                        <p className="col-span-2 text-center text-blue-400/70 text-xs py-3">No se encontraron servicios</p>
+                        <p className="col-span-2 text-center text-emerald-400/70 text-xs py-3">No se encontraron servicios</p>
                       )}
                     </div>
                   </div>
@@ -1474,7 +1468,7 @@ export default function GeneradorComunicados() {
                       : 'Paul Chamorro / David Albuja'}
                   </p>
                   {tipoBLU === 'bian' && (
-                    <p className="text-xs text-blue-400 mt-1">Email: malopez@dinersclub.com.ec</p>
+                    <p className="text-xs text-emerald-400 mt-1">Email: malopez@dinersclub.com.ec</p>
                   )}
                 </div>
               )}
@@ -1483,7 +1477,7 @@ export default function GeneradorComunicados() {
                 <div className="space-y-4">
                   <div>
                     <label className={label}>
-                      Descripción {modoBLU && <span className="text-xs ml-2 text-blue-400/70 font-normal">(Formato: Alerta [namespace/cluster])</span>}
+                      Descripción {modoBLU && <span className="text-xs ml-2 text-emerald-400/70 font-normal">(Formato: Alerta [namespace/cluster])</span>}
                     </label>
                     <input 
                       className={input}
@@ -1522,15 +1516,15 @@ export default function GeneradorComunicados() {
                       className={input}
                     />
                     <div className="flex items-center justify-between mt-2">
-                      <p className="text-xs text-blue-400/70 italic">El texto se convertirá a MAYÚSCULAS</p>
+                      <p className="text-xs text-emerald-400/70 italic">El texto se convertirá a MAYÚSCULAS</p>
                       <label className="flex items-center space-x-2 cursor-pointer">
                         <input
                           type="checkbox"
                           checked={autoLimpiarEscalado}
                           onChange={(e) => setAutoLimpiarEscalado(e.target.checked)}
-                          className="w-4 h-4 text-blue-600 bg-black/40 border-blue-500/50 rounded"
+                          className="w-4 h-4 text-blue-600 bg-slate-800/50 border-blue-500/50 rounded"
                         />
-                        <span className="text-xs text-blue-400">Auto-limpiar</span>
+                        <span className="text-xs text-emerald-400">Auto-limpiar</span>
                       </label>
                     </div>
                   </div>
@@ -1574,11 +1568,11 @@ export default function GeneradorComunicados() {
                 </div>
               )}
               
-              <div className="mt-6 space-y-3 border-t border-blue-500/20 pt-4">
+              <div className="mt-6 space-y-3 border-t border-emerald-500/20 pt-4">
                 <h3 className="text-sm font-semibold text-blue-300 mb-3">Opciones Avanzadas</h3>
                 
                 {(tipo === 'evento-inicio' || tipo === 'incidente-inicio') && (
-                  <label className="flex items-center space-x-2 cursor-pointer p-3 bg-black/40 rounded-lg border border-blue-500/20 hover:bg-black/60 transition-all">
+                  <label className="flex items-center space-x-2 cursor-pointer p-3 bg-slate-800/50 rounded-lg border border-emerald-500/20 hover:bg-black/60 transition-all">
                     <input
                       type="checkbox"
                       checked={multiplesServicios}
@@ -1635,19 +1629,19 @@ export default function GeneradorComunicados() {
                           setBloquearModificaciones(false);
                         }
                       }}
-                      className="w-4 h-4 text-blue-600 bg-black/40 border-blue-500/50 rounded"
+                      className="w-4 h-4 text-blue-600 bg-slate-800/50 border-blue-500/50 rounded"
                     />
                     <span className="text-sm font-medium text-blue-300">Múltiples servicios alertados</span>
                   </label>
                 )}
                 
                 {(tipo === 'evento-inicio' || tipo === 'evento-seguimiento') && (
-                  <label className="flex items-center space-x-2 cursor-pointer p-3 bg-black/40 rounded-lg border border-blue-500/20 hover:bg-black/60 transition-all">
+                  <label className="flex items-center space-x-2 cursor-pointer p-3 bg-slate-800/50 rounded-lg border border-emerald-500/20 hover:bg-black/60 transition-all">
                     <input
                       type="checkbox"
                       checked={multiplesEncolamientos}
                       onChange={(e) => setMultiplesEncolamientos(e.target.checked)}
-                      className="w-4 h-4 text-blue-600 bg-black/40 border-blue-500/50 rounded"
+                      className="w-4 h-4 text-blue-600 bg-slate-800/50 border-blue-500/50 rounded"
                     />
                     <span className="text-sm font-medium text-blue-300">Encolamiento múltiple</span>
                   </label>
@@ -1656,7 +1650,7 @@ export default function GeneradorComunicados() {
                 {tipo.endsWith('-fin') && (
                   <>
                     {(tipo === 'evento-fin' || tipo === 'incidente-fin') && (
-                      <label className="flex items-center space-x-2 cursor-pointer p-3 bg-black/40 rounded-lg border border-blue-500/20 hover:bg-black/60 transition-all">
+                      <label className="flex items-center space-x-2 cursor-pointer p-3 bg-slate-800/50 rounded-lg border border-emerald-500/20 hover:bg-black/60 transition-all">
                         <input
                           type="checkbox"
                           checked={multiplesServicios}
@@ -1665,78 +1659,56 @@ export default function GeneradorComunicados() {
                             setMultiplesServicios(activado);
                             
                             if (activado) {
-                              // ACTIVADO en FIN: Crear servicios alertados
-                              const fechaUsar = formData.fechaInicioFin || new Date().toISOString().split('T')[0];
-                              const horaUsar = formData.horaInicioFin || new Date().toTimeString().split(' ')[0];
-                              const fechaFinUsar = formData.fechaFin || new Date().toISOString().split('T')[0];
-                              const horaFinUsar = formData.horaFin || new Date().toTimeString().split(' ')[0];
-                              
-                              if (serviciosSeleccionados.length > 0) {
+                              // ACTIVADO en FIN: Solo si NO están ya inicializados
+                              if (serviciosSeleccionados.length > 0 && !bloquearModificaciones) {
+                                const hoy = new Date();
+                                const fechaActual = hoy.toISOString().split('T')[0];
+                                const horaActual = hoy.toTimeString().split(' ')[0];
+                                
                                 const nuevosServiciosAlertados = serviciosSeleccionados.map(servicio => ({
                                   nombre: servicio.nombre,
-                                  fechaInicio: fechaUsar,
-                                  horaInicio: horaUsar,
-                                  fechaFin: fechaFinUsar,
-                                  horaFin: horaFinUsar,
-                                  duracion: calcularDuracion(fechaUsar, horaUsar, fechaFinUsar, horaFinUsar),
+                                  fechaInicio: fechaActual,
+                                  horaInicio: horaActual,
+                                  fechaFin: fechaActual,
+                                  horaFin: horaActual,
+                                  duracion: '00:00:00',
                                   error: '',
                                   sugerencias: []
                                 }));
                                 
                                 setServiciosAlertados(nuevosServiciosAlertados);
-                              } else {
-                                // Si NO hay servicios seleccionados, crear un campo vacío
-                                setServiciosAlertados([{
-                                  nombre: '',
-                                  fechaInicio: fechaUsar,
-                                  horaInicio: horaUsar,
-                                  fechaFin: fechaFinUsar,
-                                  horaFin: horaFinUsar,
-                                  duracion: calcularDuracion(fechaUsar, horaUsar, fechaFinUsar, horaFinUsar),
-                                  error: '',
-                                  sugerencias: []
-                                }]);
+                                setServiciosInicializados(true);
+                                setBloquearModificaciones(true);
                               }
-                              setServiciosInicializados(true);
                             } else {
-                              // DESACTIVADO: Resetear todo
-                              setServiciosAlertados([{
-                                nombre: '',
-                                fechaInicio: '',
-                                horaInicio: '',
-                                fechaFin: '',
-                                horaFin: '',
-                                duracion: '00:00:00',
-                                error: '',
-                                sugerencias: []
-                              }]);
+                              // DESACTIVADO: Resetear flags
                               setServiciosInicializados(false);
                               setBloquearModificaciones(false);
                             }
                           }}
-                          className="w-4 h-4 text-blue-600 bg-black/40 border-blue-500/50 rounded"
+                          className="w-4 h-4 text-blue-600 bg-slate-800/50 border-blue-500/50 rounded"
                         />
                         <span className="text-sm font-medium text-blue-300">Múltiples servicios alertados</span>
                       </label>
                     )}
                     
-                    <label className="flex items-center space-x-2 cursor-pointer p-3 bg-black/40 rounded-lg border border-blue-500/20 hover:bg-black/60 transition-all">
+                    <label className="flex items-center space-x-2 cursor-pointer p-3 bg-slate-800/50 rounded-lg border border-emerald-500/20 hover:bg-black/60 transition-all">
                       <input
                         type="checkbox"
                         checked={multiplesAlertamientos}
                         onChange={(e) => setMultiplesAlertamientos(e.target.checked)}
-                        className="w-4 h-4 text-blue-600 bg-black/40 border-blue-500/50 rounded"
+                        className="w-4 h-4 text-blue-600 bg-slate-800/50 border-blue-500/50 rounded"
                       />
                       <span className="text-sm font-medium text-blue-300">Períodos de alertamiento múltiples</span>
                     </label>
 
                     {tipo.startsWith('evento-') && (
-                      <label className="flex items-center space-x-2 cursor-pointer p-3 bg-black/40 rounded-lg border border-blue-500/20 hover:bg-black/60 transition-all">
+                      <label className="flex items-center space-x-2 cursor-pointer p-3 bg-slate-800/50 rounded-lg border border-emerald-500/20 hover:bg-black/60 transition-all">
                         <input
                           type="checkbox"
                           checked={multiplesEncolamientos}
                           onChange={(e) => setMultiplesEncolamientos(e.target.checked)}
-                          className="w-4 h-4 text-blue-600 bg-black/40 border-blue-500/50 rounded"
+                          className="w-4 h-4 text-blue-600 bg-slate-800/50 border-blue-500/50 rounded"
                         />
                         <span className="text-sm font-medium text-blue-300">Encolamiento múltiple</span>
                       </label>
@@ -1746,15 +1718,15 @@ export default function GeneradorComunicados() {
               </div>
 
               {multiplesServicios && (tipo === 'evento-inicio' || tipo === 'incidente-inicio' || tipo === 'evento-fin' || tipo === 'incidente-fin') && (
-                <div className="mt-4 space-y-3 border border-blue-500/30 rounded-lg p-4 bg-black/20">
+                <div className="mt-4 space-y-3 border border-gray-600/30 rounded-lg p-4 bg-black/20">
                   <div className="flex justify-between items-center">
                     <h3 className="text-sm font-semibold text-blue-300">Servicios Alertados</h3>
-                    <button onClick={agregarServicioAlertado} className="text-sm bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900 text-white px-3 py-1.5 rounded-lg font-medium shadow-lg">
+                    <button onClick={agregarServicioAlertado} className="text-sm bg-gradient-to-r from-emerald-600 to-blue-700 hover:from-blue-700 hover:to-blue-900 text-white px-3 py-1.5 rounded-lg font-medium shadow-lg">
                       <Plus className="w-3 h-3 inline mr-1" />Agregar
                     </button>
                   </div>
                   {serviciosAlertados.map((servicio, index) => (
-                    <div key={index} className={`rounded-lg p-4 border ${servicio.error ? 'bg-red-900/20 border-red-500/50' : 'bg-black/40 border-blue-500/30'}`}>
+                    <div key={index} className={`rounded-lg p-4 border ${servicio.error ? 'bg-red-900/20 border-red-500/50' : 'bg-slate-800/50 border-gray-600/30'}`}>
                       <div className="flex justify-between mb-3">
                         <span className="text-sm font-medium text-blue-300">Servicio {index + 1}</span>
                         {serviciosAlertados.length > 1 && (
@@ -1769,46 +1741,46 @@ export default function GeneradorComunicados() {
                           placeholder="Nombre del servicio"
                           value={servicio.nombre}
                           onChange={(e) => actualizarServicioAlertado(index, 'nombre', e.target.value)}
-                          className="col-span-2 p-2 bg-black/40 border border-blue-500/30 rounded-lg text-blue-100 text-sm"
+                          className="col-span-2 p-2 bg-slate-800/50 border border-gray-600/30 rounded-lg text-blue-100 text-sm"
                         />
                         <div>
-                          <label className="text-xs text-blue-400 mb-1 block">Fecha Inicio</label>
+                          <label className="text-xs text-emerald-400 mb-1 block">Fecha Inicio</label>
                           <input 
                             type="date" 
                             value={servicio.fechaInicio} 
                             onChange={(e) => actualizarServicioAlertado(index, 'fechaInicio', e.target.value)} 
-                            className={`p-2 bg-black/40 border rounded-lg text-blue-100 text-sm w-full ${servicio.error ? 'border-red-500' : 'border-blue-500/30'}`}
+                            className={`p-2 bg-slate-800/50 border rounded-lg text-blue-100 text-sm w-full ${servicio.error ? 'border-red-500' : 'border-gray-600/30'}`}
                           />
                         </div>
                         <div>
-                          <label className="text-xs text-blue-400 mb-1 block">Hora Inicio</label>
+                          <label className="text-xs text-emerald-400 mb-1 block">Hora Inicio</label>
                           <input 
                             type="time" 
                             step="1" 
                             value={servicio.horaInicio} 
                             onChange={(e) => actualizarServicioAlertado(index, 'horaInicio', e.target.value)} 
-                            className={`p-2 bg-black/40 border rounded-lg text-blue-100 text-sm w-full ${servicio.error ? 'border-red-500' : 'border-blue-500/30'}`}
+                            className={`p-2 bg-slate-800/50 border rounded-lg text-blue-100 text-sm w-full ${servicio.error ? 'border-red-500' : 'border-gray-600/30'}`}
                           />
                         </div>
                         {tipo.endsWith('-fin') && (
                           <>
                             <div>
-                              <label className="text-xs text-blue-400 mb-1 block">Fecha Fin</label>
+                              <label className="text-xs text-emerald-400 mb-1 block">Fecha Fin</label>
                               <input 
                                 type="date" 
                                 value={servicio.fechaFin} 
                                 onChange={(e) => actualizarServicioAlertado(index, 'fechaFin', e.target.value)} 
-                                className={`p-2 bg-black/40 border rounded-lg text-blue-100 text-sm w-full ${servicio.error ? 'border-red-500' : 'border-blue-500/30'}`}
+                                className={`p-2 bg-slate-800/50 border rounded-lg text-blue-100 text-sm w-full ${servicio.error ? 'border-red-500' : 'border-gray-600/30'}`}
                               />
                             </div>
                             <div>
-                              <label className="text-xs text-blue-400 mb-1 block">Hora Fin</label>
+                              <label className="text-xs text-emerald-400 mb-1 block">Hora Fin</label>
                               <input 
                                 type="time" 
                                 step="1" 
                                 value={servicio.horaFin} 
                                 onChange={(e) => actualizarServicioAlertado(index, 'horaFin', e.target.value)} 
-                                className={`p-2 bg-black/40 border rounded-lg text-blue-100 text-sm w-full ${servicio.error ? 'border-red-500' : 'border-blue-500/30'}`}
+                                className={`p-2 bg-slate-800/50 border rounded-lg text-blue-100 text-sm w-full ${servicio.error ? 'border-red-500' : 'border-gray-600/30'}`}
                               />
                             </div>
                             <div className={`col-span-2 text-center text-sm font-medium p-2 rounded-lg ${
@@ -1850,15 +1822,15 @@ export default function GeneradorComunicados() {
               )}
 
               {multiplesEncolamientos && (
-                <div className="mt-4 space-y-3 border border-blue-500/30 rounded-lg p-4 bg-black/20">
+                <div className="mt-4 space-y-3 border border-gray-600/30 rounded-lg p-4 bg-black/20">
                   <div className="flex justify-between">
                     <h3 className="text-sm font-semibold text-blue-300">Servicios Encolados</h3>
-                    <button onClick={agregarServicioEncolamiento} className="text-sm bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900 text-white px-3 py-1.5 rounded-lg font-medium shadow-lg">
+                    <button onClick={agregarServicioEncolamiento} className="text-sm bg-gradient-to-r from-emerald-600 to-blue-700 hover:from-blue-700 hover:to-blue-900 text-white px-3 py-1.5 rounded-lg font-medium shadow-lg">
                       <Plus className="w-3 h-3 inline mr-1" />Agregar
                     </button>
                   </div>
                   {serviciosEncolamiento.map((servicio, index) => (
-                    <div key={index} className="bg-black/40 rounded-lg p-4 border border-blue-500/30">
+                    <div key={index} className="bg-slate-800/50 rounded-lg p-4 border border-gray-600/30">
                       <div className="flex justify-between mb-3">
                         <span className="text-sm font-medium text-blue-300">Servicio {index + 1}</span>
                         {serviciosEncolamiento.length > 1 && (
@@ -1868,12 +1840,12 @@ export default function GeneradorComunicados() {
                         )}
                       </div>
                       <div className="space-y-3">
-                        <select value={servicio.tipo} onChange={(e) => actualizarServicioEncolamiento(index, 'tipo', e.target.value)} className="w-full p-2 bg-black/40 border border-blue-500/30 rounded-lg text-blue-100 text-sm">
+                        <select value={servicio.tipo} onChange={(e) => actualizarServicioEncolamiento(index, 'tipo', e.target.value)} className="w-full p-2 bg-slate-800/50 border border-gray-600/30 rounded-lg text-blue-100 text-sm">
                           {OPCIONES_ENCOLAMIENTO.map(opcion => (<option key={opcion} value={opcion}>{opcion}</option>))}
                           <option value="Otro">Otro (especificar)</option>
                         </select>
-                        {servicio.tipo === 'Otro' && (<input type="text" placeholder="Especifica" value={servicio.tipoCustom} onChange={(e) => actualizarServicioEncolamiento(index, 'tipoCustom', e.target.value)} className="w-full p-2 bg-black/40 border border-blue-500/30 rounded-lg text-blue-100 text-sm" />)}
-                        <input type="number" placeholder="Cantidad encolada" value={servicio.encolados} onChange={(e) => actualizarServicioEncolamiento(index, 'encolados', e.target.value)} className="w-full p-2 bg-black/40 border border-blue-500/30 rounded-lg text-blue-100 text-sm" />
+                        {servicio.tipo === 'Otro' && (<input type="text" placeholder="Especifica" value={servicio.tipoCustom} onChange={(e) => actualizarServicioEncolamiento(index, 'tipoCustom', e.target.value)} className="w-full p-2 bg-slate-800/50 border border-gray-600/30 rounded-lg text-blue-100 text-sm" />)}
+                        <input type="number" placeholder="Cantidad encolada" value={servicio.encolados} onChange={(e) => actualizarServicioEncolamiento(index, 'encolados', e.target.value)} className="w-full p-2 bg-slate-800/50 border border-gray-600/30 rounded-lg text-blue-100 text-sm" />
                       </div>
                     </div>
                   ))}
@@ -1881,15 +1853,15 @@ export default function GeneradorComunicados() {
               )}
 
               {multiplesAlertamientos && tipo.endsWith('-fin') && !multiplesServicios && !multiplesEncolamientos && (
-                <div className="mt-4 space-y-3 border border-blue-500/30 rounded-lg p-4 bg-black/20">
+                <div className="mt-4 space-y-3 border border-gray-600/30 rounded-lg p-4 bg-black/20">
                   <div className="flex justify-between">
                     <h3 className="text-sm font-semibold text-blue-300">Períodos de Alertamiento</h3>
-                    <button onClick={agregarPeriodo} className="text-sm bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900 text-white px-3 py-1.5 rounded-lg font-medium shadow-lg">
+                    <button onClick={agregarPeriodo} className="text-sm bg-gradient-to-r from-emerald-600 to-blue-700 hover:from-blue-700 hover:to-blue-900 text-white px-3 py-1.5 rounded-lg font-medium shadow-lg">
                       <Plus className="w-3 h-3 inline mr-1" />Agregar
                     </button>
                   </div>
                   {periodosAlertamiento.map((periodo, index) => (
-                    <div key={index} className="bg-black/40 rounded-lg p-4 border border-blue-500/30">
+                    <div key={index} className="bg-slate-800/50 rounded-lg p-4 border border-gray-600/30">
                       <div className="flex justify-between mb-3">
                         <span className="text-sm font-medium text-blue-300">Período {index + 1}</span>
                         {periodosAlertamiento.length > 1 && (
@@ -1899,10 +1871,10 @@ export default function GeneradorComunicados() {
                         )}
                       </div>
                       <div className="grid grid-cols-2 gap-3">
-                        <input type="date" value={periodo.fechaInicio} onChange={(e) => actualizarPeriodo(index, 'fechaInicio', e.target.value)} className="p-2 bg-black/40 border border-blue-500/30 rounded-lg text-blue-100 text-sm" />
-                        <input type="time" step="1" value={periodo.horaInicio} onChange={(e) => actualizarPeriodo(index, 'horaInicio', e.target.value)} className="p-2 bg-black/40 border border-blue-500/30 rounded-lg text-blue-100 text-sm" />
-                        <input type="date" value={periodo.fechaFin} onChange={(e) => actualizarPeriodo(index, 'fechaFin', e.target.value)} className="p-2 bg-black/40 border border-blue-500/30 rounded-lg text-blue-100 text-sm" />
-                        <input type="time" step="1" value={periodo.horaFin} onChange={(e) => actualizarPeriodo(index, 'horaFin', e.target.value)} className="p-2 bg-black/40 border border-blue-500/30 rounded-lg text-blue-100 text-sm" />
+                        <input type="date" value={periodo.fechaInicio} onChange={(e) => actualizarPeriodo(index, 'fechaInicio', e.target.value)} className="p-2 bg-slate-800/50 border border-gray-600/30 rounded-lg text-blue-100 text-sm" />
+                        <input type="time" step="1" value={periodo.horaInicio} onChange={(e) => actualizarPeriodo(index, 'horaInicio', e.target.value)} className="p-2 bg-slate-800/50 border border-gray-600/30 rounded-lg text-blue-100 text-sm" />
+                        <input type="date" value={periodo.fechaFin} onChange={(e) => actualizarPeriodo(index, 'fechaFin', e.target.value)} className="p-2 bg-slate-800/50 border border-gray-600/30 rounded-lg text-blue-100 text-sm" />
+                        <input type="time" step="1" value={periodo.horaFin} onChange={(e) => actualizarPeriodo(index, 'horaFin', e.target.value)} className="p-2 bg-slate-800/50 border border-gray-600/30 rounded-lg text-blue-100 text-sm" />
                         <div className="col-span-2 text-center text-blue-200 text-sm font-medium bg-blue-900/30 p-2 rounded-lg">Duración: {periodo.duracion}</div>
                       </div>
                     </div>
@@ -1991,7 +1963,7 @@ export default function GeneradorComunicados() {
                       <input className={errorFechaFin ? input + " border-red-500" : input} type="time" step="1" name="horaFin" value={formData.horaFin} onChange={handleInputChange} />
                     </div>
                   </div>
-                  <div className="p-4 bg-gradient-to-br from-blue-900/30 to-blue-800/20 border border-blue-500/30 rounded-lg text-center">
+                  <div className="p-4 bg-gradient-to-br from-blue-900/30 to-blue-800/20 border border-gray-600/30 rounded-lg text-center">
                     <span className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-200">{formData.duracionCalculada}</span>
                   </div>
                 </div>
@@ -2013,9 +1985,9 @@ export default function GeneradorComunicados() {
               <div className="mt-4">
                 <label className={label}>Nota Adicional (opcional)</label>
                 {tipo === 'evento-fin' && (
-                  <div className="mb-3 p-3 bg-blue-900/20 border border-blue-500/30 rounded-lg">
+                  <div className="mb-3 p-3 bg-blue-900/20 border border-gray-600/30 rounded-lg">
                     <p className="text-xs text-blue-300 font-semibold mb-1">📝 Instrucciones:</p>
-                    <p className="text-xs text-blue-400/80">
+                    <p className="text-xs text-emerald-400/80">
                       Indica <span className="font-semibold text-blue-300">la acción realizada para recuperar el servicio</span>. 
                       Si se recuperó automáticamente, también debe indicarse.
                     </p>
@@ -2042,7 +2014,7 @@ export default function GeneradorComunicados() {
             
             <div className={card}>
               <h2 className="text-xl font-bold text-blue-300 mb-4">Mensaje Generado</h2>
-              <div className="bg-black/60 p-4 rounded-lg min-h-[150px] border border-blue-500/30">
+              <div className="bg-black/60 p-4 rounded-lg min-h-[150px] border border-gray-600/30">
                 <pre className="whitespace-pre-wrap text-blue-100 text-sm font-mono">{resultado || 'El mensaje generado aparecerá aquí...'}</pre>
               </div>
               
@@ -2068,16 +2040,16 @@ export default function GeneradorComunicados() {
         
         {mostrarActualizacion && (
           <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50">
-            <div className="bg-gray-900/95 backdrop-blur-xl border border-blue-500/30 rounded-xl p-6 max-w-md mx-4 shadow-2xl">
+            <div className="bg-gray-900/95 backdrop-blur-xl border border-gray-600/30 rounded-xl p-6 max-w-md mx-4 shadow-2xl">
               <h3 className="text-lg font-bold text-blue-300 mb-2">Sincronización Requerida</h3>
-              <p className="text-blue-400/80 text-sm mb-4">
+              <p className="text-emerald-400/80 text-sm mb-4">
                 Tiempo: {calcularTiempoAbierto().horas}h {calcularTiempoAbierto().minutos}m
               </p>
               <div className="flex gap-3">
                 <button onClick={actualizarFechasAhora} className={btnPrimary + " flex-1"}>Sincronizar</button>
                 <button onClick={() => setMostrarActualizacion(false)} className={btnSecondary + " flex-1"}>Más tarde</button>
               </div>
-              <button onClick={() => {setNoPreguntar(true); setMostrarActualizacion(false);}} className="w-full mt-2 text-xs text-blue-400/70 hover:text-blue-300">
+              <button onClick={() => {setNoPreguntar(true); setMostrarActualizacion(false);}} className="w-full mt-2 text-xs text-emerald-400/70 hover:text-blue-300">
                 No volver a preguntar
               </button>
             </div>
@@ -2186,7 +2158,7 @@ export default function GeneradorComunicados() {
           </div>
         )}
 
-        <footer className="text-center py-6 mt-8 text-blue-400/50 text-xs border-t border-blue-500/20">
+        <footer className="text-center py-6 mt-8 text-emerald-400/50 text-xs border-t border-emerald-500/20">
           <p className="font-medium text-blue-300/70">Centro de Comando - Diners Club del Ecuador</p>
           <p className="mt-2 text-blue-500/50">Versión 6.1 - Sistema de Gestión de Comunicados</p>
         </footer>
