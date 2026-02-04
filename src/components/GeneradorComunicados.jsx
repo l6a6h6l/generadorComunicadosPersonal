@@ -1,4 +1,19 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import { initializeApp } from 'firebase/app';
+import { getFirestore, collection, getDocs, addDoc, updateDoc, deleteDoc, doc } from 'firebase/firestore';
+
+// Firebase config
+const firebaseConfig = {
+  apiKey: "AIzaSyB0MbEvWt5WMPID2OvaZXFu_Br0M07IZsY",
+  authDomain: "comunicados-herreralara.firebaseapp.com",
+  projectId: "comunicados-herreralara",
+  storageBucket: "comunicados-herreralara.firebasestorage.app",
+  messagingSenderId: "460478649899",
+  appId: "1:460478649899:web:12304877d1e3cf5c8b3c6e"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
 const USUARIOS_VALIDOS = [{ usuario: 'luishl', password: 'luistbane' }];
 
@@ -51,7 +66,8 @@ const mkSes = (id) => {
     multEnc: false, servEnc: [{ tipo: 'Variable General', custom: '', fi: f, hi: h, ff: f, hf: h, dur: '00:00:00', enc: '' }],
     fd: { desc: '', imp: '', esc: '', mot: '', impM: '', ejec: '', fi: f, hi: h, estI: 'En revisión', acc: '', accEj: '', accCur: '', fiF: f, hiF: h, ff: f, hf: h, durCalc: '00:00:00', estF: 'Recuperado', nota: '' },
     res: '', errFecha: '', sugFecha: [], showErrFecha: false, autoLimpEsc: true, ultEsc: '',
-    svcSel: [], busq: '', showSvc: false, autoFill: false, svcInit: false, bloquear: false
+    svcSel: [], busq: '', showSvc: false, autoFill: false, svcInit: false, bloquear: false,
+    loadedRegId: null, loadedRegTipo: null
   };
 };
 
@@ -108,6 +124,13 @@ export default function App() {
   const [actId, setActId] = useState(1);
   const [nxId, setNxId] = useState(2);
 
+  // Historial Firebase
+  const [dbEventos, setDbEventos] = useState([]);
+  const [dbMants, setDbMants] = useState([]);
+  const [showHist, setShowHist] = useState(false); // 'evento'|'mant'|false
+  const [histBusq, setHistBusq] = useState('');
+  const [fbLoading, setFbLoading] = useState(true);
+
   const s = sess.find(x => x.id === actId) || sess[0];
   const up = useCallback((u) => setSess(p => p.map(x => x.id === actId ? (typeof u === 'function' ? u(x) : { ...x, ...u }) : x)), [actId]);
   const tt = (m) => { setToast(m); setTimeout(() => setToast(''), 3000); };
@@ -116,6 +139,23 @@ export default function App() {
     if (USUARIOS_VALIDOS.find(u => u.usuario === lf.u && u.password === lf.p)) { setAuth(true); setLErr(''); }
     else { setLErr('Credenciales incorrectas'); setTimeout(() => setLErr(''), 3000); }
   };
+
+  // Load data from Firebase on mount
+  useEffect(() => {
+    const loadData = async () => {
+      try {
+        const evSnap = await getDocs(collection(db, 'eventos'));
+        const evData = evSnap.docs.map(d => ({ id: d.id, ...d.data() }));
+        setDbEventos(evData);
+        
+        const mtSnap = await getDocs(collection(db, 'mantenimientos'));
+        const mtData = mtSnap.docs.map(d => ({ id: d.id, ...d.data() }));
+        setDbMants(mtData);
+      } catch (e) { console.error('Error cargando Firebase:', e); }
+      setFbLoading(false);
+    };
+    loadData();
+  }, []);
 
   const addSes = () => { const ns = mkSes(nxId); setSess(p => [...p, ns]); setActId(nxId); setNxId(p => p+1); tt(`Sesión ${nxId} creada`); };
   const rmSes = (id) => {
@@ -185,7 +225,7 @@ export default function App() {
 
   const limpi = () => {
     const { f, h } = now();
-    up(x => ({ ...x, fd:{...x.fd,desc:'',imp:'',esc:'',mot:'',impM:'',ejec:'',acc:'',accEj:'',accCur:'',nota:'',fi:f,hi:h,fiF:f,hiF:h,ff:f,hf:h,durCalc:'00:00:00'}, multAler:false,multServ:false,multEnc:false,errFecha:'',showErrFecha:false,sugFecha:[],svcSel:[],autoFill:false,svcInit:false,bloquear:false,periodos:[{fi:f,hi:h,ff:f,hf:h,dur:'00:00:00'}],servAler:[{n:'',fi:f,hi:h,ff:f,hf:h,dur:'00:00:00',err:'',sug:[]}],servEnc:[{tipo:'Variable General',custom:'',fi:f,hi:h,ff:f,hf:h,dur:'00:00:00',enc:''}],res:'' }));
+    up(x => ({ ...x, fd:{...x.fd,desc:'',imp:'',esc:'',mot:'',impM:'',ejec:'',acc:'',accEj:'',accCur:'',nota:'',fi:f,hi:h,fiF:f,hiF:h,ff:f,hf:h,durCalc:'00:00:00'}, multAler:false,multServ:false,multEnc:false,errFecha:'',showErrFecha:false,sugFecha:[],svcSel:[],autoFill:false,svcInit:false,bloquear:false,loadedRegId:null,loadedRegTipo:null,periodos:[{fi:f,hi:h,ff:f,hf:h,dur:'00:00:00'}],servAler:[{n:'',fi:f,hi:h,ff:f,hf:h,dur:'00:00:00',err:'',sug:[]}],servEnc:[{tipo:'Variable General',custom:'',fi:f,hi:h,ff:f,hf:h,dur:'00:00:00',enc:''}],res:'' }));
     tt('Limpiado');
   };
 
@@ -355,6 +395,100 @@ export default function App() {
 
   const copy = () => { if(!s.res){tt('Genera primero');return;} navigator.clipboard.writeText(s.res).then(()=>tt('Copiado ✓')).catch(()=>tt('Error')); };
 
+  // ── Historial CRUD (Firebase) ──
+  const guardarEnHistorial = async () => {
+    const fd = s.fd;
+    try {
+      if (s.tipo.startsWith('mantenimiento-')) {
+        if (!fd.mot?.trim()) { tt('Motivo vacío, nada que guardar'); return; }
+        const existe = dbMants.find(x => x.motivo.toLowerCase() === fd.mot.trim().toLowerCase());
+        if (existe) {
+          const updated = { impacto: fd.impM || existe.impacto, ejecutor: fd.ejec || existe.ejecutor, usos: (existe.usos || 0) + 1, ultimoUso: Date.now() };
+          await updateDoc(doc(db, 'mantenimientos', existe.id), updated);
+          setDbMants(p => p.map(x => x.id === existe.id ? { ...x, ...updated } : x));
+          tt('Mantenimiento actualizado ✓');
+        } else {
+          const nuevo = { motivo: fd.mot.trim(), impacto: fd.impM || '', ejecutor: fd.ejec || '', usos: 1, creadoEn: Date.now(), ultimoUso: Date.now() };
+          const docRef = await addDoc(collection(db, 'mantenimientos'), nuevo);
+          setDbMants(p => [...p, { id: docRef.id, ...nuevo }]);
+          tt('Mantenimiento guardado ✓');
+        }
+      } else {
+        if (!fd.desc?.trim()) { tt('Descripción vacía, nada que guardar'); return; }
+        const cat = s.tipo.startsWith('incidente-') ? 'incidente' : 'evento';
+        const existe = dbEventos.find(x => x.descripcion.toLowerCase() === fd.desc.trim().toLowerCase());
+        if (existe) {
+          const updated = { impacto: fd.imp || existe.impacto, escaladoA: fd.esc || existe.escaladoA, tipo: cat, usos: (existe.usos || 0) + 1, ultimoUso: Date.now() };
+          await updateDoc(doc(db, 'eventos', existe.id), updated);
+          setDbEventos(p => p.map(x => x.id === existe.id ? { ...x, ...updated } : x));
+          tt('Evento actualizado ✓');
+        } else {
+          const nuevo = { descripcion: fd.desc.trim(), impacto: fd.imp || '', escaladoA: fd.esc || '', tipo: cat, usos: 1, creadoEn: Date.now(), ultimoUso: Date.now() };
+          const docRef = await addDoc(collection(db, 'eventos'), nuevo);
+          setDbEventos(p => [...p, { id: docRef.id, ...nuevo }]);
+          tt('Evento guardado ✓');
+        }
+      }
+    } catch (e) { console.error(e); tt('Error al guardar'); }
+  };
+
+  const cargarDesdeHistorial = async (reg) => {
+    try {
+      if (showHist === 'mant') {
+        up(x => ({ ...x, fd: { ...x.fd, mot: reg.motivo, impM: reg.impacto, ejec: reg.ejecutor }, loadedRegId: reg.id, loadedRegTipo: 'mant' }));
+        const updated = { usos: (reg.usos || 0) + 1, ultimoUso: Date.now() };
+        await updateDoc(doc(db, 'mantenimientos', reg.id), updated);
+        setDbMants(p => p.map(x => x.id === reg.id ? { ...x, ...updated } : x));
+      } else {
+        up(x => ({ ...x, fd: { ...x.fd, desc: reg.descripcion, imp: reg.impacto, esc: reg.escaladoA }, loadedRegId: reg.id, loadedRegTipo: 'evento' }));
+        const updated = { usos: (reg.usos || 0) + 1, ultimoUso: Date.now() };
+        await updateDoc(doc(db, 'eventos', reg.id), updated);
+        setDbEventos(p => p.map(x => x.id === reg.id ? { ...x, ...updated } : x));
+      }
+      setShowHist(false); setHistBusq(''); tt('Cargado ✓');
+    } catch (e) { console.error(e); tt('Error al cargar'); }
+  };
+
+  const eliminarDeHistorial = async (id) => {
+    try {
+      if (showHist === 'mant') {
+        await deleteDoc(doc(db, 'mantenimientos', id));
+        setDbMants(p => p.filter(x => x.id !== id));
+      } else {
+        await deleteDoc(doc(db, 'eventos', id));
+        setDbEventos(p => p.filter(x => x.id !== id));
+      }
+      tt('Eliminado');
+    } catch (e) { console.error(e); tt('Error al eliminar'); }
+  };
+
+  const actualizarRegistro = async () => {
+    if (!s.loadedRegId) { tt('Carga un registro primero'); return; }
+    const fd = s.fd;
+    try {
+      if (s.loadedRegTipo === 'mant') {
+        const updated = { motivo: fd.mot?.trim(), impacto: fd.impM || '', ejecutor: fd.ejec || '', ultimoUso: Date.now() };
+        await updateDoc(doc(db, 'mantenimientos', s.loadedRegId), updated);
+        setDbMants(p => p.map(x => x.id === s.loadedRegId ? { ...x, ...updated } : x));
+      } else {
+        const updated = { descripcion: fd.desc?.trim(), impacto: fd.imp || '', escaladoA: fd.esc || '', ultimoUso: Date.now() };
+        await updateDoc(doc(db, 'eventos', s.loadedRegId), updated);
+        setDbEventos(p => p.map(x => x.id === s.loadedRegId ? { ...x, ...updated } : x));
+      }
+      tt('Registro actualizado ✓');
+    } catch (e) { console.error(e); tt('Error al actualizar'); }
+  };
+
+  const histFiltrado = () => {
+    const src = showHist === 'mant' ? dbMants : dbEventos;
+    const q = histBusq.toLowerCase();
+    const filtered = q ? src.filter(x => {
+      const campo = showHist === 'mant' ? x.motivo : x.descripcion;
+      return campo.toLowerCase().includes(q) || (x.escaladoA || '').toLowerCase().includes(q) || (x.ejecutor || '').toLowerCase().includes(q);
+    }) : src;
+    return [...filtered].sort((a, b) => (b.usos||0) - (a.usos||0) || (b.ultimoUso||0) - (a.ultimoUso||0));
+  };
+
   const svcF = SERVICIOS_TRANSACCIONALES.filter(x => x.nombre.toLowerCase().includes(s.busq.toLowerCase())||x.descripcion.toLowerCase().includes(s.busq.toLowerCase()));
 
   if (!auth) return (
@@ -439,8 +573,43 @@ export default function App() {
           <div style={S.card}>
             {s.modoBLU&&s.tipo.startsWith('evento-')&&<div style={{background:'#0c1322',border:'1px solid #334155',borderRadius:'4px',padding:'8px',marginBottom:'10px',fontSize:'11px'}}><span style={{color:'#64748b'}}>Escalamiento: </span><span style={{color:'#e2e8f0',fontWeight:600}}>{s.tipoBLU==='bian'?'Miguel Angel López Garavito':s.tipoBLU==='infraestructura'?'Infraestructura Cloud':'Paul Chamorro / David Albuja'}</span>{s.tipoBLU==='bian'&&<span style={{color:'#475569',marginLeft:'8px'}}>malopez@dinersclub.com.ec</span>}</div>}
 
+            {/* Panel Historial */}
+            {showHist&&<div style={{background:'#0a1020',border:'1px solid #1e3a5f',borderRadius:'6px',padding:'12px',marginBottom:'10px'}}>
+              <div style={{...S.fb,marginBottom:'8px'}}>
+                <span style={{fontSize:'12px',fontWeight:700,color:'#93c5fd'}}>📚 Historial — {showHist==='mant'?'Mantenimientos':'Eventos/Incidentes'}</span>
+                <button onClick={()=>setShowHist(false)} style={{background:'none',border:'none',color:'#475569',cursor:'pointer',fontSize:'16px'}}>✕</button>
+              </div>
+              <input type="text" placeholder={showHist==='mant'?'Buscar por motivo o ejecutor...':'Buscar por descripción o escalado...'} value={histBusq} onChange={e=>setHistBusq(e.target.value)} style={{...S.inp,marginBottom:'8px',fontSize:'12px',border:'1px solid #1e3a5f'}} />
+              <div style={{maxHeight:'220px',overflowY:'auto',display:'flex',flexDirection:'column',gap:'4px'}}>
+                {fbLoading&&<div style={{textAlign:'center',padding:'16px',color:'#60a5fa',fontSize:'12px'}}>⏳ Cargando...</div>}
+                {!fbLoading&&histFiltrado().length===0&&<div style={{textAlign:'center',padding:'16px',color:'#475569',fontSize:'12px'}}>{(showHist==='mant'?dbMants:dbEventos).length===0?'Sin registros aún. Usa 💾 para guardar.':'Sin resultados para esta búsqueda.'}</div>}
+                {histFiltrado().map(reg=>(
+                  <div key={reg.id} onClick={()=>cargarDesdeHistorial(reg)} style={{background:'#0c1322',border:'1px solid #1e293b',borderRadius:'4px',padding:'8px 10px',cursor:'pointer',display:'flex',justifyContent:'space-between',alignItems:'flex-start',gap:'8px',transition:'border-color 0.15s'}} onMouseEnter={e=>e.currentTarget.style.borderColor='#2563eb'} onMouseLeave={e=>e.currentTarget.style.borderColor='#1e293b'}>
+                    <div style={{flex:1,minWidth:0}}>
+                      <div style={{fontSize:'12px',fontWeight:600,color:'#e2e8f0',overflow:'hidden',textOverflow:'ellipsis',whiteSpace:'nowrap'}}>{showHist==='mant'?reg.motivo:reg.descripcion}</div>
+                      <div style={{fontSize:'10px',color:'#64748b',marginTop:'2px',overflow:'hidden',textOverflow:'ellipsis',whiteSpace:'nowrap'}}>{showHist==='mant'?`Ejecutor: ${reg.ejecutor||'—'}`:`Escalado: ${reg.escaladoA||'—'}`}</div>
+                      <div style={{fontSize:'10px',color:'#475569',marginTop:'1px',overflow:'hidden',textOverflow:'ellipsis',whiteSpace:'nowrap'}}>Impacto: {reg.impacto?.substring(0,60)||'—'}</div>
+                    </div>
+                    <div style={{display:'flex',alignItems:'center',gap:'4px',flexShrink:0}}>
+                      <span style={{...S.tag,background:'#172554',color:'#60a5fa'}}>{reg.usos}×</span>
+                      <button onClick={e=>{e.stopPropagation();eliminarDeHistorial(reg.id);}} title="Eliminar" style={{background:'none',border:'none',color:'#64748b',cursor:'pointer',fontSize:'12px',padding:'2px'}}>🗑</button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>}
+
             {(s.tipo.startsWith('evento-')||s.tipo.startsWith('incidente-'))&&<div style={{display:'flex',flexDirection:'column',gap:'10px'}}>
-              <div><label style={S.lbl}>Descripción</label><input style={S.inp} name="desc" placeholder={s.modoBLU?"Alerta CLUSTER_EKS_KB":"Descripción"} value={s.fd.desc} onChange={hi} /></div>
+              <div>
+                <div style={{...S.fb,marginBottom:'4px'}}><label style={{...S.lbl,marginBottom:0}}>Descripción</label>
+                  <div style={S.fx}>
+                    {s.loadedRegId&&s.loadedRegTipo==='evento'&&<button onClick={actualizarRegistro} style={{...S.btn,...S.bSm,background:'#1a1500',color:'#facc15',border:'1px solid #854d0e',padding:'2px 8px',fontSize:'10px'}} title="Actualizar registro cargado">🔄 Actualizar</button>}
+                    <button onClick={guardarEnHistorial} style={{...S.btn,...S.bSm,background:'#0c2e1c',color:'#4ade80',border:'1px solid #166534',padding:'2px 8px',fontSize:'10px'}}>💾 Guardar</button>
+                    <button onClick={()=>{setShowHist(showHist==='evento'?false:'evento');setHistBusq('');}} style={{...S.btn,...S.bSm,background:showHist==='evento'?'#172554':'#0c1322',color:'#93c5fd',border:'1px solid #1e3a5f',padding:'2px 8px',fontSize:'10px'}}>📚 {dbEventos.length}</button>
+                  </div>
+                </div>
+                <input style={S.inp} name="desc" placeholder={s.modoBLU?"Alerta CLUSTER_EKS_KB":"Descripción"} value={s.fd.desc} onChange={hi} />
+              </div>
               <div><label style={S.lbl}>Impacto</label><textarea style={{...S.ta,height:'70px'}} name="imp" placeholder="Impacto" value={s.fd.imp} onChange={hi} /></div>
               <div><label style={S.lbl}>Escalado a</label>
                 {s.ultEsc&&<div style={{fontSize:'10px',color:'#ca8a04',marginBottom:'4px',padding:'4px 8px',background:'#1a1500',border:'1px solid #422006',borderRadius:'3px'}}>Último: {s.ultEsc}</div>}
@@ -450,7 +619,16 @@ export default function App() {
             </div>}
 
             {s.tipo.startsWith('mantenimiento-')&&<div style={{display:'flex',flexDirection:'column',gap:'10px'}}>
-              <div><label style={S.lbl}>Motivo</label><input style={S.inp} name="mot" placeholder="Descripción" value={s.fd.mot} onChange={hi} /></div>
+              <div>
+                <div style={{...S.fb,marginBottom:'4px'}}><label style={{...S.lbl,marginBottom:0}}>Motivo</label>
+                  <div style={S.fx}>
+                    {s.loadedRegId&&s.loadedRegTipo==='mant'&&<button onClick={actualizarRegistro} style={{...S.btn,...S.bSm,background:'#1a1500',color:'#facc15',border:'1px solid #854d0e',padding:'2px 8px',fontSize:'10px'}} title="Actualizar registro cargado">🔄 Actualizar</button>}
+                    <button onClick={guardarEnHistorial} style={{...S.btn,...S.bSm,background:'#0c2e1c',color:'#4ade80',border:'1px solid #166534',padding:'2px 8px',fontSize:'10px'}}>💾 Guardar</button>
+                    <button onClick={()=>{setShowHist(showHist==='mant'?false:'mant');setHistBusq('');}} style={{...S.btn,...S.bSm,background:showHist==='mant'?'#172554':'#0c1322',color:'#93c5fd',border:'1px solid #1e3a5f',padding:'2px 8px',fontSize:'10px'}}>📚 {dbMants.length}</button>
+                  </div>
+                </div>
+                <input style={S.inp} name="mot" placeholder="Descripción del mantenimiento" value={s.fd.mot} onChange={hi} />
+              </div>
               <div><label style={S.lbl}>Impacto</label><textarea style={{...S.ta,height:'70px'}} name="impM" placeholder="Impacto" value={s.fd.impM} onChange={hi} /></div>
               <div><label style={S.lbl}>Ejecutor</label><input style={S.inp} name="ejec" placeholder="Proveedor/área" value={s.fd.ejec} onChange={hi} /></div>
             </div>}
