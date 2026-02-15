@@ -15,7 +15,10 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-const USUARIOS_VALIDOS = [{ usuario: 'luishl', password: 'luistbane' }];
+const USUARIOS_VALIDOS = [
+  { usuario: 'luishl', password: 'luistbane' },
+  { usuario: 'fractalia', password: 'fractalia4ever' }
+];
 
 const SERVICIOS_TRANSACCIONALES = [
   { id: 'datafast-visa', nombre: 'DATAFAST VISA', descripcion: 'Transacciones locales Visa (débito/crédito) y MasterCard (crédito) en red propia', emoji: '💳' },
