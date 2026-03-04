@@ -75,55 +75,55 @@ const mkSes = (id) => {
 
 // ─── High Contrast Design System (sunlight readable) ───
 const c = {
-  bg: '#05080f',
-  surface: '#0c1221',
-  surfaceAlt: '#0a0f1a',
-  border: '#2a3a55',
-  borderLight: '#3d5278',
-  text: '#f8fafc',
-  textMuted: '#c8d6e5',
-  textDim: '#8899b3',
-  accent: '#5b9aff',
-  green: '#3ddc84',
-  red: '#ff6b6b',
-  amber: '#ffb347',
-  greenDim: '#1a7a42',
-  redDim: '#b33030',
+  bg: '#121212',
+  surface: '#1e1e1e',
+  surfaceAlt: '#181818',
+  border: '#404040',
+  borderLight: '#555555',
+  text: '#fafafa',
+  textMuted: '#d4d4d4',
+  textDim: '#a3a3a3',
+  accent: '#2dd4bf',
+  green: '#4ade80',
+  red: '#fb7185',
+  amber: '#fbbf24',
+  greenDim: '#166534',
+  redDim: '#9f1239',
 };
 
 const S = {
   bg: { background: c.bg, color: c.text, minHeight: '100vh', fontFamily: '"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif', fontSize: '13px' },
   ct: { maxWidth: '1200px', margin: '0 auto', padding: '12px' },
-  card: { background: c.surface, border: `1px solid #2a3a55`, borderRadius: '8px', padding: '16px', marginBottom: '10px' },
-  inp: { width: '100%', padding: '8px 10px', background: '#0e1528', border: `1px solid #3a4d6e`, borderRadius: '6px', color: '#f1f5f9', fontSize: '13px', outline: 'none', boxSizing: 'border-box', transition: 'border-color 0.15s' },
-  inpE: { borderColor: '#ff6b6b' },
-  lbl: { display: 'block', marginBottom: '4px', fontSize: '11px', fontWeight: 700, color: '#a0b4cc', textTransform: 'uppercase', letterSpacing: '0.5px' },
+  card: { background: c.surface, border: '1px solid #3a3a3a', borderRadius: '8px', padding: '16px', marginBottom: '10px' },
+  inp: { width: '100%', padding: '8px 10px', background: '#222222', border: '1px solid #4a4a4a', borderRadius: '6px', color: '#fafafa', fontSize: '13px', outline: 'none', boxSizing: 'border-box', transition: 'border-color 0.15s' },
+  inpE: { borderColor: '#fb7185' },
+  lbl: { display: 'block', marginBottom: '4px', fontSize: '11px', fontWeight: 700, color: '#b0b0b0', textTransform: 'uppercase', letterSpacing: '0.5px' },
   btn: { padding: '7px 14px', borderRadius: '6px', border: 'none', cursor: 'pointer', fontWeight: 600, fontSize: '12px', transition: 'opacity 0.15s' },
-  bP: { background: '#4d8eff', color: '#fff' },
-  bS: { background: '#1a2744', color: '#c8d6e5', border: '1px solid #3a4d6e' },
-  bD: { background: '#b33030', color: '#ffd4d4' },
+  bP: { background: '#2dd4bf', color: '#0a0a0a' },
+  bS: { background: '#2a2a2a', color: '#d4d4d4', border: '1px solid #4a4a4a' },
+  bD: { background: '#9f1239', color: '#ffd4d4' },
   bSm: { padding: '4px 10px', fontSize: '11px' },
-  bT: (a, col) => ({ padding: '6px 12px', borderRadius: '6px', border: a?`2px solid ${col}`:`1px solid #3a4d6e`, background: a?col+'22':'#0e1528', color: a?col:'#8899b3', cursor: 'pointer', fontWeight: 700, fontSize: '11px', transition: 'all 0.15s' }),
+  bT: (a, col) => ({ padding: '6px 12px', borderRadius: '6px', border: a?`2px solid ${col}`:'1px solid #4a4a4a', background: a?col+'22':'#222222', color: a?col:'#a3a3a3', cursor: 'pointer', fontWeight: 700, fontSize: '11px', transition: 'all 0.15s' }),
   g2: { display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px' },
   g3: { display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '6px' },
   fx: { display: 'flex', alignItems: 'center', gap: '8px' },
   fb: { display: 'flex', justifyContent: 'space-between', alignItems: 'center' },
-  ta: { width: '100%', padding: '8px 10px', background: '#0e1528', border: `1px solid #3a4d6e`, borderRadius: '6px', color: '#f1f5f9', fontSize: '13px', resize: 'vertical', outline: 'none', fontFamily: 'inherit', boxSizing: 'border-box' },
-  pre: { whiteSpace: 'pre-wrap', fontFamily: '"IBM Plex Mono","Fira Code",monospace', fontSize: '12px', color: '#e2e8f0', background: '#060a14', padding: '14px', borderRadius: '6px', border: `1px solid #2a3a55`, minHeight: '100px' },
-  toast: { position: 'fixed', bottom: 16, right: 16, background: '#1a2744', border: `1px solid #5b9aff`, color: '#ffffff', padding: '10px 18px', borderRadius: '8px', fontSize: '13px', zIndex: 999, fontWeight: 700, boxShadow: '0 4px 24px rgba(0,0,0,0.5)' },
+  ta: { width: '100%', padding: '8px 10px', background: '#222222', border: '1px solid #4a4a4a', borderRadius: '6px', color: '#fafafa', fontSize: '13px', resize: 'vertical', outline: 'none', fontFamily: 'inherit', boxSizing: 'border-box' },
+  pre: { whiteSpace: 'pre-wrap', fontFamily: '"IBM Plex Mono","Fira Code",monospace', fontSize: '12px', color: '#e5e5e5', background: '#161616', padding: '14px', borderRadius: '6px', border: '1px solid #404040', minHeight: '100px' },
+  toast: { position: 'fixed', bottom: 16, right: 16, background: '#2a2a2a', border: '1px solid #2dd4bf', color: '#ffffff', padding: '10px 18px', borderRadius: '8px', fontSize: '13px', zIndex: 999, fontWeight: 700, boxShadow: '0 4px 24px rgba(0,0,0,0.6)' },
   ov: { position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.75)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 100, backdropFilter: 'blur(4px)' },
   mod: { background: c.surface, border: `1px solid ${c.borderLight}`, borderRadius: '12px', padding: '24px', maxWidth: '420px', width: '90%' },
-  sv: (a) => ({ width: '100%', textAlign: 'left', padding: '6px 8px', borderRadius: '6px', fontSize: '11px', fontWeight: 600, border: a?`1px solid ${c.accent}`:`1px solid #3a4d6e`, background: a?c.accent+'1a':'#0e1528', color: a?'#a5c8ff':c.textMuted, cursor: 'pointer', display: 'flex', justifyContent: 'space-between', alignItems: 'center', transition: 'all 0.12s' }),
+  sv: (a) => ({ width: '100%', textAlign: 'left', padding: '6px 8px', borderRadius: '6px', fontSize: '11px', fontWeight: 600, border: a?`1px solid ${c.accent}`:'1px solid #4a4a4a', background: a?'#2dd4bf18':'#222222', color: a?'#5eead4':c.textMuted, cursor: 'pointer', display: 'flex', justifyContent: 'space-between', alignItems: 'center', transition: 'all 0.12s' }),
   tag: { fontSize: '10px', padding: '2px 6px', borderRadius: '4px', fontWeight: 700 },
-  sec: { marginTop: '14px', paddingTop: '12px', borderTop: `1px solid #3a4d6e` },
-  chk: { display: 'flex', alignItems: 'center', gap: '8px', padding: '7px 10px', background: '#0e1528', border: `1px solid #3a4d6e`, borderRadius: '6px', cursor: 'pointer', fontSize: '12px', color: '#c8d6e5' },
-  sub: { background: '#0e1528', border: `1px solid #3a4d6e`, borderRadius: '6px', padding: '10px', marginBottom: '6px' },
-  durD: { textAlign: 'center', padding: '12px', background: '#0e1528', borderRadius: '6px', fontSize: '26px', fontWeight: 700, color: '#ffffff', fontFamily: '"IBM Plex Mono",monospace', letterSpacing: '2px', border: '1px solid #3a4d6e' },
-  errB: { background: '#1e0a0a', border: `1px solid #b33030`, borderRadius: '6px', padding: '8px', marginTop: '6px' },
-  fixB: { width: '100%', textAlign: 'left', padding: '6px 10px', background: '#0a1e10', border: `1px solid #1a7a42`, borderRadius: '6px', color: '#5effa0', cursor: 'pointer', fontSize: '11px', fontWeight: 600, marginTop: '4px' },
-  tab: (a) => ({ padding: '7px 14px', borderRadius: '6px 6px 0 0', border: `1px solid ${a?'#3d5278':'#2a3a55'}`, borderBottom: a?`2px solid ${c.accent}`:`1px solid #2a3a55`, background: a?c.surface:'transparent', color: a?'#ffffff':'#8899b3', cursor: 'pointer', fontWeight: 700, fontSize: '11px', display: 'flex', alignItems: 'center', gap: '6px', position: 'relative', marginBottom: '-1px', zIndex: a?2:1, flexShrink: 0, transition: 'all 0.12s' }),
-  tabBar: { display: 'flex', alignItems: 'flex-end', gap: '2px', borderBottom: `1px solid #2a3a55`, marginBottom: '10px', overflowX: 'auto', paddingBottom: 0 },
-  tabX: { background: 'none', border: 'none', color: '#8899b3', cursor: 'pointer', fontSize: '14px', padding: '0 2px', lineHeight: 1 },
+  sec: { marginTop: '14px', paddingTop: '12px', borderTop: '1px solid #404040' },
+  chk: { display: 'flex', alignItems: 'center', gap: '8px', padding: '7px 10px', background: '#222222', border: '1px solid #4a4a4a', borderRadius: '6px', cursor: 'pointer', fontSize: '12px', color: '#d4d4d4' },
+  sub: { background: '#222222', border: '1px solid #4a4a4a', borderRadius: '6px', padding: '10px', marginBottom: '6px' },
+  durD: { textAlign: 'center', padding: '12px', background: '#222222', borderRadius: '6px', fontSize: '26px', fontWeight: 700, color: '#ffffff', fontFamily: '"IBM Plex Mono",monospace', letterSpacing: '2px', border: '1px solid #4a4a4a' },
+  errB: { background: '#2a1015', border: '1px solid #9f1239', borderRadius: '6px', padding: '8px', marginTop: '6px' },
+  fixB: { width: '100%', textAlign: 'left', padding: '6px 10px', background: '#0f2618', border: '1px solid #166534', borderRadius: '6px', color: '#4ade80', cursor: 'pointer', fontSize: '11px', fontWeight: 600, marginTop: '4px' },
+  tab: (a) => ({ padding: '7px 14px', borderRadius: '6px 6px 0 0', border: `1px solid ${a?'#555555':'#3a3a3a'}`, borderBottom: a?'2px solid #2dd4bf':'1px solid #3a3a3a', background: a?c.surface:'transparent', color: a?'#ffffff':'#a3a3a3', cursor: 'pointer', fontWeight: 700, fontSize: '11px', display: 'flex', alignItems: 'center', gap: '6px', position: 'relative', marginBottom: '-1px', zIndex: a?2:1, flexShrink: 0, transition: 'all 0.12s' }),
+  tabBar: { display: 'flex', alignItems: 'flex-end', gap: '2px', borderBottom: '1px solid #3a3a3a', marginBottom: '10px', overflowX: 'auto', paddingBottom: 0 },
+  tabX: { background: 'none', border: 'none', color: '#a3a3a3', cursor: 'pointer', fontSize: '14px', padding: '0 2px', lineHeight: 1 },
 };
 
 const B = ({ children, p, d, sm, onClick, dis, style }) => (
@@ -568,9 +568,9 @@ export default function App() {
       <div style={{...S.bg,display:'flex',alignItems:'center',justifyContent:'center'}}>
         <div style={{...S.card,width:'360px',padding:'32px'}}>
           <div style={{textAlign:'center',marginBottom:'24px'}}>
-            <div style={{width:'52px',height:'52px',borderRadius:'14px',background:`linear-gradient(135deg, #1a2744, #0c1528)`,border:'1px solid #3a4d6e',margin:'0 auto 12px',display:'flex',alignItems:'center',justifyContent:'center',fontSize:'26px'}}>🕷️</div>
-            <div style={{fontSize:'16px',fontWeight:700,color:c.text}}>Comunicados</div>
-            <div style={{fontSize:'11px',color:c.textDim,marginTop:'4px'}}>Service Desk — Diners Club Ecuador</div>
+            <div style={{width:'52px',height:'52px',borderRadius:'14px',background:'#2a2a2a',border:'1px solid #4a4a4a',margin:'0 auto 12px',display:'flex',alignItems:'center',justifyContent:'center',fontSize:'26px'}}>🕷️</div>
+            <div style={{fontSize:'16px',fontWeight:700,color:c.text}}>Generador de Comunicados</div>
+            <div style={{fontSize:'11px',color:c.textDim,marginTop:'6px',lineHeight:'1.4'}}>Desarrollado por Luis Herrera Lara</div>
           </div>
           <div style={{display:'flex',flexDirection:'column',gap:'12px'}}>
             <div><label style={S.lbl}>Usuario</label><input style={S.inp} value={lf.u} onChange={e=>setLf(p=>({...p,u:e.target.value}))} placeholder="Usuario" /></div>
@@ -580,7 +580,7 @@ export default function App() {
                 <button onClick={()=>setShowPw(!showPw)} style={{position:'absolute',right:'8px',top:'50%',transform:'translateY(-50%)',background:'none',border:'none',color:c.textDim,cursor:'pointer',fontSize:'12px'}}>{showPw?'🙈':'👁'}</button>
               </div>
             </div>
-            {lErr && <div style={{...S.errB,textAlign:'center'}}><span style={{fontSize:'12px',color:'#fca5a5'}}>{lErr}</span></div>}
+            {lErr && <div style={{...S.errB,textAlign:'center'}}><span style={{fontSize:'12px',color:'#fda4af'}}>{lErr}</span></div>}
             <B p onClick={login} style={{width:'100%',padding:'10px',borderRadius:'8px'}}>Iniciar Sesión</B>
           </div>
         </div>
@@ -595,7 +595,7 @@ export default function App() {
         {/* Header */}
         <div style={{...S.card,...S.fb,padding:'10px 16px',borderRadius:'10px'}}>
           <div style={S.fx}>
-            <div style={{width:'28px',height:'28px',borderRadius:'7px',background:`linear-gradient(135deg, #1a2744, #0c1528)`,border:'1px solid #3a4d6e',display:'flex',alignItems:'center',justifyContent:'center',fontSize:'15px',flexShrink:0}}>🕷️</div>
+            <div style={{width:'28px',height:'28px',borderRadius:'7px',background:'#2a2a2a',border:'1px solid #4a4a4a',display:'flex',alignItems:'center',justifyContent:'center',fontSize:'15px',flexShrink:0}}>🕷️</div>
             <div>
               <span style={{fontSize:'14px',fontWeight:700,color:c.text}}>Comunicados</span>
               <span style={{fontSize:'10px',color:c.textDim,marginLeft:'8px'}}>v7.1</span>
@@ -604,7 +604,7 @@ export default function App() {
           <div style={S.fx}>
             <span style={{...S.tag,background:sem().c+'18',color:sem().c,border:`1px solid ${sem().c}33`,borderRadius:'6px',padding:'3px 8px'}}>{sem().e} {cTA().h}h{cTA().m}m</span>
             <button onClick={sync} style={{...S.btn,...S.bSm,...S.bS,borderRadius:'6px'}}>⟳</button>
-            <button onClick={()=>up(x=>({...x,modoBLU:!x.modoBLU}))} style={{...S.btn,...S.bSm,borderRadius:'6px',background:s.modoBLU?c.accent+'22':'transparent',color:s.modoBLU?'#93c5fd':c.textDim,border:`1px solid ${s.modoBLU?c.accent:c.border}`}}>BLU {s.modoBLU?'ON':'OFF'}</button>
+            <button onClick={()=>up(x=>({...x,modoBLU:!x.modoBLU}))} style={{...S.btn,...S.bSm,borderRadius:'6px',background:s.modoBLU?c.accent+'22':'transparent',color:s.modoBLU?'#5eead4':c.textDim,border:`1px solid ${s.modoBLU?c.accent:c.border}`}}>BLU {s.modoBLU?'ON':'OFF'}</button>
             <button onClick={()=>{setAuth(false);setLf({u:'',p:''});}} style={{...S.btn,...S.bSm,...S.bS,borderRadius:'6px',color:c.textDim}}>Salir</button>
           </div>
         </div>
@@ -649,7 +649,7 @@ export default function App() {
 
             <div style={S.card}>
               <button onClick={()=>up(x=>({...x,showSvc:!x.showSvc}))} style={{...S.fb,width:'100%',background:'none',border:'none',color:c.textMuted,cursor:'pointer',padding:0}}>
-                <span style={{fontSize:'11px',fontWeight:600}}>SERVICIOS {s.svcSel.length>0&&<span style={{...S.tag,background:c.accent+'22',color:'#93c5fd',borderRadius:'4px'}}>{s.svcSel.length}</span>}</span>
+                <span style={{fontSize:'11px',fontWeight:600}}>SERVICIOS {s.svcSel.length>0&&<span style={{...S.tag,background:c.accent+'22',color:'#5eead4',borderRadius:'4px'}}>{s.svcSel.length}</span>}</span>
                 <span style={{fontSize:'10px',transition:'transform 0.15s',display:'inline-block',transform:s.showSvc?'rotate(180deg)':'rotate(0)'}}> ▼</span>
               </button>
               {s.showSvc&&<div style={{marginTop:'8px'}}>
@@ -669,14 +669,14 @@ export default function App() {
               {s.modoBLU&&s.tipo.startsWith('evento-')&&<div style={{background:c.surfaceAlt,border:`1px solid ${c.border}`,borderRadius:'6px',padding:'8px 10px',marginBottom:'12px',fontSize:'11px'}}><span style={{color:c.textDim}}>Escalamiento: </span><span style={{color:c.text,fontWeight:600}}>{s.tipoBLU==='bian'?'Miguel Angel López Garavito':s.tipoBLU==='infraestructura'?'Infraestructura Cloud':'Paul Chamorro / David Albuja'}</span>{s.tipoBLU==='bian'&&<span style={{color:c.textDim,marginLeft:'8px'}}>malopez@dinersclub.com.ec</span>}</div>}
 
               {/* Historial Panel */}
-              {showHist&&<div style={{background:'#0a0f1e',border:`1px solid ${c.accent}33`,borderRadius:'8px',padding:'14px',marginBottom:'12px'}}>
+              {showHist&&<div style={{background:'#1a1a1a',border:`1px solid ${c.accent}33`,borderRadius:'8px',padding:'14px',marginBottom:'12px'}}>
                 <div style={{...S.fb,marginBottom:'8px'}}>
-                  <span style={{fontSize:'12px',fontWeight:700,color:'#93c5fd'}}>📚 Historial — {showHist==='mant'?'Mantenimientos':'Eventos/Incidentes'}</span>
+                  <span style={{fontSize:'12px',fontWeight:700,color:'#5eead4'}}>📚 Historial — {showHist==='mant'?'Mantenimientos':'Eventos/Incidentes'}</span>
                   <button onClick={()=>setShowHist(false)} style={{background:'none',border:'none',color:c.textDim,cursor:'pointer',fontSize:'16px'}}>✕</button>
                 </div>
                 <input type="text" placeholder={showHist==='mant'?'Buscar por motivo o ejecutor...':'Buscar por descripción o escalado...'} value={histBusq} onChange={e=>setHistBusq(e.target.value)} style={{...S.inp,marginBottom:'8px',fontSize:'12px'}} />
                 <div style={{maxHeight:'220px',overflowY:'auto',display:'flex',flexDirection:'column',gap:'4px'}}>
-                  {fbLoading&&<div style={{textAlign:'center',padding:'16px',color:'#60a5fa',fontSize:'12px'}}>Cargando...</div>}
+                  {fbLoading&&<div style={{textAlign:'center',padding:'16px',color:'#2dd4bf',fontSize:'12px'}}>Cargando...</div>}
                   {!fbLoading&&histFiltrado().length===0&&<div style={{textAlign:'center',padding:'16px',color:c.textDim,fontSize:'12px'}}>{(showHist==='mant'?dbMants:dbEventos).length===0?'Sin registros. Usa 💾 para guardar.':'Sin resultados.'}</div>}
                   {histFiltrado().map(reg=>(
                     <div key={reg.id} onClick={()=>cargarDesdeHistorial(reg)} style={{background:c.surfaceAlt,border:`1px solid ${c.border}`,borderRadius:'6px',padding:'8px 10px',cursor:'pointer',display:'flex',justifyContent:'space-between',alignItems:'flex-start',gap:'8px',transition:'border-color 0.15s'}} onMouseEnter={e=>e.currentTarget.style.borderColor=c.accent} onMouseLeave={e=>e.currentTarget.style.borderColor=c.border}>
@@ -685,7 +685,7 @@ export default function App() {
                         <div style={{fontSize:'10px',color:c.textDim,marginTop:'2px',overflow:'hidden',textOverflow:'ellipsis',whiteSpace:'nowrap'}}>{showHist==='mant'?`Ejecutor: ${reg.ejecutor||'—'}`:`Escalado: ${reg.escaladoA||'—'}`}</div>
                       </div>
                       <div style={{display:'flex',alignItems:'center',gap:'4px',flexShrink:0}}>
-                        <span style={{...S.tag,background:c.accent+'22',color:'#93c5fd'}}>{reg.usos}×</span>
+                        <span style={{...S.tag,background:c.accent+'22',color:'#5eead4'}}>{reg.usos}×</span>
                         <button onClick={e=>{e.stopPropagation();eliminarDeHistorial(reg.id);}} title="Eliminar" style={{background:'none',border:'none',color:c.textDim,cursor:'pointer',fontSize:'12px',padding:'2px'}}>🗑</button>
                       </div>
                     </div>
@@ -698,16 +698,16 @@ export default function App() {
                 <div>
                   <div style={{...S.fb,marginBottom:'4px'}}><label style={{...S.lbl,marginBottom:0}}>Descripción</label>
                     <div style={S.fx}>
-                      {s.loadedRegId&&s.loadedRegTipo==='evento'&&<button onClick={actualizarRegistro} style={{...S.btn,...S.bSm,background:'#1a1500',color:c.amber,border:'1px solid #854d0e',padding:'2px 8px',fontSize:'10px'}}>🔄</button>}
-                      <button onClick={guardarEnHistorial} style={{...S.btn,...S.bSm,background:'#071a0e',color:'#4ade80',border:`1px solid ${c.greenDim}`,padding:'2px 8px',fontSize:'10px'}}>💾</button>
-                      <button onClick={()=>{setShowHist(showHist==='evento'?false:'evento');setHistBusq('');}} style={{...S.btn,...S.bSm,background:showHist==='evento'?c.accent+'22':c.surfaceAlt,color:'#93c5fd',border:`1px solid ${c.accent}44`,padding:'2px 8px',fontSize:'10px'}}>📚 {dbEventos.length}</button>
+                      {s.loadedRegId&&s.loadedRegTipo==='evento'&&<button onClick={actualizarRegistro} style={{...S.btn,...S.bSm,background:'#2a2200',color:c.amber,border:'1px solid #854d0e',padding:'2px 8px',fontSize:'10px'}}>🔄</button>}
+                      <button onClick={guardarEnHistorial} style={{...S.btn,...S.bSm,background:'#0f2618',color:'#4ade80',border:`1px solid ${c.greenDim}`,padding:'2px 8px',fontSize:'10px'}}>💾</button>
+                      <button onClick={()=>{setShowHist(showHist==='evento'?false:'evento');setHistBusq('');}} style={{...S.btn,...S.bSm,background:showHist==='evento'?c.accent+'22':c.surfaceAlt,color:'#5eead4',border:`1px solid ${c.accent}44`,padding:'2px 8px',fontSize:'10px'}}>📚 {dbEventos.length}</button>
                     </div>
                   </div>
                   <input style={S.inp} name="desc" placeholder={s.modoBLU?"Alerta CLUSTER_EKS_KB":"Descripción"} value={s.fd.desc} onChange={hi} />
                 </div>
                 <div><label style={S.lbl}>Impacto</label><textarea style={{...S.ta,height:'70px'}} name="imp" placeholder="Impacto" value={s.fd.imp} onChange={hi} /></div>
                 <div><label style={S.lbl}>Escalado a</label>
-                  {s.ultEsc&&<div style={{fontSize:'10px',color:c.amber,marginBottom:'4px',padding:'4px 8px',background:'#1a150088',border:'1px solid #42200644',borderRadius:'4px'}}>Último: {s.ultEsc}</div>}
+                  {s.ultEsc&&<div style={{fontSize:'10px',color:c.amber,marginBottom:'4px',padding:'4px 8px',background:'#2a220088',border:'1px solid #55330644',borderRadius:'4px'}}>Último: {s.ultEsc}</div>}
                   <input style={S.inp} name="esc" placeholder="MAYÚSCULAS" value={s.fd.esc} onChange={e=>sf('esc',e.target.value.toUpperCase())} />
                   <div style={{...S.fb,marginTop:'4px'}}><span style={{fontSize:'10px',color:c.textDim}}>Auto MAYÚSCULAS</span><label style={{fontSize:'10px',color:c.textDim,display:'flex',alignItems:'center',gap:'4px',cursor:'pointer'}}><input type="checkbox" checked={s.autoLimpEsc} onChange={e=>up({autoLimpEsc:e.target.checked})} />Auto-limpiar</label></div>
                 </div>
@@ -718,9 +718,9 @@ export default function App() {
                 <div>
                   <div style={{...S.fb,marginBottom:'4px'}}><label style={{...S.lbl,marginBottom:0}}>Motivo</label>
                     <div style={S.fx}>
-                      {s.loadedRegId&&s.loadedRegTipo==='mant'&&<button onClick={actualizarRegistro} style={{...S.btn,...S.bSm,background:'#1a1500',color:c.amber,border:'1px solid #854d0e',padding:'2px 8px',fontSize:'10px'}}>🔄</button>}
-                      <button onClick={guardarEnHistorial} style={{...S.btn,...S.bSm,background:'#071a0e',color:'#4ade80',border:`1px solid ${c.greenDim}`,padding:'2px 8px',fontSize:'10px'}}>💾</button>
-                      <button onClick={()=>{setShowHist(showHist==='mant'?false:'mant');setHistBusq('');}} style={{...S.btn,...S.bSm,background:showHist==='mant'?c.accent+'22':c.surfaceAlt,color:'#93c5fd',border:`1px solid ${c.accent}44`,padding:'2px 8px',fontSize:'10px'}}>📚 {dbMants.length}</button>
+                      {s.loadedRegId&&s.loadedRegTipo==='mant'&&<button onClick={actualizarRegistro} style={{...S.btn,...S.bSm,background:'#2a2200',color:c.amber,border:'1px solid #854d0e',padding:'2px 8px',fontSize:'10px'}}>🔄</button>}
+                      <button onClick={guardarEnHistorial} style={{...S.btn,...S.bSm,background:'#0f2618',color:'#4ade80',border:`1px solid ${c.greenDim}`,padding:'2px 8px',fontSize:'10px'}}>💾</button>
+                      <button onClick={()=>{setShowHist(showHist==='mant'?false:'mant');setHistBusq('');}} style={{...S.btn,...S.bSm,background:showHist==='mant'?c.accent+'22':c.surfaceAlt,color:'#5eead4',border:`1px solid ${c.accent}44`,padding:'2px 8px',fontSize:'10px'}}>📚 {dbMants.length}</button>
                     </div>
                   </div>
                   <input style={S.inp} name="mot" placeholder="Descripción del mantenimiento" value={s.fd.mot} onChange={hi} />
@@ -756,10 +756,10 @@ export default function App() {
                     {s.tipo.endsWith('-fin')&&<>
                       <div><label style={{...S.lbl,fontSize:'10px'}}>F.Fin</label><input type="date" value={sa.ff} onChange={e=>updSA(i,'ff',e.target.value)} style={{...S.inp,...(sa.err?S.inpE:{}),fontSize:'11px'}} /></div>
                       <div><label style={{...S.lbl,fontSize:'10px'}}>H.Fin</label><input type="time" step="1" value={sa.hf} onChange={e=>updSA(i,'hf',e.target.value)} style={{...S.inp,...(sa.err?S.inpE:{}),fontSize:'11px'}} /></div>
-                      <div style={{gridColumn:'1/-1',textAlign:'center',padding:'6px',background:sa.err?'#1c0a0a':c.surfaceAlt,borderRadius:'4px',fontSize:'13px',fontWeight:600,fontFamily:'"IBM Plex Mono",monospace',color:sa.err?'#fca5a5':'#d4d4d4'}}>{sa.dur}</div>
+                      <div style={{gridColumn:'1/-1',textAlign:'center',padding:'6px',background:sa.err?'#2a1015':c.surfaceAlt,borderRadius:'4px',fontSize:'13px',fontWeight:600,fontFamily:'"IBM Plex Mono",monospace',color:sa.err?'#fda4af':'#d4d4d4'}}>{sa.dur}</div>
                     </>}
                   </div>
-                  {sa.err&&<div style={S.errB}><div style={{fontSize:'11px',color:'#fca5a5'}}>{sa.err}</div>{sa.sug?.map((sg,si)=><button key={si} onClick={()=>aplSugSA(i,sg.f,sg.h)} style={S.fixB}>{sg.t}</button>)}</div>}
+                  {sa.err&&<div style={S.errB}><div style={{fontSize:'11px',color:'#fda4af'}}>{sa.err}</div>{sa.sug?.map((sg,si)=><button key={si} onClick={()=>aplSugSA(i,sg.f,sg.h)} style={S.fixB}>{sg.t}</button>)}</div>}
                 </div>)}
               </div>}
 
@@ -811,7 +811,7 @@ export default function App() {
                   <div><label style={S.lbl}>F.Ini</label><input type="date" style={{...S.inp,...(s.errFecha?S.inpE:{})}} name="fiF" value={s.fd.fiF} onChange={hi} /></div>
                   <div><label style={S.lbl}>H.Ini</label><input type="time" step="1" style={{...S.inp,...(s.errFecha?S.inpE:{})}} name="hiF" value={s.fd.hiF} onChange={hi} /></div>
                   <div><label style={S.lbl}>F.Fin</label><input type="date" style={{...S.inp,...(s.errFecha?S.inpE:{})}} name="ff" value={s.fd.ff} onChange={hi} />
-                    {s.errFecha&&<div style={S.errB}><div style={{fontSize:'11px',color:'#fca5a5'}}>{s.errFecha}</div>{s.sugFecha.map((sg,i)=><button key={i} onClick={()=>aplSugF(sg.f,sg.h)} style={S.fixB}>{sg.t}</button>)}</div>}
+                    {s.errFecha&&<div style={S.errB}><div style={{fontSize:'11px',color:'#fda4af'}}>{s.errFecha}</div>{s.sugFecha.map((sg,i)=><button key={i} onClick={()=>aplSugF(sg.f,sg.h)} style={S.fixB}>{sg.t}</button>)}</div>}
                   </div>
                   <div><label style={S.lbl}>H.Fin</label><input type="time" step="1" style={{...S.inp,...(s.errFecha?S.inpE:{})}} name="hf" value={s.fd.hf} onChange={hi} /></div>
                 </div>
@@ -854,7 +854,7 @@ export default function App() {
 
       {s.showErrFecha&&<div style={S.ov}><div style={{...S.mod,borderColor:c.red}}>
         <div style={{fontWeight:700,color:c.red,marginBottom:'8px',fontSize:'16px'}}>🚨 Error Temporal</div>
-        <div style={{color:'#fca5a5',fontSize:'12px',marginBottom:'12px',whiteSpace:'pre-line'}}>{s.errFecha}</div>
+        <div style={{color:'#fda4af',fontSize:'12px',marginBottom:'12px',whiteSpace:'pre-line'}}>{s.errFecha}</div>
         {s.sugFecha.length>0&&<div style={{marginBottom:'12px'}}>
           <div style={{color:c.textMuted,fontSize:'11px',fontWeight:600,marginBottom:'6px'}}>Correcciones:</div>
           {s.sugFecha.map((sg,i)=><button key={i} onClick={()=>{
