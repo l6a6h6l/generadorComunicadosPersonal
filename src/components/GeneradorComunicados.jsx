@@ -73,57 +73,57 @@ const mkSes = (id) => {
   };
 };
 
-// ─── Clean Design System ───
+// ─── High Contrast Design System (sunlight readable) ───
 const c = {
-  bg: '#0a0e17',
-  surface: '#111827',
-  surfaceAlt: '#0d1220',
-  border: '#1f2937',
-  borderLight: '#374151',
-  text: '#e5e7eb',
-  textMuted: '#9ca3af',
-  textDim: '#6b7280',
-  accent: '#3b82f6',
-  green: '#22c55e',
-  red: '#ef4444',
-  amber: '#f59e0b',
-  greenDim: '#166534',
-  redDim: '#991b1b',
+  bg: '#05080f',
+  surface: '#0c1221',
+  surfaceAlt: '#0a0f1a',
+  border: '#2a3a55',
+  borderLight: '#3d5278',
+  text: '#f8fafc',
+  textMuted: '#c8d6e5',
+  textDim: '#8899b3',
+  accent: '#5b9aff',
+  green: '#3ddc84',
+  red: '#ff6b6b',
+  amber: '#ffb347',
+  greenDim: '#1a7a42',
+  redDim: '#b33030',
 };
 
 const S = {
   bg: { background: c.bg, color: c.text, minHeight: '100vh', fontFamily: '"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif', fontSize: '13px' },
   ct: { maxWidth: '1200px', margin: '0 auto', padding: '12px' },
-  card: { background: c.surface, border: `1px solid ${c.border}`, borderRadius: '8px', padding: '16px', marginBottom: '10px' },
-  inp: { width: '100%', padding: '8px 10px', background: c.surfaceAlt, border: `1px solid ${c.border}`, borderRadius: '6px', color: c.text, fontSize: '13px', outline: 'none', boxSizing: 'border-box', transition: 'border-color 0.15s' },
-  inpE: { borderColor: c.red },
-  lbl: { display: 'block', marginBottom: '4px', fontSize: '11px', fontWeight: 600, color: c.textDim, textTransform: 'uppercase', letterSpacing: '0.5px' },
+  card: { background: c.surface, border: `1px solid #2a3a55`, borderRadius: '8px', padding: '16px', marginBottom: '10px' },
+  inp: { width: '100%', padding: '8px 10px', background: '#0e1528', border: `1px solid #3a4d6e`, borderRadius: '6px', color: '#f1f5f9', fontSize: '13px', outline: 'none', boxSizing: 'border-box', transition: 'border-color 0.15s' },
+  inpE: { borderColor: '#ff6b6b' },
+  lbl: { display: 'block', marginBottom: '4px', fontSize: '11px', fontWeight: 700, color: '#a0b4cc', textTransform: 'uppercase', letterSpacing: '0.5px' },
   btn: { padding: '7px 14px', borderRadius: '6px', border: 'none', cursor: 'pointer', fontWeight: 600, fontSize: '12px', transition: 'opacity 0.15s' },
-  bP: { background: c.accent, color: '#fff' },
-  bS: { background: c.border, color: c.textMuted },
-  bD: { background: c.redDim, color: '#fca5a5' },
+  bP: { background: '#4d8eff', color: '#fff' },
+  bS: { background: '#1a2744', color: '#c8d6e5', border: '1px solid #3a4d6e' },
+  bD: { background: '#b33030', color: '#ffd4d4' },
   bSm: { padding: '4px 10px', fontSize: '11px' },
-  bT: (a, col) => ({ padding: '6px 12px', borderRadius: '6px', border: a?`1px solid ${col}`:`1px solid ${c.border}`, background: a?col+'18':'transparent', color: a?col:c.textDim, cursor: 'pointer', fontWeight: 600, fontSize: '11px', transition: 'all 0.15s' }),
+  bT: (a, col) => ({ padding: '6px 12px', borderRadius: '6px', border: a?`2px solid ${col}`:`1px solid #3a4d6e`, background: a?col+'22':'#0e1528', color: a?col:'#8899b3', cursor: 'pointer', fontWeight: 700, fontSize: '11px', transition: 'all 0.15s' }),
   g2: { display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px' },
   g3: { display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '6px' },
   fx: { display: 'flex', alignItems: 'center', gap: '8px' },
   fb: { display: 'flex', justifyContent: 'space-between', alignItems: 'center' },
-  ta: { width: '100%', padding: '8px 10px', background: c.surfaceAlt, border: `1px solid ${c.border}`, borderRadius: '6px', color: c.text, fontSize: '13px', resize: 'vertical', outline: 'none', fontFamily: 'inherit', boxSizing: 'border-box' },
-  pre: { whiteSpace: 'pre-wrap', fontFamily: '"IBM Plex Mono","Fira Code",monospace', fontSize: '12px', color: '#d1d5db', background: '#060a12', padding: '14px', borderRadius: '6px', border: `1px solid ${c.border}`, minHeight: '100px' },
-  toast: { position: 'fixed', bottom: 16, right: 16, background: c.surface, border: `1px solid ${c.borderLight}`, color: c.text, padding: '10px 18px', borderRadius: '8px', fontSize: '12px', zIndex: 999, fontWeight: 600, boxShadow: '0 4px 24px rgba(0,0,0,0.4)' },
+  ta: { width: '100%', padding: '8px 10px', background: '#0e1528', border: `1px solid #3a4d6e`, borderRadius: '6px', color: '#f1f5f9', fontSize: '13px', resize: 'vertical', outline: 'none', fontFamily: 'inherit', boxSizing: 'border-box' },
+  pre: { whiteSpace: 'pre-wrap', fontFamily: '"IBM Plex Mono","Fira Code",monospace', fontSize: '12px', color: '#e2e8f0', background: '#060a14', padding: '14px', borderRadius: '6px', border: `1px solid #2a3a55`, minHeight: '100px' },
+  toast: { position: 'fixed', bottom: 16, right: 16, background: '#1a2744', border: `1px solid #5b9aff`, color: '#ffffff', padding: '10px 18px', borderRadius: '8px', fontSize: '13px', zIndex: 999, fontWeight: 700, boxShadow: '0 4px 24px rgba(0,0,0,0.5)' },
   ov: { position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.75)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 100, backdropFilter: 'blur(4px)' },
   mod: { background: c.surface, border: `1px solid ${c.borderLight}`, borderRadius: '12px', padding: '24px', maxWidth: '420px', width: '90%' },
-  sv: (a) => ({ width: '100%', textAlign: 'left', padding: '6px 8px', borderRadius: '6px', fontSize: '11px', fontWeight: 500, border: a?`1px solid ${c.accent}`:`1px solid ${c.border}`, background: a?c.accent+'14':'transparent', color: a?'#93c5fd':c.textMuted, cursor: 'pointer', display: 'flex', justifyContent: 'space-between', alignItems: 'center', transition: 'all 0.12s' }),
-  tag: { fontSize: '10px', padding: '2px 6px', borderRadius: '4px', fontWeight: 600 },
-  sec: { marginTop: '14px', paddingTop: '12px', borderTop: `1px solid ${c.border}` },
-  chk: { display: 'flex', alignItems: 'center', gap: '8px', padding: '7px 10px', background: c.surfaceAlt, border: `1px solid ${c.border}`, borderRadius: '6px', cursor: 'pointer', fontSize: '12px', color: c.textMuted },
-  sub: { background: c.surfaceAlt, border: `1px solid ${c.border}`, borderRadius: '6px', padding: '10px', marginBottom: '6px' },
-  durD: { textAlign: 'center', padding: '12px', background: c.surfaceAlt, borderRadius: '6px', fontSize: '26px', fontWeight: 700, color: '#f9fafb', fontFamily: '"IBM Plex Mono",monospace', letterSpacing: '2px' },
-  errB: { background: '#1c0a0a', border: `1px solid ${c.redDim}`, borderRadius: '6px', padding: '8px', marginTop: '6px' },
-  fixB: { width: '100%', textAlign: 'left', padding: '6px 10px', background: '#071a0e', border: `1px solid ${c.greenDim}`, borderRadius: '6px', color: '#86efac', cursor: 'pointer', fontSize: '11px', fontWeight: 500, marginTop: '4px' },
-  tab: (a) => ({ padding: '7px 14px', borderRadius: '6px 6px 0 0', border: `1px solid ${a?c.borderLight:c.border}`, borderBottom: a?`2px solid ${c.accent}`:`1px solid ${c.border}`, background: a?c.surface:'transparent', color: a?c.text:c.textDim, cursor: 'pointer', fontWeight: 600, fontSize: '11px', display: 'flex', alignItems: 'center', gap: '6px', position: 'relative', marginBottom: '-1px', zIndex: a?2:1, flexShrink: 0, transition: 'all 0.12s' }),
-  tabBar: { display: 'flex', alignItems: 'flex-end', gap: '2px', borderBottom: `1px solid ${c.border}`, marginBottom: '10px', overflowX: 'auto', paddingBottom: 0 },
-  tabX: { background: 'none', border: 'none', color: c.textDim, cursor: 'pointer', fontSize: '14px', padding: '0 2px', lineHeight: 1 },
+  sv: (a) => ({ width: '100%', textAlign: 'left', padding: '6px 8px', borderRadius: '6px', fontSize: '11px', fontWeight: 600, border: a?`1px solid ${c.accent}`:`1px solid #3a4d6e`, background: a?c.accent+'1a':'#0e1528', color: a?'#a5c8ff':c.textMuted, cursor: 'pointer', display: 'flex', justifyContent: 'space-between', alignItems: 'center', transition: 'all 0.12s' }),
+  tag: { fontSize: '10px', padding: '2px 6px', borderRadius: '4px', fontWeight: 700 },
+  sec: { marginTop: '14px', paddingTop: '12px', borderTop: `1px solid #3a4d6e` },
+  chk: { display: 'flex', alignItems: 'center', gap: '8px', padding: '7px 10px', background: '#0e1528', border: `1px solid #3a4d6e`, borderRadius: '6px', cursor: 'pointer', fontSize: '12px', color: '#c8d6e5' },
+  sub: { background: '#0e1528', border: `1px solid #3a4d6e`, borderRadius: '6px', padding: '10px', marginBottom: '6px' },
+  durD: { textAlign: 'center', padding: '12px', background: '#0e1528', borderRadius: '6px', fontSize: '26px', fontWeight: 700, color: '#ffffff', fontFamily: '"IBM Plex Mono",monospace', letterSpacing: '2px', border: '1px solid #3a4d6e' },
+  errB: { background: '#1e0a0a', border: `1px solid #b33030`, borderRadius: '6px', padding: '8px', marginTop: '6px' },
+  fixB: { width: '100%', textAlign: 'left', padding: '6px 10px', background: '#0a1e10', border: `1px solid #1a7a42`, borderRadius: '6px', color: '#5effa0', cursor: 'pointer', fontSize: '11px', fontWeight: 600, marginTop: '4px' },
+  tab: (a) => ({ padding: '7px 14px', borderRadius: '6px 6px 0 0', border: `1px solid ${a?'#3d5278':'#2a3a55'}`, borderBottom: a?`2px solid ${c.accent}`:`1px solid #2a3a55`, background: a?c.surface:'transparent', color: a?'#ffffff':'#8899b3', cursor: 'pointer', fontWeight: 700, fontSize: '11px', display: 'flex', alignItems: 'center', gap: '6px', position: 'relative', marginBottom: '-1px', zIndex: a?2:1, flexShrink: 0, transition: 'all 0.12s' }),
+  tabBar: { display: 'flex', alignItems: 'flex-end', gap: '2px', borderBottom: `1px solid #2a3a55`, marginBottom: '10px', overflowX: 'auto', paddingBottom: 0 },
+  tabX: { background: 'none', border: 'none', color: '#8899b3', cursor: 'pointer', fontSize: '14px', padding: '0 2px', lineHeight: 1 },
 };
 
 const B = ({ children, p, d, sm, onClick, dis, style }) => (
@@ -568,7 +568,7 @@ export default function App() {
       <div style={{...S.bg,display:'flex',alignItems:'center',justifyContent:'center'}}>
         <div style={{...S.card,width:'360px',padding:'32px'}}>
           <div style={{textAlign:'center',marginBottom:'24px'}}>
-            <div style={{width:'48px',height:'48px',borderRadius:'12px',background:`linear-gradient(135deg, ${c.accent}, #6366f1)`,margin:'0 auto 12px',display:'flex',alignItems:'center',justifyContent:'center',fontSize:'20px'}}>⚡</div>
+            <div style={{width:'52px',height:'52px',borderRadius:'14px',background:`linear-gradient(135deg, #1a2744, #0c1528)`,border:'1px solid #3a4d6e',margin:'0 auto 12px',display:'flex',alignItems:'center',justifyContent:'center',fontSize:'26px'}}>🕷️</div>
             <div style={{fontSize:'16px',fontWeight:700,color:c.text}}>Comunicados</div>
             <div style={{fontSize:'11px',color:c.textDim,marginTop:'4px'}}>Service Desk — Diners Club Ecuador</div>
           </div>
@@ -595,7 +595,7 @@ export default function App() {
         {/* Header */}
         <div style={{...S.card,...S.fb,padding:'10px 16px',borderRadius:'10px'}}>
           <div style={S.fx}>
-            <div style={{width:'28px',height:'28px',borderRadius:'7px',background:`linear-gradient(135deg, ${c.accent}, #6366f1)`,display:'flex',alignItems:'center',justifyContent:'center',fontSize:'13px',flexShrink:0}}>⚡</div>
+            <div style={{width:'28px',height:'28px',borderRadius:'7px',background:`linear-gradient(135deg, #1a2744, #0c1528)`,border:'1px solid #3a4d6e',display:'flex',alignItems:'center',justifyContent:'center',fontSize:'15px',flexShrink:0}}>🕷️</div>
             <div>
               <span style={{fontSize:'14px',fontWeight:700,color:c.text}}>Comunicados</span>
               <span style={{fontSize:'10px',color:c.textDim,marginLeft:'8px'}}>v7.1</span>
